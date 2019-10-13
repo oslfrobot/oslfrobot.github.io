@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html>
+
+ <head>
+	 
+ 	<link rel="stylesheet" href="../style/lite.css">
+  <link rel="icon" href="../previews/icon.png">
+ 	<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8"> 
+ <title>Documentation</title>
+
+ </head>
+
+ 
+
+<body>
+
+<div id="content" class="obsah">
+<br>
+<h1>Documentation</h1>
+<br>
+
+<h2>Content:</h2>
+<ol type="1">
+<a href="documentation.html#needed"><li>Needed</li></a>
+<a href="documentation.html#hardware"><li>Hardware</li></a>
+<a href="documentation.html#software"><li>Software</li></a>
+<a href="documentation.html#programming"><li>Programming</li></a>
+</ol>
+<br>
+<p>With this tutorial you can do it!</p>
+
+<div id="needed">
+<br>
+<h2>What do you need:</h2>
+<ul>
+<li><a href="https://www.keyestudio.com/keyestudio-uno-r3-atmega328p-development-board-usb-cable-for-arduino-p0513-p0513.html"><a1>1X </a1>Keystudio UNO r3</a></li>
+<li><a href="https://www.pololu.com/product/2820"><a1>2X </a1>Continous servo FS90R</a></li>
+<li><a href="https://www.pololu.com/product/2819"><a1>2X </a1>Servo wheel</a></li>
+<li><a href="https://www.ebay.com/itm/IR-Infrared-Obstacle-Avoidance-Sensor-Module-for-Arduino-Smart-Car-Robot-CA-NEW-/141975948572"><a1>1X </a1>Infrared sensor (for object detection)</a></li>
+<li><a href="https://www.ebay.com/itm/Circuit-Board-Double-sided-Universal-Prototyping-PCB-Printed-Breadboard-5-10-Pcs/163180975902?_trkparms=aid=555018&algo=PL.SIM&ao=1&asc=40719&meid=72bb2ea6c28c445ba8b19191884fb9b2&pid=100005&rk=5&rkt=12&sd=173815372566&itm=163180975902&pmt=1&noa=0&pg=2047675&_trksid=p2047675.c100005.m1851"><a1>2X </a1>Prototyping PCBs</a>
+<li><a href="https://www.ebay.com/itm/3-7V-5000-mAh-105573-LiPo-Polymer-Battery-Rechargeable-Li-for-tablet-PC-PSP/264052247211?hash=item3d7abd8aab:g:6uUAAOSwXCVcgGAL"><a1>1X </a1>3.7V Battery</a>
+  <li><a href="https://www.ebay.com/itm/3-5A-DC-DC-Step-up-Boost-Voltage-Converter-Module-3V-3-3V-3-7V-to-5V-6V-9V-12V/282630674951?hash=item41ce19da07:m:mAwlH7u9rvBER4D2487_04A"><a1>1X </a1>Step up circuit (3.7V to 5V)</a></li>
+    <li><a href="https://www.soselectronic.com/products/kingbright/l-53-src-c-12314"><a1>1X </a1>LED</a></li>
+    <li><a href="https://www.soselectronic.com/products/yageo/rm-1-150-k-mf0207fte52-150k-1-31113"><a1>1X </a1>Resistor 150k&#8486;</a></li>
+    <li><a href="https://www.soselectronic.com/products/yageo/rm-1-1-k-mf0207fte52-1k-1-30867"><a1>1X </a1>Resistor 1k&#8486;</a></li>
+    <li><a href="https://www.soselectronic.com/products/kingbright/l-53-p3c-12401"><a1>1X </a1>Phototransistor</a></li>
+    <li><a href="https://www.soselectronic.com/products/no-name/p10s-2937"><a1>1X </a1>Button</a></li>
+    <li><a href="https://www.ebay.com/itm/20PCS-2-54mm-40-Pin-Male-Single-Row-Pin-Header-Strip-GOOD-QUALITY/381375094139?hash=item58cbba1d7b:g:Cw0AAOSwajVUN1s4"><a1>Some male pins</a1></a></li>
+<li><a href="https://www.ebay.com/itm/40pc-10-30cm-Dupont-Jumper-Wire-Ribbon-GPIO-Cable-Arduino-Breadboard-F-F-M-M-F-M/132422423178?_trkparms=ispr=1&hash=item1ed4fdd28a:m:m68D4n08tnVu5u44jA6ZpCw&enc=AQAEAAACQBPxNw+Vj6nta7CKEs3N0qVxLys9LHt9AF798XxkD3Q/1dSdpF2qTBfsluyhoF93p/82KN0iXl7dotnTFZqmOkbAJ0l/5cCmg17d5qvbJkgQbxzf+gn0e/rS2/9mkSFJ1P5BOss/PmctZZQ3bt6o9uXV39X5iTpu6kqDkj0O1dYVGPtekg7069wjajjlVMfv/FoDn2nQnCc6qwJnrNESu1Hk37u2hLzEMPaAcsWkVXbhkYx6kUTl7RpZG/QS+hBEp11UDazJCUW8O0XieSrXcIHQJ1fISAIGjLpEgbo5VeFV7/Dwl1sN0qV2FrUAveU1CAzioBIFZuOmztG5bhsjXD6HN8R+azt6bH/MdEdvtc5R0NMgM6OS0kdlcZQuLb4DUNA5ClMBCtD4DDpi+qGOk1ChB4StNehMCZUOY+cgh7jbJL3D9rCejpiSSgrE6hnByb5sh1SUikHPn5FT8W16l2/A61Bntrv3GWkvGbaIuD2A4P92rISQQeO+NYCnBR3xW0zI1h0kobfS//0NwJDrko8ZoBxFCVy6cNFegw2EeTEftlRmmy89E5wJ3uzda8m8xZCOCNRrjrSm3P4pe7vjXZPnfYZ6iDeBqNpk6k2IIyndF4mGf+hv5yKVOAND4xzJ4R3jujhEs7dzVyEdDTqDol9+rgxGCJ5vr04nisjvRUIMH/bb5vEEy2QbIYeq1RROk/x+wGNgoNH+qKiTAo/ybGOb4w1+xTRFys+JfbSxKrnH1SRJv0C5/GQczTFKTO8atA==&checksum=132422423178fe4a1b7a4c0b4829b3609c27be597290"><a1>Some cables</a1></a>
+  <li><a1>Some M3 screws</a1></li>
+<li><a1>3D printer</a1></li>
+</ul>
+<p> That is all</a>
+</div>
+<div id="hardware">
+<br>
+<h2>Hardware</h2>
+<p>First of all, we need to make sensor, this line follower is only with one line sensor, for sensor we need one prototyping PCB, LED, three male pins, soldering iron, Phototransistor and both resistors, 150k&#8486; and 1k&#8486;.</p>
+<a href="../pictures/sensor_resized.JPG"><img src="../previews/sensor_resized.JPG" alt="line sensor"></a>
+<a href="../previews/SensorScheme.png"><img src="../previews/SensorScheme.png" alt="line sensor scheme"></a>
+<p>Second thing you need to do is to setup connection, so line sensor is going to GND, OUT to Analog pin 0 on ADRUINO and VCC to 3.3V on ARDUINO. Then you need to connect rest of components.
+
+</p>
+<iframe src="connection.html" name="connection"></iframe>
+<p>Calibration pin will be connected to a button on the next PCB where will be connected all VCC(5V) and GND. For this you will need soldering iron, 15 male pins, button and cables to connect everything together.</p>
+<a href="../pictures/nextPCB_resized.JPG"><img src="../previews/nextPCB_resized.JPG" alt="PCB with button"></a>
+<p>Now when everything is connected, only thing you need to do is to make 3D printed base and servo holders. You can download this parts by clicking on button below.</p>
+<br>
+<a href="../documents/Holder.zip" download><button>Download 3D parts</button></a>
+<p>If you have printed it, then you need to put it all together, you can see how it have to look like in <a href="pictures.html">pictures section.</a></p>
+</div>
+
+<div id="software">
+<br>
+<h2>Software</h2>
+<br>
+<p>If you were doing something with arduino then you can skip right to programming section <a href="documentation.html#programming">here</a> if not yet, then start right now with
+<a href="https://www.arduino.cc/en/Main/Software" target="_blank">Arduino IDE </a>installation.</p>
+<p>If you have installed it, then you need to set your board to arduino genuino/uno</p>
+<a href="../pictures/boardselect.png"><img src="../pictures/boardselect.png" alt="Board selection"></a>
+<p>Now everythig is done, you only need to upload the programm to your line follower robot.</p>
+
+  
+</div>
+<div id="programming">
+<br>
+<h2>Programming</h2>
+<p>First of all we need to import libraries and define some values, that we will need at all of our programm:<p>
+    <ul style="list-style-type:none;">
+  <li>#include <EEPROM.h></li>
+  <li>#include <Servo.h></li>
+  <li>Servo s1;</li>
+  <li>Servo s2;</li>
+  <li></li>
+  <li>#define senzor A0</li>
+  <li>#define IR 3</li>
+  <li></li>
+  <li>int x = 100; //number of measurments</li>
+  <li>String color;</li>
+</ul>  
+<br>
+<p>Now, here is calibration function, that will calibrate your line follower robot, if it is on calibration mode, you need only to place it on line, and it will do everything without you, if we are not in calibration mode, this will be skiped and robot will continoue with his values saved in EEPROM memory.</p>
+<ul style="list-style-type:none;">
+  <li>void calibration()</li>
+  <li>int blackMeasured = 0;</li>
+  <li>int whiteMeasured = 0;</li>
+  <li></li>
+  <li>for (int k = 0; k < x; k++) {</li>
+  <li>blackMeasured += analogRead(senzor);</li>
+  <li>delay(10);</li>
+  <li>}</li>
+  <li></li>
+  <li>EEPROM.write(0, 0);</li>
+  <li>EEPROM.write(0, map((blackMeasured / x), 0, 1023, 0, 255)); //black</li>
+  <li>right();</li>
+  <li>delay(400);</li>
+  <li>stop();</li>
+  <li>for (int j = 0; j < x; j++) {</li>
+  <li>whiteMeasured += analogRead(senzor);</li>
+  <li>delay(10);</li>
+  <li>}</li>
+  <li>EEPROM.write(1, 0);</li>
+  <li>EEPROM.write(1, map((whiteMeasured / x), 0, 1023, 0, 255)); //white</li>
+  <li>Serial.println(EEPROM.read(1));</li>
+  <li>Serial.println(EEPROM.read(0));</li>
+  <li></li>
+  <li>EEPROM.write(2, (EEPROM.read(1) + EEPROM.read(0)) / 2);</li>
+  <li>Serial.println(EEPROM.read(2));</li>
+  <li>delay(1000);</li>
+  <li>}</li>
+</ul>  
+<br>
+<p>So, now we are going to programm some motion functions for our follower:</p>
+
+<ul style="list-style-type:none;">
+  <li>void forward() {</li>
+  <li>s1.write(0); // forward</li>
+  <li>s2.write(180); // forward</li>
+  <li>}</li>
+  <li></li>
+  <li>void right () {</li>
+  <li>s1.write(90); // stopped</li>
+  <li>s2.write(180); // forward</li>
+  <li>}</li>
+  <li></li>
+  <li>void left() {</li>
+  <li>s1.write(0); // forward</li>
+  <li>s2.write(90); // stopped</li>
+  <li>}</li>
+  <li></li>
+  <li>void backward() {</li>
+  <li>s1.write(180); // backward</li>
+  <li>s2.write(0); // backward</li>
+  <li>}</li>
+  <li></li>
+  <li>void stop () {</li>
+  <li>s1.write(90); // stopped</li>
+  <li>s2.write(90); // stopped</li>
+  <li>}</li>
+  <li></li>
+</ul>  
+<br>
+<p>Now we need to get around object that is on line, so we programm function for it:</p>
+<ul style="list-style-type:none;">
+  <li>void getAround() {</li>
+  <li>backward();</li>
+  <li>delay(100);</li>
+  <li>right();</li>
+  <li>delay(500);</li>
+  <li>forward();</li>
+  <li>delay(1000);</li>
+  <li>left();</li>
+  <li>delay(1000);</li>
+  <li>forward();</li>
+  <li>delay(800);</li>
+  <li>}</li>
+</ul>  
+<br>
+<p>Only void loop() and void setup() is now needed:</p>
+
+<ul style="list-style-type:none;">
+  <li>void setup() {</li>
+  <li>s1.attach(9);</li>
+  <li>s1.attach(10);</li>
+  <li>pinMode(senzor, INPUT);</li>
+  <li>Serial.begin(9600);</li>
+  <li>delay(200);</li>
+  <li>if (digitalRead(4) == HIGH)</li>
+  <li>calibration();</li>
+</ul>  
+<br>
+
+<p> And loop, if we are on white we go to black, but if we are on black then we go to while, so we are on the edge of line.</p>
+
+<ul style="list-style-type:none;">
+  <li>void loop() {</li>
+  <li>if (map(analogRead(senzor), 0, 1023, 0, 255) > (EEPROM.read(2) + 20)) {</li>
+  <li>color = "black";</li>
+  <li>}</li>
+  <li></li>
+  <li>else if (map(analogRead(senzor), 0, 1023, 0, 255) < (EEPROM.read(2) + 20)) {</li>
+  <li>color = "white";</li>
+  <li>}</li>
+  <li></li>
+  <li>if (color == "black") {</li>
+  <li>right();</li>
+  <li>}</li>
+  <li></li>
+  <li>if (color == "white") {</li>
+  <li>left</li>
+  <li>}</li>
+  <li></li>
+  <li>if (digitalRead(IR) == LOW) {</li>
+  <li>getAround();</li>
+  <li>}</li>
+  <li>}</li>
+
+</ul>  
+<br>
+<p>Now you got it, simply upload to your robot and you can go. You can also download this code below.</p>
+<a href="../documents/program.zip" download><button>Download program</button></a>
+<p><a href="documentation.html#content"> Go Up!</a></p>
+</div>
+</body>
+<div class="navbar">
+  <a href="../index.html">Home</a>
+  <a href="pictures.html">Pictures</a>
+  <a href="aboutit.html">About it</a>
+  <a href="documentation.html">Documentation</a>
+  <a href="aboutus.html">About us</a>
+</div>
+
+</div>
+<footer   class="foot_left">
+	<p>Peter Borták & Eduard Lehocký</p>	
+<a href="documentationSK.html">SK version</a>
+	 <p1> © 2019</p1>
+</footer>	
+
+</html>
