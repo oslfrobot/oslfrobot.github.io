@@ -1,0 +1,212 @@
+body {
+	margin-left: 20%;
+	margin-right: 20%;
+	margin-bottom: 10%;
+	text-align: justify;
+	position: relative;
+	top: 30px;
+	scroll-behavior: smooth;
+}
+
+h1 {
+	text-align: center;
+	color: gray;
+	font-size: 3.5em;
+	font-family: 'Exo 2', sans-serif;
+}
+
+h2 {
+	text-align: center;
+	color: gray;
+	font-size: 2.5em;
+	font-family: 'Exo 2', sans-serif;
+}
+
+p {
+	color: black;
+	font-size: 1.3em;
+	line-height: 1.7em;
+	font-family: 'Exo 2', sans-serif;
+}
+
+pre {
+	font-family: 'Hack', monospace;
+	background-color: #282c34;
+}
+
+.navbar {
+	background-color: black;
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	width: 100%;
+	text-align: center;
+	z-index: 300;
+	box-shadow: 0 1px 5px 0 black;
+}
+
+.navbar a {
+	float: left;
+	color: darkgray;
+	padding: 10px 0px;
+	font-size: 1.3em;
+	font-family: 'Exo 2', sans-serif;
+	width: 20%;
+	text-decoration: none;
+	transition: .3s ease;
+}
+
+.navbar a:hover {
+	background-color: gray;
+	color: white;
+}
+
+.footer {
+	background-color: black;
+	position: fixed;
+	bottom: 0px;
+	right: 0px;
+	width: 100%;
+	text-align: center;
+	z-index: 300;
+	box-shadow: 0 -1px 5px 0 black;
+}
+
+.footer a {
+	float: left;
+	color: gray;
+	padding: 10px 0px;
+	font-size: 1.3em;
+	font-family: 'Exo 2', sans-serif;
+	width: calc(100%/3);
+	text-decoration: none;
+	transition: .3s ease;
+}
+
+.footer a:link:hover {
+	background: gray;
+	color: white;
+}
+
+.container a {
+	position: relative;
+	width: 70%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+table .container a {
+	width: 98% !important;
+}
+
+img {
+	opacity: 1;
+	display: block;
+	width: 100%;
+	transition: .5s ease;
+	display: block;
+	border: 3px solid black;
+}
+
+.container p {
+	margin-top: 0;
+	opacity: 0;
+	position: absolute;
+	text-align: center;
+	transition: .5s ease;
+}
+
+.container:hover img {
+	opacity: 0.3;
+}
+
+.container:hover p {
+	color: #444444;
+	opacity: 1;
+}
+
+iframe {
+	margin-right: auto;
+	margin-left: auto;
+	display: block;
+}
+
+a {
+	transition: .3s ease;
+}
+
+body a {
+	color: black;
+	line-height: 1.7em;
+	font-size: 1.3em;
+	font-family: 'Exo 2', sans-serif;
+}
+
+body p a {
+	color: black;
+	line-height: 1.7em;
+	font-size: 1em !important;
+	font-family: 'Exo 2', sans-serif;
+}
+
+body a:link {
+	text-decoration: none;
+	color: gray;
+}
+
+body a:visited {
+	text-decoration: none;
+	color: gray;
+}
+
+body a:hover {
+	text-decoration: none;
+	color: darkgray;
+	text-align: center;
+}
+
+body a a1 {
+	color: black;
+}
+
+a.button {
+	background-color: #348cb0;
+	border: none;
+	color: lightgray !important;
+	padding: 1.5em 3em;
+	text-align: center;
+	text-decoration: none;
+	display: block;
+}
+
+a.button:hover {
+	background-color: #348c72;
+	color: white !important;
+}
+
+@media screen and (max-width:719px) {
+	.navbar a {
+		padding: 10px 0px;
+		width: 100%;
+	}
+
+	.footer a {
+		padding: 10px 0px;
+		width: 100%;
+	}
+
+	iframe {
+		width: 360px;
+		height: 202px;
+	}
+
+	body {
+		margin-left: 10%;
+		margin-right: 10%;
+		margin-top: 50%;
+		margin-bottom: 50%;
+	}
+}
