@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<link rel="stylesheet" href="../style/style.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hack-font@3/build/web/hack.css">
+	<link rel="icon" href="../img/icon/icon.png">
+	<meta charset="utf-8">
+	<title>Documentation | One sensor line follower</title>
+</head>
+
+<div class="navbar">
+	<a href="home.html">Home</a>
+	<a href="pictures.html">Pictures</a>
+	<a href="about-it.html">About it</a>
+	<a href="documentation.html">Documentation</a>
+	<a href="about-us.html">About us</a>
+</div>
+
+<body>
+	<div id="content">
+		<h1>Documentation</h1>
+		<h2>Content</h2>
+		<div style="text-align: center;">
+			<a href="#needed">
+				1. Needed
+			</a>
+			<br>
+			<a href="#hardware">
+				2. Hardware
+			</a>
+			<br>
+			<a href="#software">
+				3. Software
+			</a>
+			<br>
+			<a href="#programming">
+				4. Programming
+			</a>
+		</div>
+		<p style="text-align: center;">With this tutorial you can do it!</p>
+
+		<div id="needed">
+			<br>
+			<br>
+			<h2>Needed</h2>
+			<ul style="list-style-type:none;">
+				<li>
+					<a href="https://www.keyestudio.com/keyestudio-uno-r3-atmega328p-development-board-usb-cable-for-arduino-p0513-p0513.html"
+						target="_blank">
+						<a1>1 </a1>
+						Keystudio UNO R3
+					</a>
+				</li>
+				<li>
+					<a href="https://www.pololu.com/product/2820" target="_blank">
+						<a1>2 </a1>
+						Continous servo FS90R
+					</a>
+				</li>
+				<li>
+					<a href="https://www.pololu.com/product/2819" target="_blank">
+						<a1>2 </a1>
+						Servo wheel
+					</a>
+				</li>
+				<li>
+					<a href="https://www.ebay.com/itm/IR-Infrared-Obstacle-Avoidance-Sensor-Module-for-Arduino-Smart-Car-Robot-CA-NEW-/141975948572"
+						target="_blank">
+						<a1>1 </a1>
+						Infrared sensor (for object detection)
+					</a>
+				</li>
+				<li>
+					<a href="https://www.ebay.com/itm/Circuit-Board-Double-sided-Universal-Prototyping-PCB-Printed-Breadboard-5-10-Pcs/163180975902?_trkparms=aid%3D555018%26algo%3DPL.SIM%26ao%3D1%26asc%3D40719%26meid%3D72bb2ea6c28c445ba8b19191884fb9b2%26pid%3D100005%26rk%3D5%26rkt%3D12%26sd%3D173815372566%26itm%3D163180975902%26pmt%3D1%26noa%3D0%26pg%3D2047675&_trksid=p2047675.c100005.m1851"
+						target="_blank">
+						<a1>2 </a1>
+						Prototyping PCBs
+					</a>
+				<li>
+					<a href="https://www.ebay.com/itm/3-7V-5000-mAh-105573-LiPo-Polymer-Battery-Rechargeable-Li-for-tablet-PC-PSP/264052247211?hash=item3d7abd8aab:g:6uUAAOSwXCVcgGAL"
+						target="_blank">
+						<a1>1 </a1>
+						3.7V Battery
+					</a>
+				<li>
+					<a href="https://www.ebay.com/itm/3-5A-DC-DC-Step-up-Boost-Voltage-Converter-Module-3V-3-3V-3-7V-to-5V-6V-9V-12V/282630674951?hash=item41ce19da07:m:mAwlH7u9rvBER4D2487_04A"
+						target="_blank">
+						<a1>1 </a1>
+						Step up circuit (3.7V to 5V)
+					</a>
+				</li>
+				<li>
+					<a href="https://www.soselectronic.com/products/kingbright/l-53-src-c-12314" target="_blank">
+						<a1>1 </a1>
+						LED
+					</a>
+				</li>
+				<li>
+					<a href="https://www.soselectronic.com/products/yageo/rm-1-150-k-mf0207fte52-150k-1-31113"
+						target="_blank">
+						<a1>1 </a1>
+						Resistor 150kΩ
+					</a>
+				</li>
+				<li>
+					<a href="https://www.soselectronic.com/products/yageo/rm-1-1-k-mf0207fte52-1k-1-30867"
+						target="_blank">
+						<a1>1 </a1>
+						Resistor 1kΩ
+					</a>
+				</li>
+				<li>
+					<a href="https://www.soselectronic.com/products/kingbright/l-53-p3c-12401" target="_blank">
+						<a1>1 </a1>
+						Phototransistor
+					</a>
+				</li>
+				<li>
+					<a href="https://www.soselectronic.com/products/no-name/p10s-2937" target="_blank">
+						<a1>1 </a1>
+						Button
+					</a>
+				</li>
+				<li>
+					<a href="https://www.soselectronic.com/products/various/wws-10-a-25330" target="_blank">
+						<a1>some </a1>
+						Male pins
+					</a>
+				<li>
+				<li>
+					<a href="https://www.ebay.com/itm/40pc-10-30cm-Dupont-Jumper-Wire-Ribbon-GPIO-Cable-Arduino-Breadboard-F-F-M-M-F-M/132422423178?_trkparms=ispr%3D1&hash=item1ed4fdd28a:m:m68D4n08tnVu5u44jA6ZpCw&enc=AQAEAAACQBPxNw%2BVj6nta7CKEs3N0qVxLys9LHt9AF798XxkD3Q%2F1dSdpF2qTBfsluyhoF93p%2F82KN0iXl7dotnTFZqmOkbAJ0l%2F5cCmg17d5qvbJkgQbxzf%2Bgn0e%2FrS2%2F9mkSFJ1P5BOss%2FPmctZZQ3bt6o9uXV39X5iTpu6kqDkj0O1dYVGPtekg7069wjajjlVMfv%2FFoDn2nQnCc6qwJnrNESu1Hk37u2hLzEMPaAcsWkVXbhkYx6kUTl7RpZG%2FQS%2BhBEp11UDazJCUW8O0XieSrXcIHQJ1fISAIGjLpEgbo5VeFV7%2FDwl1sN0qV2FrUAveU1CAzioBIFZuOmztG5bhsjXD6HN8R%2Bazt6bH%2FMdEdvtc5R0NMgM6OS0kdlcZQuLb4DUNA5ClMBCtD4DDpi%2BqGOk1ChB4StNehMCZUOY%2Bcgh7jbJL3D9rCejpiSSgrE6hnByb5sh1SUikHPn5FT8W16l2%2FA61Bntrv3GWkvGbaIuD2A4P92rISQQeO%2BNYCnBR3xW0zI1h0kobfS%2F%2F0NwJDrko8ZoBxFCVy6cNFegw2EeTEftlRmmy89E5wJ3uzda8m8xZCOCNRrjrSm3P4pe7vjXZPnfYZ6iDeBqNpk6k2IIyndF4mGf%2Bhv5yKVOAND4xzJ4R3jujhEs7dzVyEdDTqDol9%2BrgxGCJ5vr04nisjvRUIMH%2Fbb5vEEy2QbIYeq1RROk%2Fx%2BwGNgoNH%2BqKiTAo%2FybGOb4w1%2BxTRFys%2BJfbSxKrnH1SRJv0C5%2FGQczTFKTO8atA%3D%3D&checksum=132422423178fe4a1b7a4c0b4829b3609c27be597290"
+						target="_blank">
+						<a1>some </a1>
+						Cables
+					</a>
+				<li>
+					<a href="https://www.soselectronic.com/products/toolcraft/194637-151492" target="_blank">
+						<a1>some </a1>
+						M3 screws
+					</a>
+				</li>
+				<li>
+					<a href="https://www.soselectronic.com/products/ettinger/mk30-02-10-033-9937" target="_blank">
+						<a1>some </a1>
+						M3 nuts
+					</a>
+				</li>
+				<li>
+					<a href="">
+						<a1>some </a1>
+						3D printer
+					</a>
+				</li>
+			</ul>
+			<p style="text-align: center;">That is all!</p>
+		</div>
+
+		<div id="hardware">
+			<br>
+			<br>
+			<h2>Hardware</h2>
+			<p>First of all, we need to make sensor, this line follower is only with one line sensor, for sensor we need
+				one prototyping PCB, LED, three male pins, soldering iron, phototransistor and both resistors,
+				150kΩ and 1kΩ.</p>
+			<table>
+				<tr>
+					<td>
+						<div class="container">
+							<a href="../img/documentation/line-sensor.jpg" target="_blank">
+								<img src="../img/documentation/line-sensor.jpg" alt="Line sensor">
+								<p>Line sensor</p>
+							</a>
+						</div>
+					</td>
+					<td>
+						<div class="container">
+							<a href="../img/documentation/line-sensor-scheme.png" target="_blank">
+								<img src="../img/documentation/line-sensor-scheme.png" alt="Line sensor scheme">
+								<p>Line sensor scheme</p>
+							</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<p>Second thing you need to do is to setup connection, so line sensor is going to GND, OUT to Analog pin 0
+				on Arduino and VCC to 3.3V on Arduino. Then you need to connect rest of components.</p>
+			<div style="text-align: center;">
+				<p style="color: gray !important;">Right servo INPUT to Digital pin 9</p>
+				<p style="color: gray !important;">Left servo INPUT to Digital pin 10</p>
+				<p style="color: gray !important;">IR detection sensor to Digital pin 3</p>
+				<p style="color: gray !important;">Calibration mode ON/OFF to Digital pin 4</p>
+			</div>
+			<p>Calibration pin will be connected to a button on the next PCB where will be connected all VCC(5V) and
+				GND. For this you will need soldering iron, 15 male pins, button and cables to connect everything
+				together.</p>
+			<div class="container">
+				<a href="../img/documentation/pcb-with-button.jpg" target="_blank">
+					<img src="../img/documentation/pcb-with-button.jpg" alt="PCB with button">
+					<p>PCB with button</p>
+				</a>
+			</div>
+			<p>Now when everything is connected, only thing you need to do is to make 3D printed base and servo holders.
+				You can download this parts by clicking on button below.</p>
+			<br>
+			<p class="text-align: center;">
+				<a href="../file/documentation/holder.zip" class="button" download>Download 3D parts</a>
+			</p>
+			<p>
+				If you have printed it, then you need to put it all together, you can see how it have to look like in
+				<a href="../en/pictures.html">pictures section</a>.
+			</p>
+		</div>
+
+		<div id="software">
+			<br>
+			<br>
+			<h2>Software</h2>
+			<p>
+				If you were doing something with Arduino then you can skip right to programming section
+				<a href="#programming">here</a>.
+				If not yet, then start with
+				<a href="https://www.arduino.cc/en/Main/Software" target="_blank">Arduino IDE installation</a>.
+			</p>
+			<p>If you have installed it, then you need to set your board to Arduino/Genuino UNO</p>
+			<div class="container">
+				<a href="../img/documentation/board-selection.png" target="_blank">
+					<img src="../img/documentation/board-selection.png" alt="Board selection">
+					<p>Board selection</p>
+				</a>
+			</div>
+			<p>Now everythig is done. You only need to upload the program to your line follower robot.</p>
+		</div>
+
+		<div id="programming">
+			<br>
+			<br>
+			<h2>Programming</h2>
+			<p>First of all we need to import libraries and define some values, that we will need at all of our
+				program:</p>
+			<pre><font color="#98c379">#include</font> <font color="#aaaaaa">&lt;</font><b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#ffffff">h</font><font color="#aaaaaa">&gt;</font>
+<font color="#98c379">#include</font> <font color="#aaaaaa">&lt;</font><b><font color="#e06c75">Servo</font></b><font color="#aaaaaa">.</font><font color="#ffffff">h</font><font color="#aaaaaa">&gt;</font>
+<b><font color="#e06c75">Servo</font></b> <font color="#ffffff">s1</font><font color="#ffffff">;</font>
+<b><font color="#e06c75">Servo</font></b> <font color="#ffffff">s2</font><font color="#ffffff">;</font>
+
+<font color="#98c379">#define</font> <font color="#ffffff">sensor</font> <font color="#ffffff">A0</font>
+<font color="#98c379">#define</font> <font color="#ffffff">IR</font> <font color="#e5c07b">3</font>
+
+<font color="#61afef">int</font> <font color="#ffffff">x</font> <font color="#aaaaaa">=</font> <font color="#e5c07b">100</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47;count of measurements</font>
+<font color="#61afef">String</font> <font color="#ffffff">color</font><font color="#ffffff">;</font></pre>
+
+			<br>
+			<p>Now, here is calibration function, that will calibrate your line follower robot. If it is in
+				calibration mode, you need only to place it on line, and it will do everything without you. If it
+				is not in calibration mode, this will be skiped and robot will continue with his values saved in EEPROM
+				memory.</p>
+			<pre>
+<font color="#61afef">void</font> <font color="#ffffff">calibration</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font>
+ &nbsp;<font color="#61afef">int</font> <font color="#ffffff">blackMeasured</font> <font color="#aaaaaa">=</font> <font color="#e5c07b">0</font><font color="#ffffff">;</font>
+ &nbsp;<font color="#61afef">int</font> <font color="#ffffff">whiteMeasured</font> <font color="#aaaaaa">=</font> <font color="#e5c07b">0</font><font color="#ffffff">;</font>
+ &nbsp;<font color="#c678dd">for</font> <font color="#aaaaaa">(</font><font color="#61afef">int</font> <font color="#ffffff">k</font> <font color="#aaaaaa">=</font> <font color="#e5c07b">0</font><font color="#ffffff">;</font> <font color="#ffffff">k</font> <font color="#aaaaaa">&lt;</font> <font color="#ffffff">x</font><font color="#ffffff">;</font> <font color="#ffffff">k</font><font color="#aaaaaa">++</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font>
+ &nbsp;&nbsp;&nbsp;<font color="#ffffff">blackMeasured</font> <font color="#aaaaaa">+=</font> <font color="#61afef">analogRead</font><font color="#aaaaaa">(</font><font color="#ffffff">sensor</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#61afef">delay</font><font color="#aaaaaa">(</font><font color="#e5c07b">10</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
+ &nbsp;<font color="#aaaaaa">}</font>
+ &nbsp;<b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">0</font><font color="#aaaaaa">,</font> <font color="#e5c07b">0</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
+ &nbsp;<b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">0</font><font color="#aaaaaa">,</font> <font color="#61afef">map</font><font color="#aaaaaa">(</font><font color="#aaaaaa">(</font><font color="#ffffff">blackMeasured</font> <font color="#aaaaaa">&#47;</font> <font color="#ffffff">x</font><font color="#aaaaaa">)</font><font color="#aaaaaa">,</font> <font color="#e5c07b">0</font><font color="#aaaaaa">,</font> <font color="#e5c07b">1023</font><font color="#aaaaaa">,</font> <font color="#e5c07b">0</font><font color="#aaaaaa">,</font> <font color="#e5c07b">255</font><font color="#aaaaaa">)</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47;black</font>
+ &nbsp;<font color="#ffffff">right</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
+ &nbsp;<font color="#61afef">delay</font><font color="#aaaaaa">(</font><font color="#e5c07b">500</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
+ &nbsp;<font color="#61afef">stop</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
+ &nbsp;<font color="#c678dd">for</font> <font color="#aaaaaa">(</font><font color="#61afef">int</font> <font color="#ffffff">j</font> <font color="#aaaaaa">=</font> <font color="#e5c07b">0</font><font color="#ffffff">;</font> <font color="#ffffff">j</font> <font color="#aaaaaa">&lt;</font> <font color="#ffffff">x</font><font color="#ffffff">;</font> <font color="#ffffff">j</font><font color="#aaaaaa">++</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font>
+ &nbsp;&nbsp;&nbsp;<font color="#ffffff">whiteMeasured</font> <font color="#aaaaaa">+=</font> <font color="#61afef">analogRead</font><font color="#aaaaaa">(</font><font color="#ffffff">sensor</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
+ &nbsp;&nbsp;&nbsp;<font color="#61afef">delay</font><font color="#aaaaaa">(</font><font color="#e5c07b">10</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
+ &nbsp;<font color="#aaaaaa">}</font>
+ &nbsp;<b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">1</font><font color="#aaaaaa">,</font> <font color="#e5c07b">0</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
+ &nbsp;<b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">1</font><font color="#aaaaaa">,</font> <font color="#61afef">map</font><font color="#aaaaaa">(</font><font color="#aaaaaa">(</font><font color="#ffffff">whiteMeasured</font> <font color="#aaaaaa">&#47;</font> <font color="#ffffff">x</font><font color="#aaaaaa">)</font><font color="#aaaaaa">,</font> <font color="#e5c07b">0</font><font color="#aaaaaa">,</font> <font color="#e5c07b">1023</font><font color="#aaaaaa">,</font> <font color="#e5c07b">0</font><font color="#aaaaaa">,</font> <font color="#e5c07b">255</font><font color="#aaaaaa">)</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47;white</font>
+ &nbsp;<b><font color="#e06c75">Serial</font></b><font color="#aaaaaa">.</font><font color="#61afef">println</font><font color="#aaaaaa">(</font><b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">read</font><font color="#aaaaaa">(</font><font color="#e5c07b">1</font><font color="#aaaaaa">)</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
+ &nbsp;<b><font color="#e06c75">Serial</font></b><font color="#aaaaaa">.</font><font color="#61afef">println</font><font color="#aaaaaa">(</font><b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">read</font><font color="#aaaaaa">(</font><font color="#e5c07b">0</font><font color="#aaaaaa">)</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
+
+ &nbsp;<b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">2</font><font color="#aaaaaa">,</font> <font color="#aaaaaa">(</font><b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">read</font><font color="#aaaaaa">(</font><font color="#e5c07b">1</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">+</font> <b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">read</font><font color="#aaaaaa">(</font><font color="#e5c07b">0</font><font color="#aaaaaa">)</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">&#47;</font> <font color="#e5c07b">2</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
+ &nbsp;<b><font color="#e06c75">Serial</font></b><font color="#aaaaaa">.</font><font color="#61afef">println</font><font color="#aaaaaa">(</font><b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">read</font><font color="#aaaaaa">(</font><font color="#e5c07b">2</font><font color="#aaaaaa">)</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
+ &nbsp;<font color="#61afef">delay</font><font color="#aaaaaa">(</font><font color="#e5c07b">1000</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
+<font color="#aaaaaa">}</font></pre>
+
+			<br>
+			<p>Now we are going to program some motion functions for our robot:</p>
+			<pre><font color="#61afef">void</font> <font color="#ffffff">forward</font> <font color="#aaaaaa">(</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font>
+ &nbsp;<font color="#ffffff">s1</font><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">0</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47; forward</font>
+ &nbsp;<font color="#ffffff">s2</font><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">180</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47; forward</font>
+<font color="#aaaaaa">}</font>
+
+<font color="#61afef">void</font> <font color="#ffffff">right</font> <font color="#aaaaaa">(</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font>
+ &nbsp;<font color="#ffffff">s1</font><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">90</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47; forward</font>
+ &nbsp;<font color="#ffffff">s2</font><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">180</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47; stop</font>
+<font color="#aaaaaa">}</font>
+
+<font color="#61afef">void</font> <font color="#ffffff">left</font> <font color="#aaaaaa">(</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font>
+ &nbsp;<font color="#ffffff">s1</font><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">0</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47; stop</font>
+ &nbsp;<font color="#ffffff">s2</font><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">90</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47; forward</font>
+<font color="#aaaaaa">}</font>
+
+<font color="#61afef">void</font> <font color="#ffffff">backward</font> <font color="#aaaaaa">(</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font>
+ &nbsp;<font color="#ffffff">s1</font><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">180</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47; backward</font>
+ &nbsp;<font color="#ffffff">s2</font><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">0</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47; backward</font>
+<font color="#aaaaaa">}</font>
+
+<font color="#61afef">void</font> <font color="#61afef">stop</font> <font color="#aaaaaa">(</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font>
+ &nbsp;<font color="#ffffff">s1</font><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">90</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47; stop</font>
+ &nbsp;<font color="#ffffff">s2</font><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">90</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47; stop</font>
+<font color="#aaaaaa">}</font></pre>
+
+			<br>
+			<p>Now we need to get around object that is on line. We programm function for it:</p>
+			<pre><font color="#61afef">void</font> <font color="#ffffff">getAround</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font>
+ &nbsp;<font color="#ffffff">backward</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
+ &nbsp;<font color="#61afef">delay</font><font color="#aaaaaa">(</font><font color="#e5c07b">100</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
+ &nbsp;<font color="#ffffff">right</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
+ &nbsp;<font color="#61afef">delay</font><font color="#aaaaaa">(</font><font color="#e5c07b">500</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
+ &nbsp;<font color="#ffffff">forward</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
+ &nbsp;<font color="#61afef">delay</font><font color="#aaaaaa">(</font><font color="#e5c07b">1000</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
+ &nbsp;<font color="#ffffff">left</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
+ &nbsp;<font color="#61afef">delay</font><font color="#aaaaaa">(</font><font color="#e5c07b">1000</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
+ &nbsp;<font color="#ffffff">forward</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
+ &nbsp;<font color="#61afef">delay</font><font color="#aaaaaa">(</font><font color="#e5c07b">800</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
+<font color="#aaaaaa">}</font></pre>
+
+			<br>
+			<p>Only void loop() and void setup() is now needed:</p>
+			<pre><font color="#61afef">void</font> <font color="#c678dd">setup</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font>
+ &nbsp;<font color="#ffffff">s1</font><font color="#aaaaaa">.</font><font color="#61afef">attach</font><font color="#aaaaaa">(</font><font color="#e5c07b">9</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
+ &nbsp;<font color="#ffffff">s2</font><font color="#aaaaaa">.</font><font color="#61afef">attach</font><font color="#aaaaaa">(</font><font color="#e5c07b">10</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
+ &nbsp;<font color="#61afef">pinMode</font><font color="#aaaaaa">(</font><font color="#ffffff">sensor</font><font color="#aaaaaa">,</font> <font color="#61afef">INPUT</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
+ &nbsp;<font color="#61afef">pinMode</font><font color="#aaaaaa">(</font><font color="#ffffff">IR</font><font color="#aaaaaa">,</font> <font color="#61afef">INPUT</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
+
+ &nbsp;<font color="#61afef">delay</font><font color="#aaaaaa">(</font><font color="#e5c07b">200</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
+ &nbsp;<font color="#c678dd">if</font> <font color="#aaaaaa">(</font><font color="#61afef">digitalRead</font><font color="#aaaaaa">(</font><font color="#e5c07b">4</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">==</font> <font color="#61afef">HIGH</font><font color="#aaaaaa">)</font>
+ &nbsp;&nbsp;&nbsp;<font color="#ffffff">calibration</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
+<font color="#aaaaaa">}</font></pre>
+			<br>
+
+			<p>And loop, if we are on white we go to black, but if we are on black then we go to while, so we
+				are on the edge of line.</p>
+
+			<pre><font color="#61afef">void</font> <font color="#c678dd">loop</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font>
+ &nbsp;<font color="#c678dd">if</font> <font color="#aaaaaa">(</font><font color="#61afef">map</font><font color="#aaaaaa">(</font><font color="#61afef">analogRead</font><font color="#aaaaaa">(</font><font color="#ffffff">sensor</font><font color="#aaaaaa">)</font><font color="#aaaaaa">,</font> <font color="#e5c07b">0</font><font color="#aaaaaa">,</font> <font color="#e5c07b">1023</font><font color="#aaaaaa">,</font> <font color="#e5c07b">0</font><font color="#aaaaaa">,</font> <font color="#e5c07b">255</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">&gt;</font> <font color="#aaaaaa">(</font><b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">read</font><font color="#aaaaaa">(</font><font color="#e5c07b">2</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">+</font> <font color="#e5c07b">20</font><font color="#aaaaaa">)</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font>
+ &nbsp;&nbsp;&nbsp;<font color="#ffffff">color</font> <font color="#aaaaaa">=</font> <font color="#61afef">&#34;black&#34;</font><font color="#ffffff">;</font>
+ &nbsp;<font color="#aaaaaa">}</font>
+
+ &nbsp;<font color="#c678dd">else</font> <font color="#c678dd">if</font> <font color="#aaaaaa">(</font><font color="#61afef">map</font><font color="#aaaaaa">(</font><font color="#61afef">analogRead</font><font color="#aaaaaa">(</font><font color="#ffffff">sensor</font><font color="#aaaaaa">)</font><font color="#aaaaaa">,</font> <font color="#e5c07b">0</font><font color="#aaaaaa">,</font> <font color="#e5c07b">1023</font><font color="#aaaaaa">,</font> <font color="#e5c07b">0</font><font color="#aaaaaa">,</font> <font color="#e5c07b">255</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">&lt;</font> <font color="#aaaaaa">(</font><b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">read</font><font color="#aaaaaa">(</font><font color="#e5c07b">2</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">+</font> <font color="#e5c07b">20</font><font color="#aaaaaa">)</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font>
+ &nbsp;&nbsp;&nbsp;<font color="#ffffff">color</font> <font color="#aaaaaa">=</font> <font color="#61afef">&#34;white&#34;</font><font color="#ffffff">;</font>
+ &nbsp;<font color="#aaaaaa">}</font>
+
+ &nbsp;<font color="#c678dd">if</font> <font color="#aaaaaa">(</font><font color="#ffffff">color</font> <font color="#aaaaaa">==</font> <font color="#61afef">&#34;black&#34;</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font>
+ &nbsp;&nbsp;&nbsp;<font color="#ffffff">right</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
+ &nbsp;<font color="#aaaaaa">}</font>
+
+ &nbsp;<font color="#c678dd">if</font> <font color="#aaaaaa">(</font><font color="#ffffff">color</font> <font color="#aaaaaa">==</font> <font color="#61afef">&#34;white&#34;</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font>
+ &nbsp;&nbsp;&nbsp;<font color="#ffffff">left</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
+ &nbsp;<font color="#aaaaaa">}</font>
+
+ &nbsp;<font color="#c678dd">if</font> <font color="#aaaaaa">(</font><font color="#61afef">digitalRead</font><font color="#aaaaaa">(</font><font color="#ffffff">IR</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">==</font> <font color="#61afef">LOW</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font>
+ &nbsp;&nbsp;&nbsp;<font color="#ffffff">getAround</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
+ &nbsp;<font color="#aaaaaa">}</font>
+<font color="#aaaaaa">}</font></pre>
+			<br>
+			<p>Now you got it, simply upload to your robot and you can go. You can also download this code
+				below. Or you can read it <a href="code.html" target="_blank">here</a>.</p>
+			<a href="../file/documentation/program-en.ino" class="button" download>
+				Download program
+			</a>
+		</div>
+</body>
+
+<div class="footer">
+	<a>Peter Borták & Eduard Lehocký</a>
+	<a href="../sk/dokumentacia.html">SK verzia</a>
+	<a>© 2020</a>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  // Add smooth scrolling to all links
+  $("a").on('click', function(event) {
+
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+});
+</script>
+
+</html>
