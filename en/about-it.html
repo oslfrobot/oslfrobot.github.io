@@ -10,11 +10,17 @@
 </head>
 
 <div class="navbar">
-	<a href="home.html">Home</a>
-	<a href="pictures.html">Pictures</a>
-	<a href="about-it.html">About it</a>
-	<a href="documentation.html">Documentation</a>
-	<a href="about-us.html">About us</a>
+	<div class="navbar-text-button">
+		<a class="navbar-text">One sensor line follower</a>
+		<a class="navbar-button" onclick="navbar()">☰</a>
+	</div>
+	<div id="link" class="link">
+		<a href="home.html">Home</a>
+		<a href="pictures.html">Pictures</a>
+		<a href="about-it.html">About it</a>
+		<a href="documentation.html">Documentation</a>
+		<a href="about-us.html">About us</a>
+	</div>
 </div>
 
 <body>
@@ -34,8 +40,19 @@
 
 <div class="footer">
 	<a href="about-us.html">© 2020 Peter Borták & Eduard Lehocký</a>
-	<a href="../sk/o-tom.html">SK verzia</a>
+	<a href="../sk/o-tom.html" class="footer-language">SK verzia</a>
 	<a href="../old/subweb/aboutit.html">Version 2019</a>
 </div>
+
+<script>
+	function navbar() {
+		var x = document.getElementById("link");
+		if (x.style.display === "block") {
+			x.style.display = "none";
+		} else {
+			x.style.display = "block";
+		}
+	}
+</script>
 
 </html>

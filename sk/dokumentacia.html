@@ -11,11 +11,17 @@
 </head>
 
 <div class="navbar">
-	<a href="domov.html">Domov</a>
-	<a href="obrazky.html">Obrázky</a>
-	<a href="o-tom.html">O tom</a>
-	<a href="dokumentacia.html">Dokumentácia</a>
-	<a href="o-nas.html">O nás</a>
+	<div class="navbar-text-button">
+		<a class="navbar-text">Robot na sledovanie čiary s jedným senzorom</a>
+		<a class="navbar-button" onclick="navbar()">☰</a>
+	</div>
+	<div id="link" class="link">
+		<a href="domov.html">Domov</a>
+		<a href="obrazky.html">Obrázky</a>
+		<a href="o-tom.html">O tom</a>
+		<a href="dokumentacia.html">Dokumentácia</a>
+		<a href="o-nas.html">O nás</a>
+	</div>
 </div>
 
 <body>
@@ -373,11 +379,12 @@
 
 <div class="footer">
 	<a href="o-nas.html">© 2020 Peter Borták & Eduard Lehocký</a>
-	<a href="../en/documentation.html">EN version</a>
+	<a href="../en/documentation.html" class="footer-language">EN version</a>
 	<a href="../old/subweb/documentationSK.html">Verzia 2019</a>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <script>
 	$(document).ready(function () {
 		// Add smooth scrolling to all links
@@ -404,5 +411,17 @@
 		});
 	});
 </script>
+
+<script>
+	function navbar() {
+		var x = document.getElementById("link");
+		if (x.style.display === "block") {
+			x.style.display = "none";
+		} else {
+			x.style.display = "block";
+		}
+	}
+</script>
+
 
 </html>
