@@ -3,10 +3,11 @@
 
 <head>
 	<link rel="stylesheet" href="../style/style.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hack-font@3/build/web/hack.css">
 	<link rel="icon" href="../img/icon/icon.png">
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Dokumentácia | Robot na sledovanie čiary s jedným senzorom</title>
 </head>
 
@@ -131,14 +132,14 @@
 				</li>
 				<li>
 					<a href="https://www.soselectronic.com/products/various/wws-20-a-1-25331" target="_blank">
-						<a1>20</a1>
+						<a1>nejaké</a1>
 						Pinov
 					</a>
 				<li>
 				<li>
 					<a href="https://www.ebay.com/itm/40pc-10-30cm-Dupont-Jumper-Wire-Ribbon-GPIO-Cable-Arduino-Breadboard-F-F-M-M-F-M/132422423178?_trkparms=ispr%3D1&hash=item1ed4fdd28a:m:m68D4n08tnVu5u44jA6ZpCw&enc=AQAEAAACQBPxNw%2BVj6nta7CKEs3N0qVxLys9LHt9AF798XxkD3Q%2F1dSdpF2qTBfsluyhoF93p%2F82KN0iXl7dotnTFZqmOkbAJ0l%2F5cCmg17d5qvbJkgQbxzf%2Bgn0e%2FrS2%2F9mkSFJ1P5BOss%2FPmctZZQ3bt6o9uXV39X5iTpu6kqDkj0O1dYVGPtekg7069wjajjlVMfv%2FFoDn2nQnCc6qwJnrNESu1Hk37u2hLzEMPaAcsWkVXbhkYx6kUTl7RpZG%2FQS%2BhBEp11UDazJCUW8O0XieSrXcIHQJ1fISAIGjLpEgbo5VeFV7%2FDwl1sN0qV2FrUAveU1CAzioBIFZuOmztG5bhsjXD6HN8R%2Bazt6bH%2FMdEdvtc5R0NMgM6OS0kdlcZQuLb4DUNA5ClMBCtD4DDpi%2BqGOk1ChB4StNehMCZUOY%2Bcgh7jbJL3D9rCejpiSSgrE6hnByb5sh1SUikHPn5FT8W16l2%2FA61Bntrv3GWkvGbaIuD2A4P92rISQQeO%2BNYCnBR3xW0zI1h0kobfS%2F%2F0NwJDrko8ZoBxFCVy6cNFegw2EeTEftlRmmy89E5wJ3uzda8m8xZCOCNRrjrSm3P4pe7vjXZPnfYZ6iDeBqNpk6k2IIyndF4mGf%2Bhv5yKVOAND4xzJ4R3jujhEs7dzVyEdDTqDol9%2BrgxGCJ5vr04nisjvRUIMH%2Fbb5vEEy2QbIYeq1RROk%2Fx%2BwGNgoNH%2BqKiTAo%2FybGOb4w1%2BxTRFys%2BJfbSxKrnH1SRJv0C5%2FGQczTFKTO8atA%3D%3D&checksum=132422423178fe4a1b7a4c0b4829b3609c27be597290"
 						target="_blank">
-						<a1>25</a1>
+						<a1>nejaké</a1>
 						Káblov
 					</a>
 				<li>
@@ -170,26 +171,20 @@
 			<p>Najprv musíme vyrobiť senzor, tento robot na sledovanie čiary je iba s jedným senzorom, pre senzor
 				potrebujeme jednu prototypovaciu DPS, LED, tri piny, spájkovačku, fototranzistor a oba odpory, 150 kΩ a
 				1kΩ.</p>
-			<table>
-				<tr>
-					<td>
-						<div class="container">
-							<a href="../img/documentation/line-sensor.jpg" target="_blank">
-								<img src="../img/documentation/line-sensor.jpg" alt="Senzor na čiaru">
-								<p>Senzor na čiaru</p>
-							</a>
-						</div>
-					</td>
-					<td>
-						<div class="container">
-							<a href="../img/documentation/line-sensor-scheme.png" target="_blank">
-								<img src="../img/documentation/line-sensor-scheme.png" alt="Schéma senzora na čiaru">
-								<p>Schéma senzora na čiaru</p>
-							</a>
-						</div>
-					</td>
-				</tr>
-			</table>
+			<div class="responsive-2">
+				<div class="container">
+					<a href="../img/documentation/line-sensor.jpg" target="_blank">
+						<img src="../img/documentation/line-sensor.jpg" alt="Senzor na čiaru">
+						<p>Senzor na čiaru</p>
+					</a>
+				</div>
+				<div class="container">
+					<a href="../img/documentation/line-sensor-scheme.png" target="_blank">
+						<img src="../img/documentation/line-sensor-scheme.png" alt="Schéma senzora na čiaru">
+						<p>Schéma senzora na čiaru</p>
+					</a>
+				</div>
+			</div>
 			<p>Druhou vecou, ktorú musíte urobiť, je zapojenie, takže senzor na čiaru bude pripojený do GND, OUT na
 				Analógový pin 0 na Arduino a VCC na 3,3 V na Arduino. Potom musíte pripojiť ostatné komponenty.</p>
 			<div style="text-align: center;">
@@ -367,10 +362,9 @@
 
 			<br>
 			<p>Teraz to máte naprogramované, jednoducho nahrajte do robota a je to. Tento program si môžete tiež
-				stiahnuť
-				nižšie. Alebo si ho môžete prečítať <a href="program.html" target="_blank">tu</a>.
+				stiahnuť nižšie. Alebo si ho môžete celý prečítať <a href="program.html" target="_blank">tu</a>.
 			</p>
-			<a href="../file/documentation/program-sk.ino" class="button" download>
+			<a href="../file/documentation/program.ino" class="button" download>
 				Stiahnuť program
 			</a>
 		</div>

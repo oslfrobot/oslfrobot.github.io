@@ -3,10 +3,11 @@
 
 <head>
 	<link rel="stylesheet" href="../style/style.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hack-font@3/build/web/hack.css">
 	<link rel="icon" href="../img/icon/icon.png">
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Documentation | One sensor line follower</title>
 </head>
 
@@ -131,14 +132,14 @@
 				</li>
 				<li>
 					<a href="https://www.soselectronic.com/products/various/wws-20-a-1-25331" target="_blank">
-						<a1>20</a1>
+						<a1>some</a1>
 						Pins
 					</a>
 				<li>
 				<li>
 					<a href="https://www.ebay.com/itm/40pc-10-30cm-Dupont-Jumper-Wire-Ribbon-GPIO-Cable-Arduino-Breadboard-F-F-M-M-F-M/132422423178?_trkparms=ispr%3D1&hash=item1ed4fdd28a:m:m68D4n08tnVu5u44jA6ZpCw&enc=AQAEAAACQBPxNw%2BVj6nta7CKEs3N0qVxLys9LHt9AF798XxkD3Q%2F1dSdpF2qTBfsluyhoF93p%2F82KN0iXl7dotnTFZqmOkbAJ0l%2F5cCmg17d5qvbJkgQbxzf%2Bgn0e%2FrS2%2F9mkSFJ1P5BOss%2FPmctZZQ3bt6o9uXV39X5iTpu6kqDkj0O1dYVGPtekg7069wjajjlVMfv%2FFoDn2nQnCc6qwJnrNESu1Hk37u2hLzEMPaAcsWkVXbhkYx6kUTl7RpZG%2FQS%2BhBEp11UDazJCUW8O0XieSrXcIHQJ1fISAIGjLpEgbo5VeFV7%2FDwl1sN0qV2FrUAveU1CAzioBIFZuOmztG5bhsjXD6HN8R%2Bazt6bH%2FMdEdvtc5R0NMgM6OS0kdlcZQuLb4DUNA5ClMBCtD4DDpi%2BqGOk1ChB4StNehMCZUOY%2Bcgh7jbJL3D9rCejpiSSgrE6hnByb5sh1SUikHPn5FT8W16l2%2FA61Bntrv3GWkvGbaIuD2A4P92rISQQeO%2BNYCnBR3xW0zI1h0kobfS%2F%2F0NwJDrko8ZoBxFCVy6cNFegw2EeTEftlRmmy89E5wJ3uzda8m8xZCOCNRrjrSm3P4pe7vjXZPnfYZ6iDeBqNpk6k2IIyndF4mGf%2Bhv5yKVOAND4xzJ4R3jujhEs7dzVyEdDTqDol9%2BrgxGCJ5vr04nisjvRUIMH%2Fbb5vEEy2QbIYeq1RROk%2Fx%2BwGNgoNH%2BqKiTAo%2FybGOb4w1%2BxTRFys%2BJfbSxKrnH1SRJv0C5%2FGQczTFKTO8atA%3D%3D&checksum=132422423178fe4a1b7a4c0b4829b3609c27be597290"
 						target="_blank">
-						<a1>25</a1>
+						<a1>some</a1>
 						Cables
 					</a>
 				<li>
@@ -167,31 +168,25 @@
 			<br>
 			<br>
 			<h2>Hardware</h2>
-			<p>First of all, we need to make sensor, this line follower is only with one line sensor, for sensor we need
-				one prototyping PCB, LED, three male pins, soldering iron, phototransistor and both resistors,
-				150kΩ and 1kΩ.</p>
-			<table>
-				<tr>
-					<td>
+			<p>First of all, we need to make sensor, this line follower is only with one line sensor, for sensor we
+				need one prototyping PCB, LED, three male pins, soldering iron, phototransistor and both resistors, 150kΩ
+				and	1kΩ.</p>
+			<div class="responsive-2">
 						<div class="container">
 							<a href="../img/documentation/line-sensor.jpg" target="_blank">
 								<img src="../img/documentation/line-sensor.jpg" alt="Line sensor">
 								<p>Line sensor</p>
 							</a>
 						</div>
-					</td>
-					<td>
 						<div class="container">
 							<a href="../img/documentation/line-sensor-scheme.png" target="_blank">
 								<img src="../img/documentation/line-sensor-scheme.png" alt="Line sensor scheme">
 								<p>Line sensor scheme</p>
 							</a>
 						</div>
-					</td>
-				</tr>
-			</table>
-			<p>Second thing you need to do is to setup connection, so line sensor is going to GND, OUT to Analog pin 0
-				on Arduino and VCC to 3.3V on Arduino. Then you need to connect rest of components.</p>
+			</div>
+			<p>Second thing you need to do is to setup connection, so line sensor is going to GND, OUT to Analog pin
+				0 on Arduino and VCC to 3.3V on Arduino. Then you need to connect rest of components.</p>
 			<div style="text-align: center;">
 				<p style="color: gray !important;">Right servo INPUT to Digital pin 9</p>
 				<p style="color: gray !important;">Left servo INPUT to Digital pin 10</p>
@@ -207,15 +202,15 @@
 					<p>PCB with button</p>
 				</a>
 			</div>
-			<p>Now when everything is connected, only thing you need to do is to make 3D printed base and servo holders.
-				You can download this parts by clicking on button below.</p>
+			<p>Now when everything is connected, only thing you need to do is to make 3D printed base and servo
+				holders. You can download this parts by clicking on button below.</p>
 			<br>
 			<p class="text-align: center;">
 				<a href="../file/documentation/holder.stl" class="button" download>Download 3D parts</a>
 			</p>
 			<p>
-				If you have printed it, then you need to put it all together, you can see how it have to look like in
-				<a href="../en/pictures.html">pictures section</a>.
+				If you have printed it, then you need to put it all together, you can see how it have to look like
+				in <a href="../en/pictures.html">pictures section</a>.
 			</p>
 		</div>
 
@@ -259,8 +254,8 @@
 			<br>
 			<p>Now, here is calibration function, that will calibrate your line follower robot. If it is in
 				calibration mode, you need only to place it on line, and it will do everything without you. If it
-				is not in calibration mode, this will be skiped and robot will continue with his values saved in EEPROM
-				memory.</p>
+				is not in calibration mode, this will be skiped and robot will continue with his values saved in
+				EEPROM memory.</p>
 			<pre>
 <font color="#61afef">void</font> <font color="#ffffff">calibration</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font>
  &nbsp;<font color="#61afef">int</font> <font color="#ffffff">blackMeasured</font> <font color="#aaaaaa">=</font> <font color="#e5c07b">0</font><font color="#ffffff">;</font>
@@ -370,8 +365,8 @@
 
 			<br>
 			<p>Now you got it, simply upload to your robot and you can go. You can also download this code
-				below. Or you can read it <a href="code.html" target="_blank">here</a>.</p>
-			<a href="../file/documentation/code-en.ino" class="button" download>
+				below. Or you can read it whole <a href="code.html" target="_blank">here</a>.</p>
+			<a href="../file/documentation/code.ino" class="button" download>
 				Download code
 			</a>
 		</div>
