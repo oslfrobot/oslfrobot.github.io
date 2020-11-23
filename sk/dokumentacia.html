@@ -239,126 +239,137 @@
 			<h2>Programovanie</h2>
 			<p>Najprv musíme importovať knižnice a definovať niektoré premenné, ktoré budeme potrebovať v celom našom
 				programe: </p>
-			<pre><font color="#98c379">#include</font> <font color="#aaaaaa">&lt;</font><b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#ffffff">h</font><font color="#aaaaaa">&gt;</font>
-<font color="#98c379">#include</font> <font color="#aaaaaa">&lt;</font><b><font color="#e06c75">Servo</font></b><font color="#aaaaaa">.</font><font color="#ffffff">h</font><font color="#aaaaaa">&gt;</font>
-<b><font color="#e06c75">Servo</font></b> <font color="#ffffff">s1</font><font color="#ffffff">;</font>
-<b><font color="#e06c75">Servo</font></b> <font color="#ffffff">s2</font><font color="#ffffff">;</font>
-
-<font color="#98c379">#define</font> <font color="#ffffff">senzor</font> <font color="#ffffff">A0</font>
-<font color="#98c379">#define</font> <font color="#ffffff">IR</font> <font color="#e5c07b">3</font>
-
-<font color="#61afef">int</font> <font color="#ffffff">x</font> <font color="#aaaaaa">=</font> <font color="#e5c07b">100</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47;pocet merani</font>
-<font color="#61afef">String</font> <font color="#ffffff">farba</font><font color="#ffffff">;</font></pre>
+			<pre>
+<code><font color="#98c379">#include</font> <font color="#aaaaaa">&lt;</font><b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#ffffff">h</font><font color="#aaaaaa">&gt;</font></code>
+<code><font color="#98c379">#include</font> <font color="#aaaaaa">&lt;</font><b><font color="#e06c75">Servo</font></b><font color="#aaaaaa">.</font><font color="#ffffff">h</font><font color="#aaaaaa">&gt;</font></code>
+<code><b><font color="#e06c75">Servo</font></b> <font color="#ffffff">s1</font><font color="#ffffff">;</font></code>
+<code><b><font color="#e06c75">Servo</font></b> <font color="#ffffff">s2</font><font color="#ffffff">;</font></code>
+<code></code>
+<code><font color="#98c379">#define</font> <font color="#ffffff">senzor</font> <font color="#ffffff">A0</font></code>
+<code><font color="#98c379">#define</font> <font color="#ffffff">IR</font> <font color="#e5c07b">3</font></code>
+<code></code>
+<code><font color="#61afef">int</font> <font color="#ffffff">x</font> <font color="#aaaaaa">=</font> <font color="#e5c07b">100</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47;pocet merani</font></code>
+<code><font color="#61afef">String</font> <font color="#ffffff">farba</font><font color="#ffffff">;</font></pre></code>
 
 			<br>
 			<p>Teraz je tu kalibračná funkcia, ktorá kalibruje vášho robota. Ak je v kalibračnom režime, stačí ho
 				umiestniť na čiaru a nakalibruje sa sám. Ak nie je v kalibračnom režime, bude to preskočené a robot
 				bude pokračovať so svojími hodnotami uloženými v pamäti EEPROM.</p>
-			<pre><font color="#61afef">void</font> <font color="#ffffff">kalibracia</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font>
- &nbsp;<font color="#61afef">int</font> <font color="#ffffff">ciernaNamerana</font> <font color="#aaaaaa">=</font> <font color="#e5c07b">0</font><font color="#ffffff">;</font>
- &nbsp;<font color="#61afef">int</font> <font color="#ffffff">bielaNamerana</font> <font color="#aaaaaa">=</font> <font color="#e5c07b">0</font><font color="#ffffff">;</font>
- &nbsp;<font color="#c678dd">for</font> <font color="#aaaaaa">(</font><font color="#61afef">int</font> <font color="#ffffff">k</font> <font color="#aaaaaa">=</font> <font color="#e5c07b">0</font><font color="#ffffff">;</font> <font color="#ffffff">k</font> <font color="#aaaaaa">&lt;</font> <font color="#ffffff">x</font><font color="#ffffff">;</font> <font color="#ffffff">k</font><font color="#aaaaaa">++</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font>
- &nbsp;&nbsp;&nbsp;<font color="#ffffff">ciernaNamerana</font> <font color="#aaaaaa">+=</font> <font color="#61afef">analogRead</font><font color="#aaaaaa">(</font><font color="#ffffff">senzor</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
- &nbsp;&nbsp;&nbsp;<font color="#61afef">delay</font><font color="#aaaaaa">(</font><font color="#e5c07b">10</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
- &nbsp;<font color="#aaaaaa">}</font>
- &nbsp;<b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">0</font><font color="#aaaaaa">,</font> <font color="#e5c07b">0</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
- &nbsp;<b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">0</font><font color="#aaaaaa">,</font> <font color="#61afef">map</font><font color="#aaaaaa">(</font><font color="#aaaaaa">(</font><font color="#ffffff">ciernaNamerana</font> <font color="#aaaaaa">&#47;</font> <font color="#ffffff">x</font><font color="#aaaaaa">)</font><font color="#aaaaaa">,</font> <font color="#e5c07b">0</font><font color="#aaaaaa">,</font> <font color="#e5c07b">1023</font><font color="#aaaaaa">,</font> <font color="#e5c07b">0</font><font color="#aaaaaa">,</font> <font color="#e5c07b">255</font><font color="#aaaaaa">)</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47;cierna</font>
- &nbsp;<font color="#ffffff">doprava</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
- &nbsp;<font color="#61afef">delay</font><font color="#aaaaaa">(</font><font color="#e5c07b">500</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
- &nbsp;<font color="#61afef">stop</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
- &nbsp;<font color="#c678dd">for</font> <font color="#aaaaaa">(</font><font color="#61afef">int</font> <font color="#ffffff">j</font> <font color="#aaaaaa">=</font> <font color="#e5c07b">0</font><font color="#ffffff">;</font> <font color="#ffffff">j</font> <font color="#aaaaaa">&lt;</font> <font color="#ffffff">x</font><font color="#ffffff">;</font> <font color="#ffffff">j</font><font color="#aaaaaa">++</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font>
- &nbsp;&nbsp;&nbsp;<font color="#ffffff">bielaNamerana</font> <font color="#aaaaaa">+=</font> <font color="#61afef">analogRead</font><font color="#aaaaaa">(</font><font color="#ffffff">senzor</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
- &nbsp;&nbsp;&nbsp;<font color="#61afef">delay</font><font color="#aaaaaa">(</font><font color="#e5c07b">10</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
- &nbsp;<font color="#aaaaaa">}</font>
- &nbsp;<b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">1</font><font color="#aaaaaa">,</font> <font color="#e5c07b">0</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
- &nbsp;<b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">1</font><font color="#aaaaaa">,</font> <font color="#61afef">map</font><font color="#aaaaaa">(</font><font color="#aaaaaa">(</font><font color="#ffffff">bielaNamerana</font> <font color="#aaaaaa">&#47;</font> <font color="#ffffff">x</font><font color="#aaaaaa">)</font><font color="#aaaaaa">,</font> <font color="#e5c07b">0</font><font color="#aaaaaa">,</font> <font color="#e5c07b">1023</font><font color="#aaaaaa">,</font> <font color="#e5c07b">0</font><font color="#aaaaaa">,</font> <font color="#e5c07b">255</font><font color="#aaaaaa">)</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47;biela</font>
- &nbsp;<b><font color="#e06c75">Serial</font></b><font color="#aaaaaa">.</font><font color="#61afef">println</font><font color="#aaaaaa">(</font><b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">read</font><font color="#aaaaaa">(</font><font color="#e5c07b">1</font><font color="#aaaaaa">)</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
- &nbsp;<b><font color="#e06c75">Serial</font></b><font color="#aaaaaa">.</font><font color="#61afef">println</font><font color="#aaaaaa">(</font><b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">read</font><font color="#aaaaaa">(</font><font color="#e5c07b">0</font><font color="#aaaaaa">)</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
-		   
- &nbsp;<b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">2</font><font color="#aaaaaa">,</font> <font color="#aaaaaa">(</font><b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">read</font><font color="#aaaaaa">(</font><font color="#e5c07b">1</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">+</font> <b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">read</font><font color="#aaaaaa">(</font><font color="#e5c07b">0</font><font color="#aaaaaa">)</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">&#47;</font> <font color="#e5c07b">2</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
- &nbsp;<b><font color="#e06c75">Serial</font></b><font color="#aaaaaa">.</font><font color="#61afef">println</font><font color="#aaaaaa">(</font><b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">read</font><font color="#aaaaaa">(</font><font color="#e5c07b">2</font><font color="#aaaaaa">)</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
- &nbsp;<font color="#61afef">delay</font><font color="#aaaaaa">(</font><font color="#e5c07b">1000</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
-<font color="#aaaaaa">}</font></pre>
+			<pre>
+<code><font color="#61afef">void</font> <font color="#ffffff">kalibracia</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font></code>
+<code> &nbsp;<font color="#61afef">int</font> <font color="#ffffff">ciernaNamerana</font> <font color="#aaaaaa">=</font> <font color="#e5c07b">0</font><font color="#ffffff">;</font></code>
+<code> &nbsp;<font color="#61afef">int</font> <font color="#ffffff">bielaNamerana</font> <font color="#aaaaaa">=</font> <font color="#e5c07b">0</font><font color="#ffffff">;</font></code>
+<code> &nbsp;<font color="#c678dd">for</font> <font color="#aaaaaa">(</font><font color="#61afef">int</font> <font color="#ffffff">k</font> <font color="#aaaaaa">=</font> <font color="#e5c07b">0</font><font color="#ffffff">;</font> <font color="#ffffff">k</font> <font color="#aaaaaa">&lt;</font> <font color="#ffffff">x</font><font color="#ffffff">;</font> <font color="#ffffff">k</font><font color="#aaaaaa">++</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font></code>
+<code> &nbsp;&nbsp;&nbsp;<font color="#ffffff">ciernaNamerana</font> <font color="#aaaaaa">+=</font> <font color="#61afef">analogRead</font><font color="#aaaaaa">(</font><font color="#ffffff">senzor</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font></code>
+<code> &nbsp;&nbsp;&nbsp;<font color="#61afef">delay</font><font color="#aaaaaa">(</font><font color="#e5c07b">10</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font></code>
+<code> &nbsp;<font color="#aaaaaa">}</font></code>
+<code> &nbsp;<b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">0</font><font color="#aaaaaa">,</font> <font color="#e5c07b">0</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font></code>
+<code> &nbsp;<b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">0</font><font color="#aaaaaa">,</font> <font color="#61afef">map</font><font color="#aaaaaa">(</font><font color="#aaaaaa">(</font><font color="#ffffff">ciernaNamerana</font> <font color="#aaaaaa">&#47;</font> <font color="#ffffff">x</font><font color="#aaaaaa">)</font><font color="#aaaaaa">,</font> <font color="#e5c07b">0</font><font color="#aaaaaa">,</font> <font color="#e5c07b">1023</font><font color="#aaaaaa">,</font> <font color="#e5c07b">0</font><font color="#aaaaaa">,</font> <font color="#e5c07b">255</font><font color="#aaaaaa">)</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47;cierna</font></code>
+<code> &nbsp;<font color="#ffffff">doprava</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font></code>
+<code> &nbsp;<font color="#61afef">delay</font><font color="#aaaaaa">(</font><font color="#e5c07b">500</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font></code>
+<code> &nbsp;<font color="#61afef">stop</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font></code>
+<code> &nbsp;<font color="#c678dd">for</font> <font color="#aaaaaa">(</font><font color="#61afef">int</font> <font color="#ffffff">j</font> <font color="#aaaaaa">=</font> <font color="#e5c07b">0</font><font color="#ffffff">;</font> <font color="#ffffff">j</font> <font color="#aaaaaa">&lt;</font> <font color="#ffffff">x</font><font color="#ffffff">;</font> <font color="#ffffff">j</font><font color="#aaaaaa">++</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font></code>
+<code> &nbsp;&nbsp;&nbsp;<font color="#ffffff">bielaNamerana</font> <font color="#aaaaaa">+=</font> <font color="#61afef">analogRead</font><font color="#aaaaaa">(</font><font color="#ffffff">senzor</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font></code>
+<code> &nbsp;&nbsp;&nbsp;<font color="#61afef">delay</font><font color="#aaaaaa">(</font><font color="#e5c07b">10</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font></code>
+<code> &nbsp;<font color="#aaaaaa">}</font></code>
+<code> &nbsp;<b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">1</font><font color="#aaaaaa">,</font> <font color="#e5c07b">0</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font></code>
+<code> &nbsp;<b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">1</font><font color="#aaaaaa">,</font> <font color="#61afef">map</font><font color="#aaaaaa">(</font><font color="#aaaaaa">(</font><font color="#ffffff">bielaNamerana</font> <font color="#aaaaaa">&#47;</font> <font color="#ffffff">x</font><font color="#aaaaaa">)</font><font color="#aaaaaa">,</font> <font color="#e5c07b">0</font><font color="#aaaaaa">,</font> <font color="#e5c07b">1023</font><font color="#aaaaaa">,</font> <font color="#e5c07b">0</font><font color="#aaaaaa">,</font> <font color="#e5c07b">255</font><font color="#aaaaaa">)</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47;biela</font></code>
+<code> &nbsp;<b><font color="#e06c75">Serial</font></b><font color="#aaaaaa">.</font><font color="#61afef">println</font><font color="#aaaaaa">(</font><b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">read</font><font color="#aaaaaa">(</font><font color="#e5c07b">1</font><font color="#aaaaaa">)</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font></code>
+<code> &nbsp;<b><font color="#e06c75">Serial</font></b><font color="#aaaaaa">.</font><font color="#61afef">println</font><font color="#aaaaaa">(</font><b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">read</font><font color="#aaaaaa">(</font><font color="#e5c07b">0</font><font color="#aaaaaa">)</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font></code>
+<code></code>
+<code> &nbsp;<b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">2</font><font color="#aaaaaa">,</font> <font color="#aaaaaa">(</font><b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">read</font><font color="#aaaaaa">(</font><font color="#e5c07b">1</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">+</font> <b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">read</font><font color="#aaaaaa">(</font><font color="#e5c07b">0</font><font color="#aaaaaa">)</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">&#47;</font> <font color="#e5c07b">2</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font></code>
+<code> &nbsp;<b><font color="#e06c75">Serial</font></b><font color="#aaaaaa">.</font><font color="#61afef">println</font><font color="#aaaaaa">(</font><b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">read</font><font color="#aaaaaa">(</font><font color="#e5c07b">2</font><font color="#aaaaaa">)</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font></code>
+<code> &nbsp;<font color="#61afef">delay</font><font color="#aaaaaa">(</font><font color="#e5c07b">1000</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font></code>
+<code><font color="#aaaaaa">}</font></code>
+</pre>
 
 			<br>
 			<p>Teraz naprogramujeme funkcie pre pohyb nášho robota:</p>
-			<pre><font color="#61afef">void</font> <font color="#ffffff">dopredu</font> <font color="#aaaaaa">(</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font>
- &nbsp;<font color="#ffffff">s1</font><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">0</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47; dopredu</font>
- &nbsp;<font color="#ffffff">s2</font><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">180</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47; dopredu</font>
-<font color="#aaaaaa">}</font>
-
-<font color="#61afef">void</font> <font color="#ffffff">doprava</font> <font color="#aaaaaa">(</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font>
- &nbsp;<font color="#ffffff">s1</font><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">90</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47; dopredu</font>
- &nbsp;<font color="#ffffff">s2</font><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">180</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47; stoji</font>
-<font color="#aaaaaa">}</font>
-
-<font color="#61afef">void</font> <font color="#ffffff">dolava</font> <font color="#aaaaaa">(</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font>
- &nbsp;<font color="#ffffff">s1</font><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">0</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47; stoji</font>
- &nbsp;<font color="#ffffff">s2</font><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">90</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47; dopredu</font>
-<font color="#aaaaaa">}</font>
-
-<font color="#61afef">void</font> <font color="#ffffff">dozadu</font> <font color="#aaaaaa">(</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font>
- &nbsp;<font color="#ffffff">s1</font><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">180</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47; dozadu</font>
- &nbsp;<font color="#ffffff">s2</font><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">0</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47; dozadu</font>
-<font color="#aaaaaa">}</font>
-
-<font color="#61afef">void</font> <font color="#61afef">stop</font> <font color="#aaaaaa">(</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font>
- &nbsp;<font color="#ffffff">s1</font><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">90</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47; stoji</font>
- &nbsp;<font color="#ffffff">s2</font><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">90</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47; stoji</font>
-<font color="#aaaaaa">}</font></pre>
+			<pre>
+<code><font color="#61afef">void</font> <font color="#ffffff">dopredu</font> <font color="#aaaaaa">(</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font></code>
+<code> &nbsp;<font color="#ffffff">s1</font><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">0</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47; dopredu</font></code>
+<code> &nbsp;<font color="#ffffff">s2</font><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">180</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47; dopredu</font></code>
+<code><font color="#aaaaaa">}</font></code>
+<code></code>
+<code><font color="#61afef">void</font> <font color="#ffffff">doprava</font> <font color="#aaaaaa">(</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font></code>
+<code> &nbsp;<font color="#ffffff">s1</font><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">90</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47; dopredu</font></code>
+<code> &nbsp;<font color="#ffffff">s2</font><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">180</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47; stoji</font></code>
+<code><font color="#aaaaaa">}</font></code>
+<code></code>
+<code><font color="#61afef">void</font> <font color="#ffffff">dolava</font> <font color="#aaaaaa">(</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font></code>
+<code> &nbsp;<font color="#ffffff">s1</font><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">0</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47; stoji</font></code>
+<code> &nbsp;<font color="#ffffff">s2</font><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">90</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47; dopredu</font></code>
+<code><font color="#aaaaaa">}</font></code>
+<code></code>
+<code><font color="#61afef">void</font> <font color="#ffffff">dozadu</font> <font color="#aaaaaa">(</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font></code>
+<code> &nbsp;<font color="#ffffff">s1</font><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">180</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47; dozadu</font></code>
+<code> &nbsp;<font color="#ffffff">s2</font><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">0</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47; dozadu</font></code>
+<code><font color="#aaaaaa">}</font></code>
+<code></code>
+<code><font color="#61afef">void</font> <font color="#61afef">stop</font> <font color="#aaaaaa">(</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font></code>
+<code> &nbsp;<font color="#ffffff">s1</font><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">90</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47; stoji</font></code>
+<code> &nbsp;<font color="#ffffff">s2</font><font color="#aaaaaa">.</font><font color="#61afef">write</font><font color="#aaaaaa">(</font><font color="#e5c07b">90</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font> <font color="#aaaaaa">&#47;&#47; stoji</font></code>
+<code><font color="#aaaaaa">}</font></code>
+</pre>
 
 			<br>
 			<p>Teraz sa potrebujeme dostať naokolo predmetu na čiare. Urobíme to nasledujúcou funkciou:</p>
-			<pre><font color="#61afef">void</font> <font color="#ffffff">naokolo</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font>
- &nbsp;<font color="#ffffff">dozadu</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
- &nbsp;<font color="#61afef">delay</font><font color="#aaaaaa">(</font><font color="#e5c07b">100</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
- &nbsp;<font color="#ffffff">doprava</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
- &nbsp;<font color="#61afef">delay</font><font color="#aaaaaa">(</font><font color="#e5c07b">500</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
- &nbsp;<font color="#ffffff">dopredu</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
- &nbsp;<font color="#61afef">delay</font><font color="#aaaaaa">(</font><font color="#e5c07b">1000</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
- &nbsp;<font color="#ffffff">dolava</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
- &nbsp;<font color="#61afef">delay</font><font color="#aaaaaa">(</font><font color="#e5c07b">1000</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
- &nbsp;<font color="#ffffff">dopredu</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
- &nbsp;<font color="#61afef">delay</font><font color="#aaaaaa">(</font><font color="#e5c07b">800</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
-<font color="#aaaaaa">}</font></pre>
+			<pre>
+<code><font color="#61afef">void</font> <font color="#ffffff">naokolo</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font></code>
+<code> &nbsp;<font color="#ffffff">dozadu</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font></code>
+<code> &nbsp;<font color="#61afef">delay</font><font color="#aaaaaa">(</font><font color="#e5c07b">100</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font></code>
+<code> &nbsp;<font color="#ffffff">doprava</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font></code>
+<code> &nbsp;<font color="#61afef">delay</font><font color="#aaaaaa">(</font><font color="#e5c07b">500</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font></code>
+<code> &nbsp;<font color="#ffffff">dopredu</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font></code>
+<code> &nbsp;<font color="#61afef">delay</font><font color="#aaaaaa">(</font><font color="#e5c07b">1000</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font></code>
+<code> &nbsp;<font color="#ffffff">dolava</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font></code>
+<code> &nbsp;<font color="#61afef">delay</font><font color="#aaaaaa">(</font><font color="#e5c07b">1000</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font></code>
+<code> &nbsp;<font color="#ffffff">dopredu</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font></code>
+<code> &nbsp;<font color="#61afef">delay</font><font color="#aaaaaa">(</font><font color="#e5c07b">800</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font></code>
+<code><font color="#aaaaaa">}</font></code>
+</pre>
 
 			<br>
 			<p>Už nám zostáva iba naprogramovať void setup() a void loop():</p>
-			<pre><font color="#61afef">void</font> <font color="#c678dd">setup</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font>
- &nbsp;<font color="#ffffff">s1</font><font color="#aaaaaa">.</font><font color="#61afef">attach</font><font color="#aaaaaa">(</font><font color="#e5c07b">9</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
- &nbsp;<font color="#ffffff">s2</font><font color="#aaaaaa">.</font><font color="#61afef">attach</font><font color="#aaaaaa">(</font><font color="#e5c07b">10</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
- &nbsp;<font color="#61afef">pinMode</font><font color="#aaaaaa">(</font><font color="#ffffff">senzor</font><font color="#aaaaaa">,</font> <font color="#61afef">INPUT</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
- &nbsp;<font color="#61afef">pinMode</font><font color="#aaaaaa">(</font><font color="#ffffff">IR</font><font color="#aaaaaa">,</font> <font color="#61afef">INPUT</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
-
- &nbsp;<font color="#61afef">delay</font><font color="#aaaaaa">(</font><font color="#e5c07b">200</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
- &nbsp;<font color="#c678dd">if</font> <font color="#aaaaaa">(</font><font color="#61afef">digitalRead</font><font color="#aaaaaa">(</font><font color="#e5c07b">4</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">==</font> <font color="#61afef">HIGH</font><font color="#aaaaaa">)</font>
- &nbsp;&nbsp;&nbsp;<font color="#ffffff">kalibracia</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
-<font color="#aaaaaa">}</font></pre>
+			<pre>
+<code><font color="#61afef">void</font> <font color="#c678dd">setup</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font></code>
+<code> &nbsp;<font color="#ffffff">s1</font><font color="#aaaaaa">.</font><font color="#61afef">attach</font><font color="#aaaaaa">(</font><font color="#e5c07b">9</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font></code>
+<code> &nbsp;<font color="#ffffff">s2</font><font color="#aaaaaa">.</font><font color="#61afef">attach</font><font color="#aaaaaa">(</font><font color="#e5c07b">10</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font></code>
+<code> &nbsp;<font color="#61afef">pinMode</font><font color="#aaaaaa">(</font><font color="#ffffff">senzor</font><font color="#aaaaaa">,</font> <font color="#61afef">INPUT</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font></code>
+<code> &nbsp;<font color="#61afef">pinMode</font><font color="#aaaaaa">(</font><font color="#ffffff">IR</font><font color="#aaaaaa">,</font> <font color="#61afef">INPUT</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font></code>
+<code></code>
+<code> &nbsp;<font color="#61afef">delay</font><font color="#aaaaaa">(</font><font color="#e5c07b">200</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font></code>
+<code> &nbsp;<font color="#c678dd">if</font> <font color="#aaaaaa">(</font><font color="#61afef">digitalRead</font><font color="#aaaaaa">(</font><font color="#e5c07b">4</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">==</font> <font color="#61afef">HIGH</font><font color="#aaaaaa">)</font></code>
+<code> &nbsp;&nbsp;&nbsp;<font color="#ffffff">kalibracia</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font></code>
+<code><font color="#aaaaaa">}</font></code>
+</pre>
 
 			<br>
 			<p>A loop, ak sme na bielom, ideme na čiernu, ale ak sme na čiernej, potom ideme na bielu, takže sme na
 				okraji čiary.</p>
-			<pre><font color="#61afef">void</font> <font color="#c678dd">loop</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font>
- &nbsp;<font color="#c678dd">if</font> <font color="#aaaaaa">(</font><font color="#61afef">map</font><font color="#aaaaaa">(</font><font color="#61afef">analogRead</font><font color="#aaaaaa">(</font><font color="#ffffff">senzor</font><font color="#aaaaaa">)</font><font color="#aaaaaa">,</font> <font color="#e5c07b">0</font><font color="#aaaaaa">,</font> <font color="#e5c07b">1023</font><font color="#aaaaaa">,</font> <font color="#e5c07b">0</font><font color="#aaaaaa">,</font> <font color="#e5c07b">255</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">&gt;</font> <font color="#aaaaaa">(</font><b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">read</font><font color="#aaaaaa">(</font><font color="#e5c07b">2</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">+</font> <font color="#e5c07b">20</font><font color="#aaaaaa">)</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font>
- &nbsp;&nbsp;&nbsp;<font color="#ffffff">farba</font> <font color="#aaaaaa">=</font> <font color="#61afef">&#34;cierna&#34;</font><font color="#ffffff">;</font>
- &nbsp;<font color="#aaaaaa">}</font>
-		   
- &nbsp;<font color="#c678dd">else</font> <font color="#c678dd">if</font> <font color="#aaaaaa">(</font><font color="#61afef">map</font><font color="#aaaaaa">(</font><font color="#61afef">analogRead</font><font color="#aaaaaa">(</font><font color="#ffffff">senzor</font><font color="#aaaaaa">)</font><font color="#aaaaaa">,</font> <font color="#e5c07b">0</font><font color="#aaaaaa">,</font> <font color="#e5c07b">1023</font><font color="#aaaaaa">,</font> <font color="#e5c07b">0</font><font color="#aaaaaa">,</font> <font color="#e5c07b">255</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">&lt;</font> <font color="#aaaaaa">(</font><b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">read</font><font color="#aaaaaa">(</font><font color="#e5c07b">2</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">+</font> <font color="#e5c07b">20</font><font color="#aaaaaa">)</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font>
- &nbsp;&nbsp;&nbsp;<font color="#ffffff">farba</font> <font color="#aaaaaa">=</font> <font color="#61afef">&#34;biela&#34;</font><font color="#ffffff">;</font>
- &nbsp;<font color="#aaaaaa">}</font>
-		   
- &nbsp;<font color="#c678dd">if</font> <font color="#aaaaaa">(</font><font color="#ffffff">farba</font> <font color="#aaaaaa">==</font> <font color="#61afef">&#34;cierna&#34;</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font>
- &nbsp;&nbsp;&nbsp;<font color="#ffffff">doprava</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
- &nbsp;<font color="#aaaaaa">}</font>
-		   
- &nbsp;<font color="#c678dd">if</font> <font color="#aaaaaa">(</font><font color="#ffffff">farba</font> <font color="#aaaaaa">==</font> <font color="#61afef">&#34;biela&#34;</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font>
- &nbsp;&nbsp;&nbsp;<font color="#ffffff">dolava</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
- &nbsp;<font color="#aaaaaa">}</font>
-		   
- &nbsp;<font color="#c678dd">if</font> <font color="#aaaaaa">(</font><font color="#61afef">digitalRead</font><font color="#aaaaaa">(</font><font color="#ffffff">IR</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">==</font> <font color="#61afef">LOW</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font>
- &nbsp;&nbsp;&nbsp;<font color="#ffffff">naokolo</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font>
- &nbsp;<font color="#aaaaaa">}</font>
-<font color="#aaaaaa">}</font></pre>
+			<pre>
+<code><font color="#61afef">void</font> <font color="#c678dd">loop</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font></code>
+<code> &nbsp;<font color="#c678dd">if</font> <font color="#aaaaaa">(</font><font color="#61afef">map</font><font color="#aaaaaa">(</font><font color="#61afef">analogRead</font><font color="#aaaaaa">(</font><font color="#ffffff">senzor</font><font color="#aaaaaa">)</font><font color="#aaaaaa">,</font> <font color="#e5c07b">0</font><font color="#aaaaaa">,</font> <font color="#e5c07b">1023</font><font color="#aaaaaa">,</font> <font color="#e5c07b">0</font><font color="#aaaaaa">,</font> <font color="#e5c07b">255</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">&gt;</font> <font color="#aaaaaa">(</font><b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">read</font><font color="#aaaaaa">(</font><font color="#e5c07b">2</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">+</font> <font color="#e5c07b">20</font><font color="#aaaaaa">)</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font></code>
+<code> &nbsp;&nbsp;&nbsp;<font color="#ffffff">farba</font> <font color="#aaaaaa">=</font> <font color="#61afef">&#34;cierna&#34;</font><font color="#ffffff">;</font></code>
+<code> &nbsp;<font color="#aaaaaa">}</font></code>
+<code></code>
+<code> &nbsp;<font color="#c678dd">else</font> <font color="#c678dd">if</font> <font color="#aaaaaa">(</font><font color="#61afef">map</font><font color="#aaaaaa">(</font><font color="#61afef">analogRead</font><font color="#aaaaaa">(</font><font color="#ffffff">senzor</font><font color="#aaaaaa">)</font><font color="#aaaaaa">,</font> <font color="#e5c07b">0</font><font color="#aaaaaa">,</font> <font color="#e5c07b">1023</font><font color="#aaaaaa">,</font> <font color="#e5c07b">0</font><font color="#aaaaaa">,</font> <font color="#e5c07b">255</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">&lt;</font> <font color="#aaaaaa">(</font><b><font color="#e06c75">EEPROM</font></b><font color="#aaaaaa">.</font><font color="#61afef">read</font><font color="#aaaaaa">(</font><font color="#e5c07b">2</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">+</font> <font color="#e5c07b">20</font><font color="#aaaaaa">)</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font></code>
+<code> &nbsp;&nbsp;&nbsp;<font color="#ffffff">farba</font> <font color="#aaaaaa">=</font> <font color="#61afef">&#34;biela&#34;</font><font color="#ffffff">;</font></code>
+<code> &nbsp;<font color="#aaaaaa">}</font></code>
+<code></code>
+<code> &nbsp;<font color="#c678dd">if</font> <font color="#aaaaaa">(</font><font color="#ffffff">farba</font> <font color="#aaaaaa">==</font> <font color="#61afef">&#34;cierna&#34;</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font></code>
+<code> &nbsp;&nbsp;&nbsp;<font color="#ffffff">doprava</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font></code>
+<code> &nbsp;<font color="#aaaaaa">}</font></code>
+<code></code>
+<code> &nbsp;<font color="#c678dd">if</font> <font color="#aaaaaa">(</font><font color="#ffffff">farba</font> <font color="#aaaaaa">==</font> <font color="#61afef">&#34;biela&#34;</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font></code>
+<code> &nbsp;&nbsp;&nbsp;<font color="#ffffff">dolava</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font></code>
+<code> &nbsp;<font color="#aaaaaa">}</font></code>
+<code></code>
+<code> &nbsp;<font color="#c678dd">if</font> <font color="#aaaaaa">(</font><font color="#61afef">digitalRead</font><font color="#aaaaaa">(</font><font color="#ffffff">IR</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">==</font> <font color="#61afef">LOW</font><font color="#aaaaaa">)</font> <font color="#aaaaaa">{</font></code>
+<code> &nbsp;&nbsp;&nbsp;<font color="#ffffff">naokolo</font><font color="#aaaaaa">(</font><font color="#aaaaaa">)</font><font color="#ffffff">;</font></code>
+<code> &nbsp;<font color="#aaaaaa">}</font></code>
+<code><font color="#aaaaaa">}</font></code>
+</pre>
 
 			<br>
 			<p>Teraz to máte naprogramované, jednoducho nahrajte do robota a je to. Tento program si môžete tiež
