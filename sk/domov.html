@@ -2,36 +2,35 @@
 <html lang="sk">
 
 <head>
-	<link rel="stylesheet" href="../style/style.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap">
+	<link rel="stylesheet" type="text/css" href="../style/style.css">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap">
 	<link rel="icon" href="../img/icon/icon.png">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Domov | Robot na sledovanie čiary s jedným senzorom</title>
 </head>
 
-<div class="navbar">
-	<div class="navbar-text-button">
-		<a class="navbar-text">Robot na sledovanie čiary s jedným senzorom</a>
-		<a class="navbar-button" onclick="navbar()">☰</a>
-	</div>
-	<div id="link" class="link">
-		<a href="domov.html">Domov</a>
-		<a href="obrazky.html">Obrázky</a>
-		<a href="o-tom.html">O tom</a>
-		<a href="dokumentacia.html">Dokumentácia</a>
-		<a href="o-nas.html">O nás</a>
-	</div>
-</div>
-
 <body>
-	<div class="card">
+	<div class="navbar">
+		<div class="navbar-text-button">
+			<a class="navbar-text">Robot na sledovanie čiary s jedným senzorom</a>
+			<a class="navbar-button" onclick="navbar()">☰</a>
+		</div>
+		<div id="link" class="link">
+			<a href="domov.html">Domov</a>
+			<a href="obrazky.html">Obrázky</a>
+			<a href="o-tom.html">O tom</a>
+			<a href="dokumentacia.html">Dokumentácia</a>
+			<a href="o-nas.html">O nás</a>
+		</div>
+	</div>
+
+	<div class="main">
 		<h1>Robot na sledovanie čiary s jedným senzorom</h1>
 		<p>Dobrý deň, vitajte na našom webe o robotovi sledujúcom čiaru s jedným senzorom na čiaru, môže sa tiež vyhnúť
 			objektom a má automatickú kalibráciu, takže ho umiestnite na čiaru a bude sa kalibrovať autonómne, v sekcii
 			obrázkov sa naň môžete pozrieť, v dokumentácii je všetko, čo potrebujete vedieť o jeho zostavení
-			a programovaní,
-			v sekcii o tom je všetko o tom, ako vznikol a história tohto robota. V sekcii o nás je stránka o vývojároch
+			a programovaní, v sekcii o tom je všetko o tom, ako vznikol a história tohto robota. V sekcii o nás je stránka o vývojároch
 			tohto robota. Sme radi, že môžete vidieť tohto robota.</p>
 		<div class="container">
 			<a href="../img/home/robot.jpg" target="_blank">
@@ -40,23 +39,14 @@
 			</a>
 		</div>
 	</div>
+
+	<div class="footer">
+		<a href="o-nas.html">© 2020 Peter Borták & Eduard Lehocký</a>
+		<a href="../en/home.html" class="footer-language">EN version</a>
+		<a href="../old/indexSK.html">Verzia 2019</a>
+	</div>
 </body>
 
-<div class="footer">
-	<a href="o-nas.html">© 2020 Peter Borták & Eduard Lehocký</a>
-	<a href="../en/home.html" class="footer-language">EN version</a>
-	<a href="../old/indexSK.html">Verzia 2019</a>
-</div>
-
-<script>
-	function navbar() {
-		var x = document.getElementById("link");
-		if (x.style.display === "block") {
-			x.style.display = "none";
-		} else {
-			x.style.display = "block";
-		}
-	}
-</script>
+<script src="../script/script.js"></script>
 
 </html>

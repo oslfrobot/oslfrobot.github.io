@@ -2,30 +2,30 @@
 <html lang="en">
 
 <head>
-	<link rel="stylesheet" href="../style/style.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap">
+	<link rel="stylesheet" type="text/css" href="../style/style.css">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap">
 	<link rel="icon" href="../img/icon/icon.png">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>About us | One sensor line follower</title>
 </head>
 
-<div class="navbar">
-	<div class="navbar-text-button">
-		<a class="navbar-text">One sensor line follower</a>
-		<a class="navbar-button" onclick="navbar()">☰</a>
-	</div>
-	<div id="link" class="link">
-		<a href="home.html">Home</a>
-		<a href="pictures.html">Pictures</a>
-		<a href="about-it.html">About it</a>
-		<a href="documentation.html">Documentation</a>
-		<a href="about-us.html">About us</a>
-	</div>
-</div>
-
 <body>
-	<div class="card">
+	<div class="navbar">
+		<div class="navbar-text-button">
+			<a class="navbar-text">One sensor line follower</a>
+			<a class="navbar-button" onclick="navbar()">☰</a>
+		</div>
+		<div id="link" class="link">
+			<a href="home.html">Home</a>
+			<a href="pictures.html">Pictures</a>
+			<a href="about-it.html">About it</a>
+			<a href="documentation.html">Documentation</a>
+			<a href="about-us.html">About us</a>
+		</div>
+	</div>
+
+	<div class="main">
 		<h1>About us</h1>
 		<p>Peter is student at high school in Košice and Eduard is student at middle school in Košice in Slovakia. If
 			you have any questions about this robot or comments how to improve this site, you can contact us:</p>
@@ -36,23 +36,14 @@
 		<p>We hope you like this robot and this website, it was developed by Peter and second edition redesigned by
 			Eduard, robot was made by us both, hardware and 3D models are by Peter and program is by Eduard.</p>
 	</div>
+
+	<div class="footer">
+		<a href="about-us.html">© 2020 Peter Borták & Eduard Lehocký</a>
+		<a href="../sk/o-nas.html" class="footer-language">SK verzia</a>
+		<a href="../old/subweb/aboutus.html">Version 2019</a>
+	</div>
 </body>
 
-<div class="footer">
-	<a href="about-us.html">© 2020 Peter Borták & Eduard Lehocký</a>
-	<a href="../sk/o-nas.html" class="footer-language">SK verzia</a>
-	<a href="../old/subweb/aboutus.html">Version 2019</a>
-</div>
-
-<script>
-	function navbar() {
-		var x = document.getElementById("link");
-		if (x.style.display === "block") {
-			x.style.display = "none";
-		} else {
-			x.style.display = "block";
-		}
-	}
-</script>
+<script src="../script/script.js"></script>
 
 </html>

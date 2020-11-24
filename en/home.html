@@ -2,30 +2,30 @@
 <html lang="en">
 
 <head>
-	<link rel="stylesheet" href="../style/style.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap">
+	<link rel="stylesheet" type="text/css" href="../style/style.css">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap">
 	<link rel="icon" href="../img/icon/icon.png">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Home | One sensor line follower</title>
 </head>
 
-<div class="navbar">
-	<div class="navbar-text-button">
-		<a class="navbar-text">One sensor line follower</a>
-		<a class="navbar-button" onclick="navbar()">☰</a>
-	</div>
-	<div id="link" class="link">
-		<a href="home.html">Home</a>
-		<a href="pictures.html">Pictures</a>
-		<a href="about-it.html">About it</a>
-		<a href="documentation.html">Documentation</a>
-		<a href="about-us.html">About us</a>
-	</div>
-</div>
-
 <body>
-	<div class="card">
+	<div class="navbar">
+		<div class="navbar-text-button">
+			<a class="navbar-text">One sensor line follower</a>
+			<a class="navbar-button" onclick="navbar()">☰</a>
+		</div>
+		<div id="link" class="link">
+			<a href="home.html">Home</a>
+			<a href="pictures.html">Pictures</a>
+			<a href="about-it.html">About it</a>
+			<a href="documentation.html">Documentation</a>
+			<a href="about-us.html">About us</a>
+		</div>
+	</div>
+
+	<div class="main">
 		<h1>One sensor line follower</h1>
 		<p>Hello and welcome to our website about one sensor line follower robot, it can also avoid objects and have
 			automatic calibration, so you place it at line and it will be calibrated autonomiously, in pictures section
@@ -39,23 +39,14 @@
 			</a>
 		</div>
 	</div>
+
+	<div class="footer">
+		<a href="about-us.html">© 2020 Peter Borták & Eduard Lehocký</a>
+		<a href="../sk/domov.html" class="footer-language">SK verzia</a>
+		<a href="../old/index.html">Version 2019</a>
+	</div>
 </body>
 
-<div class="footer">
-	<a href="about-us.html">© 2020 Peter Borták & Eduard Lehocký</a>
-	<a href="../sk/domov.html" class="footer-language">SK verzia</a>
-	<a href="../old/index.html">Version 2019</a>
-</div>
-
-<script>
-	function navbar() {
-		var x = document.getElementById("link");
-		if (x.style.display === "block") {
-			x.style.display = "none";
-		} else {
-			x.style.display = "block";
-		}
-	}
-</script>
+<script src="../script/script.js"></script>
 
 </html>

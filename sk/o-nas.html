@@ -2,30 +2,30 @@
 <html lang="sk">
 
 <head>
-	<link rel="stylesheet" href="../style/style.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap">
+	<link rel="stylesheet" type="text/css" href="../style/style.css">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap">
 	<link rel="icon" href="../img/icon/icon.png">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>O nás | Robot na sledovanie čiary s jedným senzorom</title>
 </head>
 
-<div class="navbar">
-	<div class="navbar-text-button">
-		<a class="navbar-text">Robot na sledovanie čiary s jedným senzorom</a>
-		<a class="navbar-button" onclick="navbar()">☰</a>
-	</div>
-	<div id="link" class="link">
-		<a href="domov.html">Domov</a>
-		<a href="obrazky.html">Obrázky</a>
-		<a href="o-tom.html">O tom</a>
-		<a href="dokumentacia.html">Dokumentácia</a>
-		<a href="o-nas.html">O nás</a>
-	</div>
-</div>
-
 <body>
-	<div class="card">
+	<div class="navbar">
+		<div class="navbar-text-button">
+			<a class="navbar-text">Robot na sledovanie čiary s jedným senzorom</a>
+			<a class="navbar-button" onclick="navbar()">☰</a>
+		</div>
+		<div id="link" class="link">
+			<a href="domov.html">Domov</a>
+			<a href="obrazky.html">Obrázky</a>
+			<a href="o-tom.html">O tom</a>
+			<a href="dokumentacia.html">Dokumentácia</a>
+			<a href="o-nas.html">O nás</a>
+		</div>
+	</div>
+
+	<div class="main">
 		<h1>O nás</h1>
 		<p>Peter študuje na strednej škole v Košiciach a Eduard študuje na základnej škole v Košiciach na Slovensku. Ak
 			máte nejaké otázky týkajúce sa tohto robota alebo pripomienky na zlepšenie tejto stránky, môžete nás
@@ -45,16 +45,8 @@
 	<a href="../en/about-us.html" class="footer-language">EN version</a>
 	<a href="../old/subweb/aboutusSK.html">Verzia 2019</a>
 </div>
+</body>
 
-<script>
-	function navbar() {
-		var x = document.getElementById("link");
-		if (x.style.display === "block") {
-			x.style.display = "none";
-		} else {
-			x.style.display = "block";
-		}
-	}
-</script>
+<script src="../script/script.js"></script>
 
 </html>

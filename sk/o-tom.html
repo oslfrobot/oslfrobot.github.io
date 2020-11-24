@@ -2,30 +2,30 @@
 <html lang="sk">
 
 <head>
-	<link rel="stylesheet" href="../style/style.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap">
+	<link rel="stylesheet" type="text/css" href="../style/style.css">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&display=swap">
 	<link rel="icon" href="../img/icon/icon.png">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>O tom | Robot na sledovanie čiary s jedným senzorom</title>
+	<title>O tom | Robot na sledovanie čiary s jedným senzorom</title>
 </head>
 
-<div class="navbar">
-	<div class="navbar-text-button">
-		<a class="navbar-text">Robot na sledovanie čiary s jedným senzorom</a>
-		<a class="navbar-button" onclick="navbar()">☰</a>
-	</div>
-	<div id="link" class="link">
-		<a href="domov.html">Domov</a>
-		<a href="obrazky.html">Obrázky</a>
-		<a href="o-tom.html">O tom</a>
-		<a href="dokumentacia.html">Dokumentácia</a>
-		<a href="o-nas.html">O nás</a>
-	</div>
-</div>
-
 <body>
-	<div class="card">
+	<div class="navbar">
+		<div class="navbar-text-button">
+			<a class="navbar-text">Robot na sledovanie čiary s jedným senzorom</a>
+			<a class="navbar-button" onclick="navbar()">☰</a>
+		</div>
+		<div id="link" class="link">
+			<a href="domov.html">Domov</a>
+			<a href="obrazky.html">Obrázky</a>
+			<a href="o-tom.html">O tom</a>
+			<a href="dokumentacia.html">Dokumentácia</a>
+			<a href="o-nas.html">O nás</a>
+		</div>
+	</div>
+
+	<div class="main">
 		<h1>O tom</h1>
 		<p>Tento robot bol úlohou na LSTME (Letné sústredenie talentovanej mládeže v elektronike), je to letný tábor pre
 			študentov, ktorí sa zaujímajú o robotiku, programovanie, 3D modelovanie a elektroniku. Mali sme vyrobiť
@@ -34,26 +34,17 @@
 			si budete môcť vytvoriť svojho vlastného doma za smiešnu sumu peňazí. Dúfame, že sa niečo nové naučíte.
 			Licencujeme to ako open source, ale musíte uviesť naše mená. Video ako sleduje:</p>
 		<div class="video">
-			<iframe src="https://www.youtube.com/embed/r7ELO9CUrsQ" frameborder="0" allowfullscreen></iframe>
+			<iframe src="https://www.youtube.com/embed/r7ELO9CUrsQ" allowfullscreen></iframe>
 		</div>
+	</div>
+
+	<div class="footer">
+		<a href="o-nas.html">© 2020 Peter Borták & Eduard Lehocký</a>
+		<a href="../en/about-it.html" class="footer-language">EN version</a>
+		<a href="../old/subweb/aboutitSK.html">Verzia 2019</a>
 	</div>
 </body>
 
-<div class="footer">
-	<a href="o-nas.html">© 2020 Peter Borták & Eduard Lehocký</a>
-	<a href="../en/about-it.html" class="footer-language">EN version</a>
-	<a href="../old/subweb/aboutitSK.html">Verzia 2019</a>
-</div>
-
-<script>
-	function navbar() {
-		var x = document.getElementById("link");
-		if (x.style.display === "block") {
-			x.style.display = "none";
-		} else {
-			x.style.display = "block";
-		}
-	}
-</script>
+<script src="../script/script.js"></script>
 
 </html>
