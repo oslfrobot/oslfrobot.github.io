@@ -48,7 +48,7 @@ pre code::before {
 }
 
 .navbar {
-	background-color: black;
+	background-color: #1d2026;
 	position: fixed;
 	top: 0px;
 	right: 0px;
@@ -83,7 +83,7 @@ pre code::before {
 }
 
 .footer {
-	background-color: black;
+	background-color: #1d2026;
 	position: fixed;
 	bottom: 0px;
 	right: 0px;
@@ -118,17 +118,12 @@ pre code::before {
 	margin: 1% auto;
 }
 
-table .container a {
-	width: 98% !important;
-}
-
 img {
 	opacity: 1;
 	display: block;
-	width: 100%;
+	width: 96%;
 	transition: .5s ease;
-	display: block;
-	border: 3px solid black;
+	border: 3px solid #21252b;
 }
 
 .container p {
@@ -151,7 +146,6 @@ img {
 .video {
 	position: relative;
 	padding-bottom: 56.25%;
-	/* 16:9 */
 	height: 0;
 }
 
@@ -218,19 +212,23 @@ a.button:hover {
 }
 
 .main {
-	/* position: relative; */
 	padding: 1em;
 	background-color: rgba(255, 255, 255, 0.8) !important;
 }
 
-.responsive-2,
+.responsive-2 {
+	float: left;
+	width: 50%;
+}
+
 .responsive-3 {
-	display: inline-flex;
+	float: left;
+	width: calc(100%/3);
 }
 
 .responsive-2 .container a,
-.responsive-3 .container a {
-	width: 97% !important;
+.responsive-3 .container a{
+	width: 100%;
 }
 
 @media screen and (max-width: 1200px) {
@@ -245,7 +243,7 @@ a.button:hover {
 	}
 
 	body {
-		margin: 10% 20%;
+		margin: 10% 15%;
 	}
 
 	.navbar .link {
@@ -253,11 +251,11 @@ a.button:hover {
 	}
 
 	.responsive-3 {
-		display: block;
+		width: 50%;
 	}
 
-	.responsive-3 .container a {
-		width: 97% !important;
+	.container a {
+		width: 80%;
 	}
 }
 
@@ -321,11 +319,9 @@ a.button:hover {
 		font-size: 1.1em;
 	}
 
-	.responsive-2 {
-		display: block;
-	}
-
-	.responsive-2 .container a {
-		width: 97% !important;
+	.responsive-2,
+	.responsive-3,
+	.container a {
+		width: 100%;
 	}
 }
