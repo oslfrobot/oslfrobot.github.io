@@ -53,23 +53,23 @@ p {
 	font-family: 'Exo 2', sans-serif;
 }
 
-pre {
+.code {
 	background-color: var(--background);
-	padding: 1em 1em 1em 0em;
 	counter-reset: line;
 	overflow: auto;
+	line-height: 0.2em;
 }
 
-code {
+pre {
 	font-family: 'Hack', monospace;
 }
 
-pre code::before {
+.code pre::before {
 	counter-increment: line;
 	content: counter(line);
 	display: inline-block;
 	padding: 0em 0.5em;
-	width: 1.5em;
+	width: 2em;
 	color: var(--code-number);
 	text-align: right;
 }
@@ -219,7 +219,7 @@ body a:hover {
 	text-align: center;
 }
 
-body a a1 {
+body a span.count {
 	color: var(--text);
 }
 
