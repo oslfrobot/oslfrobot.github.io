@@ -1,33 +1,60 @@
+:root {
+	--text: black;
+	--heading: gray;
+
+	--background: #282c34;
+
+	--img: #21252b;
+	--img-text: #444444;
+
+	--link: gray;
+	--link-hover: darkgray;
+
+	--nav: #1d2026;
+	--nav-responsive: #171a1e;
+	--nav-text: gray;
+	--nav-text-hover: darkgray;
+	--nav-hover: gray;
+	--nav-shadow: black;
+
+	--code-number: #555555;
+
+	--button: #348cb0;
+	--button-hover: #348c72;
+	--button-text: lightgray;
+	--button-text-hover: white;
+}
+
 body {
 	margin: 5% 20%;
 	text-align: justify;
 	position: relative;
-	background-color: #282c34;
+	background-color: var(--background);
 }
 
 h1 {
 	text-align: center;
-	color: gray;
+	color: var(--heading);
 	font-size: 3.5em;
 	font-family: 'Exo 2', sans-serif;
 }
 
 h2 {
 	text-align: center;
-	color: gray;
+	color: var(--heading);
 	font-size: 2.5em;
 	font-family: 'Exo 2', sans-serif;
 }
 
 p {
-	color: black;
+	color: var(--text);
 	font-size: 1.3em;
 	line-height: 1.7em;
 	font-family: 'Exo 2', sans-serif;
 }
 
 pre {
-	background-color: #282c34;
+	background-color: var(--background);
 	padding: 1em 1em 1em 0em;
 	counter-reset: line;
 	overflow: auto;
@@ -43,24 +70,24 @@ pre code::before {
 	display: inline-block;
 	padding: 0em 0.5em;
 	width: 1.5em;
-	color: #555;
+	color: var(--code-number);
 	text-align: right;
 }
 
 .navbar {
-	background-color: #1d2026;
+	background-color: var(--nav);
 	position: fixed;
 	top: 0px;
 	right: 0px;
 	width: 100%;
 	text-align: center;
 	z-index: 300;
-	box-shadow: 0 1px 5px 0 black;
+	box-shadow: 0 1px 5px 0 var(--nav-shadow);
 }
 
 .navbar a {
 	float: left;
-	color: darkgray;
+	color: var(--nav-text);
 	padding: 10px 0px;
 	font-size: 1.3em;
 	font-family: 'Exo 2', sans-serif;
@@ -70,8 +97,8 @@ pre code::before {
 }
 
 .navbar a:hover {
-	background-color: gray;
-	color: white;
+	background-color: var(--nav-hover);
+	color: var(--nav-text-hover);
 }
 
 .navbar-button {
@@ -83,19 +110,19 @@ pre code::before {
 }
 
 .footer {
-	background-color: #1d2026;
+	background-color: var(--nav);
 	position: fixed;
 	bottom: 0px;
 	right: 0px;
 	width: 100%;
 	text-align: center;
 	z-index: 300;
-	box-shadow: 0 -1px 5px 0 black;
+	box-shadow: 0 -1px 5px 0 var(--nav-shadow);
 }
 
 .footer a {
 	float: left;
-	color: gray;
+	color: var(--nav-text);
 	padding: 10px 0px;
 	font-size: 1.3em;
 	font-family: 'Exo 2', sans-serif;
@@ -105,8 +132,8 @@ pre code::before {
 }
 
 .footer a:hover {
-	background: gray;
-	color: white;
+	background: var(--nav-hover);
+	color: var(--nav-text-hover);
 }
 
 .container a {
@@ -123,7 +150,7 @@ img {
 	display: block;
 	width: 96%;
 	transition: .5s ease;
-	border: 3px solid #21252b;
+	border: 3px solid var(--img);
 }
 
 .container p {
@@ -139,7 +166,7 @@ img {
 }
 
 .container:hover p {
-	color: #444444;
+	color: var(--img-text);
 	opacity: 1;
 }
 
@@ -162,7 +189,7 @@ iframe {
 }
 
 a {
-	color: black;
+	color: var(--text);
 	line-height: 1.7em;
 	font-size: 1.3em;
 	font-family: 'Exo 2', sans-serif;
@@ -170,7 +197,7 @@ a {
 }
 
 body p a {
-	color: black;
+	color: var(--text);
 	line-height: 1.7em;
 	font-size: 1em !important;
 	font-family: 'Exo 2', sans-serif;
@@ -178,28 +205,28 @@ body p a {
 
 body a:link {
 	text-decoration: none;
-	color: gray;
+	color: var(--link);
 }
 
 body a:visited {
 	text-decoration: none;
-	color: gray;
+	color: var(--link);
 }
 
 body a:hover {
 	text-decoration: none;
-	color: darkgray;
+	color: var(--link-hover);
 	text-align: center;
 }
 
 body a a1 {
-	color: black;
+	color: var(--text);
 }
 
 a.button {
-	background-color: #348cb0;
+	background-color: var(--button);
 	border: none;
-	color: lightgray !important;
+	color: var(--button-text) !important;
 	padding: 1.5em 3em;
 	text-align: center;
 	text-decoration: none;
@@ -207,13 +234,13 @@ a.button {
 }
 
 a.button:hover {
-	background-color: #348c72;
-	color: white !important;
+	background-color: var(--button-hover);
+	color: var(--button-text-hover) !important;
 }
 
 .main {
 	padding: 1em;
-	background-color: rgba(255, 255, 255, 0.8) !important;
+	background-color: rgba(255, 255, 255, 0.7);
 }
 
 .responsive-2 {
@@ -227,7 +254,7 @@ a.button:hover {
 }
 
 .responsive-2 .container a,
-.responsive-3 .container a{
+.responsive-3 .container a {
 	width: 100%;
 }
 
@@ -288,7 +315,7 @@ a.button:hover {
 
 	.navbar .link a {
 		width: 100%;
-		background-color: #151515 !important;
+		background-color: var(--nav-responsive);
 	}
 
 	.navbar .navbar-text-button a.navbar-button {
