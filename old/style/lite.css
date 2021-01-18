@@ -135,7 +135,7 @@ td{
     padding-top: 0px;
     padding-bottom: 0px;
 }
-.foot_left p1{
+.foot_left a.version{
     position: relative; 
     float: right;
     color: #66ff66;
@@ -203,10 +203,6 @@ ol{
     padding-left: 10px;
     font-size: 10px; 
 }
-.foot_left p1{
-    padding-right: 10px;
-    font-size: 10px; 
-}	
 body{
     margin-bottom: 300px;
 }
