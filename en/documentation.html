@@ -338,18 +338,29 @@
 			<p>First of all we need to import libraries and define some values, that we will need at all of our
 				program:
 			</p>
-			<div class="code">
-				<pre><span style="display: inline; color: #98c379;">#include</span> <span style="display: inline; color: #aaaaaa;">&lt;</span><b><span style="display: inline; color: #e06c75;">EEPROM</span></b><span style="display: inline; color: #aaaaaa;">.</span><span style="display: inline; color: #ffffff;">h</span><span style="display: inline; color: #aaaaaa;">&gt;</span></pre>
-				<pre><span style="display: inline; color: #98c379;">#include</span> <span style="display: inline; color: #aaaaaa;">&lt;</span><b><span style="display: inline; color: #e06c75;">Servo</span></b><span style="display: inline; color: #aaaaaa;">.</span><span style="display: inline; color: #ffffff;">h</span><span style="display: inline; color: #aaaaaa;">&gt;</span></pre>
-				<pre><b><span style="display: inline; color: #e06c75;">Servo</span></b> <span style="display: inline; color: #ffffff;">s1</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre><b><span style="display: inline; color: #e06c75;">Servo</span></b> <span style="display: inline; color: #ffffff;">s2</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre></pre>
-				<pre><span style="display: inline; color: #98c379;">#define</span> <span style="display: inline; color: #ffffff;">sensor</span> <span style="display: inline; color: #ffffff;">A0</span></pre>
-				<pre><span style="display: inline; color: #98c379;">#define</span> <span style="display: inline; color: #ffffff;">IR</span> <span style="display: inline; color: #e5c07b;">3</span></pre>
-				<pre></pre>
-				<pre><span style="display: inline; color: #61afef;">int</span> <span style="display: inline; color: #ffffff;">x</span> <span style="display: inline; color: #aaaaaa;">=</span> <span style="display: inline; color: #e5c07b;">100</span><span style="display: inline; color: #ffffff;">;</span> <span style="display: inline; color: #aaaaaa;">&#47;&#47;count of measurements</span></pre>
-				<pre><span style="display: inline; color: #61afef;">String</span> <span style="display: inline; color: #ffffff;">color</span><span style="display: inline; color: #ffffff;">;</span></pre>
-			</div>
+			<code>
+				<div class="code">
+					<div><span class="definition">#include</span> <span class="sign">&lt;</span><span
+							class="object">EEPROM</span><span class="sign">.</span><span class="text">h</span><span
+							class="sign">&gt;</span></div>
+					<div><span class="definition">#include</span> <span class="sign">&lt;</span><span
+							class="object">Servo</span><span class="sign">.</span><span class="text">h</span><span
+							class="sign">&gt;</span></div>
+					<div><span class="object">Servo</span> <span class="text">s1</span><span class="text">;</span></div>
+					<div><span class="object">Servo</span> <span class="text">s2</span><span class="text">;</span></div>
+					<div></div>
+					<div><span class="definition">#define</span> <span class="text">sensor</span> <span
+							class="text">A0</span></div>
+					<div><span class="definition">#define</span> <span class="text">IR</span> <span
+							class="number">3</span></div>
+					<div></div>
+					<div><span class="variable">int</span> <span class="text">x</span> <span class="sign">=</span> <span
+							class="number">100</span><span class="text">;</span> <span class="sign">&#47;&#47;count of
+							measurements</span></div>
+					<div><span class="variable">String</span> <span class="text">color</span><span class="text">;</span>
+					</div>
+				</div>
+			</code>
 
 			<br>
 			<p>Now, here is calibration function, that will calibrate your line follower robot. If it is in
@@ -357,119 +368,268 @@
 				is not in calibration mode, this will be skiped and robot will continue with his values saved in
 				EEPROM memory.</p>
 			<div class="code">
-				<pre><span style="display: inline; color: #61afef;">void</span> <span style="display: inline; color: #ffffff;">calibration</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #aaaaaa;">)</span> <span style="display: inline; color: #aaaaaa;">{</span></pre>
-				<pre>  <span style="display: inline; color: #61afef;">int</span> <span style="display: inline; color: #ffffff;">blackMeasured</span> <span style="display: inline; color: #aaaaaa;">=</span> <span style="display: inline; color: #e5c07b;">0</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color: #61afef;">int</span> <span style="display: inline; color: #ffffff;">whiteMeasured</span> <span style="display: inline; color: #aaaaaa;">=</span> <span style="display: inline; color: #e5c07b;">0</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color: #c678dd;">for</span> <span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #61afef;">int</span> <span style="display: inline; color: #ffffff;">k</span> <span style="display: inline; color: #aaaaaa;">=</span> <span style="display: inline; color: #e5c07b;">0</span><span style="display: inline; color: #ffffff;">;</span> <span style="display: inline; color: #ffffff;">k</span> <span style="display: inline; color: #aaaaaa;">&lt;</span> <span style="display: inline; color: #ffffff;">x</span><span style="display: inline; color: #ffffff;">;</span> <span style="display: inline; color: #ffffff;">k</span><span style="display: inline; color: #aaaaaa;">++</span><span style="display: inline; color: #aaaaaa;">)</span> <span style="display: inline; color: #aaaaaa;">{</span></pre>
-				<pre>    <span style="display: inline; color: #ffffff;">blackMeasured</span> <span style="display: inline; color: #aaaaaa;">+=</span> <span style="display: inline; color: #61afef;">analogRead</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #ffffff;">sensor</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre>    <span style="display: inline; color: #61afef;">delay</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">10</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color: #aaaaaa;">}</span></pre>
-				<pre>  <b><span style="display: inline; color: #e06c75;">EEPROM</span></b><span style="display: inline; color: #aaaaaa;">.</span><span style="display: inline; color: #61afef;">write</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">0</span><span style="display: inline; color: #aaaaaa;">,</span> <span style="display: inline; color: #e5c07b;">0</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre>  <b><span style="display: inline; color: #e06c75;">EEPROM</span></b><span style="display: inline; color: #aaaaaa;">.</span><span style="display: inline; color: #61afef;">write</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">0</span><span style="display: inline; color: #aaaaaa;">,</span> <span style="display: inline; color: #61afef;">map</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #ffffff;">blackMeasured</span> <span style="display: inline; color: #aaaaaa;">&#47;</span> <span style="display: inline; color: #ffffff;">x</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #aaaaaa;">,</span> <span style="display: inline; color: #e5c07b;">0</span><span style="display: inline; color: #aaaaaa;">,</span> <span style="display: inline; color: #e5c07b;">1023</span><span style="display: inline; color: #aaaaaa;">,</span> <span style="display: inline; color: #e5c07b;">0</span><span style="display: inline; color: #aaaaaa;">,</span> <span style="display: inline; color: #e5c07b;">255</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span> <span style="display: inline; color: #aaaaaa;">&#47;&#47;black</span></pre>
-				<pre>  <span style="display: inline; color: #ffffff;">right</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color: #61afef;">delay</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">500</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color: #ffffff;">stop</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color: #c678dd;">for</span> <span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #61afef;">int</span> <span style="display: inline; color: #ffffff;">j</span> <span style="display: inline; color: #aaaaaa;">=</span> <span style="display: inline; color: #e5c07b;">0</span><span style="display: inline; color: #ffffff;">;</span> <span style="display: inline; color: #ffffff;">j</span> <span style="display: inline; color: #aaaaaa;">&lt;</span> <span style="display: inline; color: #ffffff;">x</span><span style="display: inline; color: #ffffff;">;</span> <span style="display: inline; color: #ffffff;">j</span><span style="display: inline; color: #aaaaaa;">++</span><span style="display: inline; color: #aaaaaa;">)</span> <span style="display: inline; color: #aaaaaa;">{</span></pre>
-				<pre>    <span style="display: inline; color: #ffffff;">whiteMeasured</span> <span style="display: inline; color: #aaaaaa;">+=</span> <span style="display: inline; color: #61afef;">analogRead</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #ffffff;">sensor</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre>    <span style="display: inline; color: #61afef;">delay</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">10</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color: #aaaaaa;">}</span></pre>
-				<pre>  <b><span style="display: inline; color: #e06c75;">EEPROM</span></b><span style="display: inline; color: #aaaaaa;">.</span><span style="display: inline; color: #61afef;">write</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">1</span><span style="display: inline; color: #aaaaaa;">,</span> <span style="display: inline; color: #e5c07b;">0</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre>  <b><span style="display: inline; color: #e06c75;">EEPROM</span></b><span style="display: inline; color: #aaaaaa;">.</span><span style="display: inline; color: #61afef;">write</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">1</span><span style="display: inline; color: #aaaaaa;">,</span> <span style="display: inline; color: #61afef;">map</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #ffffff;">whiteMeasured</span> <span style="display: inline; color: #aaaaaa;">&#47;</span> <span style="display: inline; color: #ffffff;">x</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #aaaaaa;">,</span> <span style="display: inline; color: #e5c07b;">0</span><span style="display: inline; color: #aaaaaa;">,</span> <span style="display: inline; color: #e5c07b;">1023</span><span style="display: inline; color: #aaaaaa;">,</span> <span style="display: inline; color: #e5c07b;">0</span><span style="display: inline; color: #aaaaaa;">,</span> <span style="display: inline; color: #e5c07b;">255</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span> <span style="display: inline; color: #aaaaaa;">&#47;&#47;white</span></pre>
-				<pre>  <b><span style="display: inline; color: #e06c75;">Serial</span></b><span style="display: inline; color: #aaaaaa;">.</span><span style="display: inline; color: #61afef;">println</span><span style="display: inline; color: #aaaaaa;">(</span><b><span style="display: inline; color: #e06c75;">EEPROM</span></b><span style="display: inline; color: #aaaaaa;">.</span><span style="display: inline; color: #61afef;">read</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">1</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre>  <b><span style="display: inline; color: #e06c75;">Serial</span></b><span style="display: inline; color: #aaaaaa;">.</span><span style="display: inline; color: #61afef;">println</span><span style="display: inline; color: #aaaaaa;">(</span><b><span style="display: inline; color: #e06c75;">EEPROM</span></b><span style="display: inline; color: #aaaaaa;">.</span><span style="display: inline; color: #61afef;">read</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">0</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre></pre>
-				<pre>  <b><span style="display: inline; color: #e06c75;">EEPROM</span></b><span style="display: inline; color: #aaaaaa;">.</span><span style="display: inline; color: #61afef;">write</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">2</span><span style="display: inline; color: #aaaaaa;">,</span> <span style="display: inline; color: #aaaaaa;">(</span><b><span style="display: inline; color: #e06c75;">EEPROM</span></b><span style="display: inline; color: #aaaaaa;">.</span><span style="display: inline; color: #61afef;">read</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">1</span><span style="display: inline; color: #aaaaaa;">)</span> <span style="display: inline; color: #aaaaaa;">+</span> <b><span style="display: inline; color: #e06c75;">EEPROM</span></b><span style="display: inline; color: #aaaaaa;">.</span><span style="display: inline; color: #61afef;">read</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">0</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #aaaaaa;">)</span> <span style="display: inline; color: #aaaaaa;">&#47;</span> <span style="display: inline; color: #e5c07b;">2</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre>  <b><span style="display: inline; color: #e06c75;">Serial</span></b><span style="display: inline; color: #aaaaaa;">.</span><span style="display: inline; color: #61afef;">println</span><span style="display: inline; color: #aaaaaa;">(</span><b><span style="display: inline; color: #e06c75;">EEPROM</span></b><span style="display: inline; color: #aaaaaa;">.</span><span style="display: inline; color: #61afef;">read</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">2</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color: #61afef;">delay</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">1000</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre><span style="display: inline; color: #aaaaaa;">}</span></pre>
+				<div><span class="variable">void</span> <span class="text">calibration</span><span
+						class="sign">(</span><span class="sign">)</span> <span class="sign">{</span></div>
+				<div>  <span class="variable">int</span> <span class="text">blackMeasured</span> <span
+						class="sign">=</span> <span class="number">0</span><span class="text">;</span></div>
+				<div>  <span class="variable">int</span> <span class="text">whiteMeasured</span> <span
+						class="sign">=</span> <span class="number">0</span><span class="text">;</span></div>
+				<div>  <span class="function">for</span> <span class="sign">(</span><span class="variable">int</span>
+					<span class="text">k</span> <span class="sign">=</span> <span class="number">0</span><span
+						class="text">;</span> <span class="text">k</span> <span class="sign">&lt;</span> <span
+						class="text">x</span><span class="text">;</span> <span class="text">k</span><span
+						class="sign">++</span><span class="sign">)</span> <span class="sign">{</span></div>
+				<div>    <span class="text">blackMeasured</span> <span class="sign">+=</span> <span
+						class="variable">analogRead</span><span class="sign">(</span><span
+						class="text">sensor</span><span class="sign">)</span><span class="text">;</span></div>
+				<div>    <span class="variable">delay</span><span class="sign">(</span><span
+						class="number">10</span><span class="sign">)</span><span class="text">;</span></div>
+				<div>  <span class="sign">}</span></div>
+				<div>  <span class="object">EEPROM</span><span class="sign">.</span><span
+						class="variable">write</span><span class="sign">(</span><span class="number">0</span><span
+						class="sign">,</span> <span class="number">0</span><span class="sign">)</span><span
+						class="text">;</span></div>
+				<div>  <span class="object">EEPROM</span><span class="sign">.</span><span
+						class="variable">write</span><span class="sign">(</span><span class="number">0</span><span
+						class="sign">,</span> <span class="variable">map</span><span class="sign">(</span><span
+						class="sign">(</span><span class="text">blackMeasured</span> <span class="sign">&#47;</span>
+					<span class="text">x</span><span class="sign">)</span><span class="sign">,</span> <span
+						class="number">0</span><span class="sign">,</span> <span class="number">1023</span><span
+						class="sign">,</span> <span class="number">0</span><span class="sign">,</span> <span
+						class="number">255</span><span class="sign">)</span><span class="sign">)</span><span
+						class="text">;</span> <span class="sign">&#47;&#47;black</span></div>
+				<div>  <span class="text">right</span><span class="sign">(</span><span class="sign">)</span><span
+						class="text">;</span></div>
+				<div>  <span class="variable">delay</span><span class="sign">(</span><span
+						class="number">500</span><span class="sign">)</span><span class="text">;</span></div>
+				<div>  <span class="text">stop</span><span class="sign">(</span><span class="sign">)</span><span
+						class="text">;</span></div>
+				<div>  <span class="function">for</span> <span class="sign">(</span><span class="variable">int</span>
+					<span class="text">j</span> <span class="sign">=</span> <span class="number">0</span><span
+						class="text">;</span> <span class="text">j</span> <span class="sign">&lt;</span> <span
+						class="text">x</span><span class="text">;</span> <span class="text">j</span><span
+						class="sign">++</span><span class="sign">)</span> <span class="sign">{</span></div>
+				<div>    <span class="text">whiteMeasured</span> <span class="sign">+=</span> <span
+						class="variable">analogRead</span><span class="sign">(</span><span
+						class="text">sensor</span><span class="sign">)</span><span class="text">;</span></div>
+				<div>    <span class="variable">delay</span><span class="sign">(</span><span
+						class="number">10</span><span class="sign">)</span><span class="text">;</span></div>
+				<div>  <span class="sign">}</span></div>
+				<div>  <span class="object">EEPROM</span><span class="sign">.</span><span
+						class="variable">write</span><span class="sign">(</span><span class="number">1</span><span
+						class="sign">,</span> <span class="number">0</span><span class="sign">)</span><span
+						class="text">;</span></div>
+				<div>  <span class="object">EEPROM</span><span class="sign">.</span><span
+						class="variable">write</span><span class="sign">(</span><span class="number">1</span><span
+						class="sign">,</span> <span class="variable">map</span><span class="sign">(</span><span
+						class="sign">(</span><span class="text">whiteMeasured</span> <span class="sign">&#47;</span>
+					<span class="text">x</span><span class="sign">)</span><span class="sign">,</span> <span
+						class="number">0</span><span class="sign">,</span> <span class="number">1023</span><span
+						class="sign">,</span> <span class="number">0</span><span class="sign">,</span> <span
+						class="number">255</span><span class="sign">)</span><span class="sign">)</span><span
+						class="text">;</span> <span class="sign">&#47;&#47;white</span></div>
+				<div>  <span class="object">Serial</span><span class="sign">.</span><span
+						class="variable">println</span><span class="sign">(</span><span
+						class="object">EEPROM</span><span class="sign">.</span><span class="variable">read</span><span
+						class="sign">(</span><span class="number">1</span><span class="sign">)</span><span
+						class="sign">)</span><span class="text">;</span></div>
+				<div>  <span class="object">Serial</span><span class="sign">.</span><span
+						class="variable">println</span><span class="sign">(</span><span
+						class="object">EEPROM</span><span class="sign">.</span><span class="variable">read</span><span
+						class="sign">(</span><span class="number">0</span><span class="sign">)</span><span
+						class="sign">)</span><span class="text">;</span></div>
+				<div></div>
+				<div>  <span class="object">EEPROM</span><span class="sign">.</span><span
+						class="variable">write</span><span class="sign">(</span><span class="number">2</span><span
+						class="sign">,</span> <span class="sign">(</span><span class="object">EEPROM</span><span
+						class="sign">.</span><span class="variable">read</span><span class="sign">(</span><span
+						class="number">1</span><span class="sign">)</span> <span class="sign">+</span> <span
+						class="object">EEPROM</span><span class="sign">.</span><span class="variable">read</span><span
+						class="sign">(</span><span class="number">0</span><span class="sign">)</span><span
+						class="sign">)</span> <span class="sign">&#47;</span> <span class="number">2</span><span
+						class="sign">)</span><span class="text">;</span></div>
+				<div>  <span class="object">Serial</span><span class="sign">.</span><span
+						class="variable">println</span><span class="sign">(</span><span
+						class="object">EEPROM</span><span class="sign">.</span><span class="variable">read</span><span
+						class="sign">(</span><span class="number">2</span><span class="sign">)</span><span
+						class="sign">)</span><span class="text">;</span></div>
+				<div>  <span class="variable">delay</span><span class="sign">(</span><span
+						class="number">1000</span><span class="sign">)</span><span class="text">;</span></div>
+				<div><span class="sign">}</span></div>
 			</div>
 
 			<br>
 			<p>Now we are going to program some motion functions for our robot:</p>
 			<div class="code">
-				<pre><span style="display: inline; color: #61afef;">void</span> <span style="display: inline; color: #ffffff;">forward</span> <span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #aaaaaa;">)</span> <span style="display: inline; color: #aaaaaa;">{</span></pre>
-				<pre>  <span style="display: inline; color: #ffffff;">s1</span><span style="display: inline; color: #aaaaaa;">.</span><span style="display: inline; color: #61afef;">write</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">0</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span> <span style="display: inline; color: #aaaaaa;">&#47;&#47; forward</span></pre>
-				<pre>  <span style="display: inline; color: #ffffff;">s2</span><span style="display: inline; color: #aaaaaa;">.</span><span style="display: inline; color: #61afef;">write</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">180</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span> <span style="display: inline; color: #aaaaaa;">&#47;&#47; forward</span></pre>
-				<pre><span style="display: inline; color: #aaaaaa;">}</span></pre>
-				<pre></pre>
-				<pre><span style="display: inline; color: #61afef;">void</span> <span style="display: inline; color: #ffffff;">right</span> <span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #aaaaaa;">)</span> <span style="display: inline; color: #aaaaaa;">{</span></pre>
-				<pre>  <span style="display: inline; color: #ffffff;">s1</span><span style="display: inline; color: #aaaaaa;">.</span><span style="display: inline; color: #61afef;">write</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">90</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span> <span style="display: inline; color: #aaaaaa;">&#47;&#47; forward</span></pre>
-				<pre>  <span style="display: inline; color: #ffffff;">s2</span><span style="display: inline; color: #aaaaaa;">.</span><span style="display: inline; color: #61afef;">write</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">180</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span> <span style="display: inline; color: #aaaaaa;">&#47;&#47; stop</span></pre>
-				<pre><span style="display: inline; color: #aaaaaa;">}</span></pre>
-				<pre></pre>
-				<pre><span style="display: inline; color: #61afef;">void</span> <span style="display: inline; color: #ffffff;">left</span> <span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #aaaaaa;">)</span> <span style="display: inline; color: #aaaaaa;">{</span></pre>
-				<pre>  <span style="display: inline; color: #ffffff;">s1</span><span style="display: inline; color: #aaaaaa;">.</span><span style="display: inline; color: #61afef;">write</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">0</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span> <span style="display: inline; color: #aaaaaa;">&#47;&#47; stop</span></pre>
-				<pre>  <span style="display: inline; color: #ffffff;">s2</span><span style="display: inline; color: #aaaaaa;">.</span><span style="display: inline; color: #61afef;">write</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">90</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span> <span style="display: inline; color: #aaaaaa;">&#47;&#47; forward</span></pre>
-				<pre><span style="display: inline; color: #aaaaaa;">}</span></pre>
-				<pre></pre>
-				<pre><span style="display: inline; color: #61afef;">void</span> <span style="display: inline; color: #ffffff;">backward</span> <span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #aaaaaa;">)</span> <span style="display: inline; color: #aaaaaa;">{</span></pre>
-				<pre>  <span style="display: inline; color: #ffffff;">s1</span><span style="display: inline; color: #aaaaaa;">.</span><span style="display: inline; color: #61afef;">write</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">180</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span> <span style="display: inline; color: #aaaaaa;">&#47;&#47; backward</span></pre>
-				<pre>  <span style="display: inline; color: #ffffff;">s2</span><span style="display: inline; color: #aaaaaa;">.</span><span style="display: inline; color: #61afef;">write</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">0</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span> <span style="display: inline; color: #aaaaaa;">&#47;&#47; backward</span></pre>
-				<pre><span style="display: inline; color: #aaaaaa;">}</span></pre>
-				<pre></pre>
-				<pre><span style="display: inline; color: #61afef;">void</span> <span style="display: inline; color: #ffffff;">stop</span> <span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #aaaaaa;">)</span> <span style="display: inline; color: #aaaaaa;">{</span></pre>
-				<pre>  <span style="display: inline; color: #ffffff;">s1</span><span style="display: inline; color: #aaaaaa;">.</span><span style="display: inline; color: #61afef;">write</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">90</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span> <span style="display: inline; color: #aaaaaa;">&#47;&#47; stop</span></pre>
-				<pre>  <span style="display: inline; color: #ffffff;">s2</span><span style="display: inline; color: #aaaaaa;">.</span><span style="display: inline; color: #61afef;">write</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">90</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span> <span style="display: inline; color: #aaaaaa;">&#47;&#47; stop</span></pre>
-				<pre><span style="display: inline; color: #aaaaaa;">}</span></pre>
+				<div><span class="variable">void</span> <span class="text">forward</span> <span
+						class="sign">(</span><span class="sign">)</span> <span class="sign">{</span></div>
+				<div>  <span class="text">s1</span><span class="sign">.</span><span class="variable">write</span><span
+						class="sign">(</span><span class="number">0</span><span class="sign">)</span><span
+						class="text">;</span> <span class="sign">&#47;&#47; forward</span></div>
+				<div>  <span class="text">s2</span><span class="sign">.</span><span class="variable">write</span><span
+						class="sign">(</span><span class="number">180</span><span class="sign">)</span><span
+						class="text">;</span> <span class="sign">&#47;&#47; forward</span></div>
+				<div><span class="sign">}</span></div>
+				<div></div>
+				<div><span class="variable">void</span> <span class="text">right</span> <span class="sign">(</span><span
+						class="sign">)</span> <span class="sign">{</span></div>
+				<div>  <span class="text">s1</span><span class="sign">.</span><span class="variable">write</span><span
+						class="sign">(</span><span class="number">90</span><span class="sign">)</span><span
+						class="text">;</span> <span class="sign">&#47;&#47; forward</span></div>
+				<div>  <span class="text">s2</span><span class="sign">.</span><span class="variable">write</span><span
+						class="sign">(</span><span class="number">180</span><span class="sign">)</span><span
+						class="text">;</span> <span class="sign">&#47;&#47; stop</span></div>
+				<div><span class="sign">}</span></div>
+				<div></div>
+				<div><span class="variable">void</span> <span class="text">left</span> <span class="sign">(</span><span
+						class="sign">)</span> <span class="sign">{</span></div>
+				<div>  <span class="text">s1</span><span class="sign">.</span><span class="variable">write</span><span
+						class="sign">(</span><span class="number">0</span><span class="sign">)</span><span
+						class="text">;</span> <span class="sign">&#47;&#47; stop</span></div>
+				<div>  <span class="text">s2</span><span class="sign">.</span><span class="variable">write</span><span
+						class="sign">(</span><span class="number">90</span><span class="sign">)</span><span
+						class="text">;</span> <span class="sign">&#47;&#47; forward</span></div>
+				<div><span class="sign">}</span></div>
+				<div></div>
+				<div><span class="variable">void</span> <span class="text">backward</span> <span
+						class="sign">(</span><span class="sign">)</span> <span class="sign">{</span></div>
+				<div>  <span class="text">s1</span><span class="sign">.</span><span class="variable">write</span><span
+						class="sign">(</span><span class="number">180</span><span class="sign">)</span><span
+						class="text">;</span> <span class="sign">&#47;&#47; backward</span></div>
+				<div>  <span class="text">s2</span><span class="sign">.</span><span class="variable">write</span><span
+						class="sign">(</span><span class="number">0</span><span class="sign">)</span><span
+						class="text">;</span> <span class="sign">&#47;&#47; backward</span></div>
+				<div><span class="sign">}</span></div>
+				<div></div>
+				<div><span class="variable">void</span> <span class="text">stop</span> <span class="sign">(</span><span
+						class="sign">)</span> <span class="sign">{</span></div>
+				<div>  <span class="text">s1</span><span class="sign">.</span><span class="variable">write</span><span
+						class="sign">(</span><span class="number">90</span><span class="sign">)</span><span
+						class="text">;</span> <span class="sign">&#47;&#47; stop</span></div>
+				<div>  <span class="text">s2</span><span class="sign">.</span><span class="variable">write</span><span
+						class="sign">(</span><span class="number">90</span><span class="sign">)</span><span
+						class="text">;</span> <span class="sign">&#47;&#47; stop</span></div>
+				<div><span class="sign">}</span></div>
 			</div>
 
 			<br>
 			<p>Now we need to get around object that is on line. We programm function for it:</p>
 			<div class="code">
-				<pre><span style="display: inline; color: #61afef;">void</span> <span style="display: inline; color: #ffffff;">getAround</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #aaaaaa;">)</span> <span style="display: inline; color: #aaaaaa;">{</span></pre>
-				<pre>  <span style="display: inline; color: #ffffff;">backward</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color: #61afef;">delay</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">100</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color: #ffffff;">right</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color: #61afef;">delay</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">500</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color: #ffffff;">forward</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color: #61afef;">delay</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">1000</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color: #ffffff;">left</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color: #61afef;">delay</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">1000</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color: #ffffff;">forward</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color: #61afef;">delay</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">800</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre><span style="display: inline; color: #aaaaaa;">}</span></pre>
+				<div><span class="variable">void</span> <span class="text">getAround</span><span
+						class="sign">(</span><span class="sign">)</span> <span class="sign">{</span></div>
+				<div>  <span class="text">backward</span><span class="sign">(</span><span class="sign">)</span><span
+						class="text">;</span></div>
+				<div>  <span class="variable">delay</span><span class="sign">(</span><span
+						class="number">100</span><span class="sign">)</span><span class="text">;</span></div>
+				<div>  <span class="text">right</span><span class="sign">(</span><span class="sign">)</span><span
+						class="text">;</span></div>
+				<div>  <span class="variable">delay</span><span class="sign">(</span><span
+						class="number">500</span><span class="sign">)</span><span class="text">;</span></div>
+				<div>  <span class="text">forward</span><span class="sign">(</span><span class="sign">)</span><span
+						class="text">;</span></div>
+				<div>  <span class="variable">delay</span><span class="sign">(</span><span
+						class="number">1000</span><span class="sign">)</span><span class="text">;</span></div>
+				<div>  <span class="text">left</span><span class="sign">(</span><span class="sign">)</span><span
+						class="text">;</span></div>
+				<div>  <span class="variable">delay</span><span class="sign">(</span><span
+						class="number">1000</span><span class="sign">)</span><span class="text">;</span></div>
+				<div>  <span class="text">forward</span><span class="sign">(</span><span class="sign">)</span><span
+						class="text">;</span></div>
+				<div>  <span class="variable">delay</span><span class="sign">(</span><span
+						class="number">800</span><span class="sign">)</span><span class="text">;</span></div>
+				<div><span class="sign">}</span></div>
 			</div>
 
 			<br>
-			<p>Only void setup() and void loop() is now needed:</p>
+			<p>Only <span class="code-inline"><span class="variable">void</span> <span
+						class="function">setup</span><span class="sign">(</span><span class="sign">)</span></span> and
+				<span class="code-inline"><span class="variable">void</span> <span class="function">loop</span><span
+						class="sign">(</span><span class="sign">)</span></span> is now needed:</p>
 			<div class="code">
-				<pre><span style="display: inline; color: #61afef;">void</span> <span style="display: inline; color: #c678dd;">setup</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #aaaaaa;">)</span> <span style="display: inline; color: #aaaaaa;">{</span></pre>
-				<pre>  <span style="display: inline; color: #ffffff;">s1</span><span style="display: inline; color: #aaaaaa;">.</span><span style="display: inline; color: #61afef;">attach</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">9</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color: #ffffff;">s2</span><span style="display: inline; color: #aaaaaa;">.</span><span style="display: inline; color: #61afef;">attach</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">10</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color: #61afef;">pinMode</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #ffffff;">sensor</span><span style="display: inline; color: #aaaaaa;">,</span> <span style="display: inline; color: #61afef;">INPUT</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color: #61afef;">pinMode</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #ffffff;">IR</span><span style="display: inline; color: #aaaaaa;">,</span> <span style="display: inline; color: #61afef;">INPUT</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre></pre>
-				<pre>  <span style="display: inline; color: #61afef;">delay</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">200</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color: #c678dd;">if</span> <span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #61afef;">digitalRead</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">4</span><span style="display: inline; color: #aaaaaa;">)</span> <span style="display: inline; color: #aaaaaa;">==</span> <span style="display: inline; color: #61afef;">HIGH</span><span style="display: inline; color: #aaaaaa;">)</span></pre>
-				<pre>    <span style="display: inline; color: #ffffff;">calibration</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre><span style="display: inline; color: #aaaaaa;">}</span></pre>
+				<div><span class="variable">void</span> <span class="function">setup</span><span
+						class="sign">(</span><span class="sign">)</span> <span class="sign">{</span></div>
+				<div>  <span class="text">s1</span><span class="sign">.</span><span class="variable">attach</span><span
+						class="sign">(</span><span class="number">9</span><span class="sign">)</span><span
+						class="text">;</span></div>
+				<div>  <span class="text">s2</span><span class="sign">.</span><span class="variable">attach</span><span
+						class="sign">(</span><span class="number">10</span><span class="sign">)</span><span
+						class="text">;</span></div>
+				<div>  <span class="variable">pinMode</span><span class="sign">(</span><span
+						class="text">sensor</span><span class="sign">,</span> <span class="variable">INPUT</span><span
+						class="sign">)</span><span class="text">;</span></div>
+				<div>  <span class="variable">pinMode</span><span class="sign">(</span><span class="text">IR</span><span
+						class="sign">,</span> <span class="variable">INPUT</span><span class="sign">)</span><span
+						class="text">;</span></div>
+				<div></div>
+				<div>  <span class="variable">delay</span><span class="sign">(</span><span
+						class="number">200</span><span class="sign">)</span><span class="text">;</span></div>
+				<div>  <span class="function">if</span> <span class="sign">(</span><span
+						class="variable">digitalRead</span><span class="sign">(</span><span class="number">4</span><span
+						class="sign">)</span> <span class="sign">==</span> <span class="variable">HIGH</span><span
+						class="sign">)</span></div>
+				<div>    <span class="text">calibration</span><span class="sign">(</span><span
+						class="sign">)</span><span class="text">;</span></div>
+				<div><span class="sign">}</span></div>
 			</div>
 
 			<br>
-			<p>And loop, if we are on white we go to black, but if we are on black then we go to while, so we
+			<p>And loop, if we are on white we go to black. But if we are on black then we go to white, we
 				are on the edge of line.</p>
 			<div class="code">
-				<pre><span style="display: inline; color: #61afef;">void</span> <span style="display: inline; color: #c678dd;">loop</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #aaaaaa;">)</span> <span style="display: inline; color: #aaaaaa;">{</span></pre>
-				<pre>  <span style="display: inline; color: #c678dd;">if</span> <span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #61afef;">map</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #61afef;">analogRead</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #ffffff;">sensor</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #aaaaaa;">,</span> <span style="display: inline; color: #e5c07b;">0</span><span style="display: inline; color: #aaaaaa;">,</span> <span style="display: inline; color: #e5c07b;">1023</span><span style="display: inline; color: #aaaaaa;">,</span> <span style="display: inline; color: #e5c07b;">0</span><span style="display: inline; color: #aaaaaa;">,</span> <span style="display: inline; color: #e5c07b;">255</span><span style="display: inline; color: #aaaaaa;">)</span> <span style="display: inline; color: #aaaaaa;">&gt;</span> <span style="display: inline; color: #aaaaaa;">(</span><b><span style="display: inline; color: #e06c75;">EEPROM</span></b><span style="display: inline; color: #aaaaaa;">.</span><span style="display: inline; color: #61afef;">read</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">2</span><span style="display: inline; color: #aaaaaa;">)</span> <span style="display: inline; color: #aaaaaa;">+</span> <span style="display: inline; color: #e5c07b;">20</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #aaaaaa;">)</span> <span style="display: inline; color: #aaaaaa;">{</span></pre>
-				<pre>    <span style="display: inline; color: #ffffff;">color</span> <span style="display: inline; color: #aaaaaa;">=</span> <span style="display: inline; color: #61afef;">&#34;black&#34;</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color: #aaaaaa;">}</span></pre>
-				<pre></pre>
-				<pre>  <span style="display: inline; color: #c678dd;">else</span> <span style="display: inline; color: #c678dd;">if</span> <span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #61afef;">map</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #61afef;">analogRead</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #ffffff;">sensor</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #aaaaaa;">,</span> <span style="display: inline; color: #e5c07b;">0</span><span style="display: inline; color: #aaaaaa;">,</span> <span style="display: inline; color: #e5c07b;">1023</span><span style="display: inline; color: #aaaaaa;">,</span> <span style="display: inline; color: #e5c07b;">0</span><span style="display: inline; color: #aaaaaa;">,</span> <span style="display: inline; color: #e5c07b;">255</span><span style="display: inline; color: #aaaaaa;">)</span> <span style="display: inline; color: #aaaaaa;">&lt;</span> <span style="display: inline; color: #aaaaaa;">(</span><b><span style="display: inline; color: #e06c75;">EEPROM</span></b><span style="display: inline; color: #aaaaaa;">.</span><span style="display: inline; color: #61afef;">read</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #e5c07b;">2</span><span style="display: inline; color: #aaaaaa;">)</span> <span style="display: inline; color: #aaaaaa;">+</span> <span style="display: inline; color: #e5c07b;">20</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #aaaaaa;">)</span> <span style="display: inline; color: #aaaaaa;">{</span></pre>
-				<pre>    <span style="display: inline; color: #ffffff;">color</span> <span style="display: inline; color: #aaaaaa;">=</span> <span style="display: inline; color: #61afef;">&#34;white&#34;</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color: #aaaaaa;">}</span></pre>
-				<pre></pre>
-				<pre>  <span style="display: inline; color: #c678dd;">if</span> <span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #ffffff;">color</span> <span style="display: inline; color: #aaaaaa;">==</span> <span style="display: inline; color: #61afef;">&#34;black&#34;</span><span style="display: inline; color: #aaaaaa;">)</span> <span style="display: inline; color: #aaaaaa;">{</span></pre>
-				<pre>    <span style="display: inline; color: #ffffff;">right</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color: #aaaaaa;">}</span></pre>
-				<pre></pre>
-				<pre>  <span style="display: inline; color: #c678dd;">if</span> <span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #ffffff;">color</span> <span style="display: inline; color: #aaaaaa;">==</span> <span style="display: inline; color: #61afef;">&#34;white&#34;</span><span style="display: inline; color: #aaaaaa;">)</span> <span style="display: inline; color: #aaaaaa;">{</span></pre>
-				<pre>    <span style="display: inline; color: #ffffff;">left</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color: #aaaaaa;">}</span></pre>
-				<pre></pre>
-				<pre>  <span style="display: inline; color: #c678dd;">if</span> <span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #61afef;">digitalRead</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #ffffff;">IR</span><span style="display: inline; color: #aaaaaa;">)</span> <span style="display: inline; color: #aaaaaa;">==</span> <span style="display: inline; color: #61afef;">LOW</span><span style="display: inline; color: #aaaaaa;">)</span> <span style="display: inline; color: #aaaaaa;">{</span></pre>
-				<pre>    <span style="display: inline; color: #ffffff;">getAround</span><span style="display: inline; color: #aaaaaa;">(</span><span style="display: inline; color: #aaaaaa;">)</span><span style="display: inline; color: #ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color: #aaaaaa;">}</span></pre>
-				<pre><span style="display: inline; color: #aaaaaa;">}</span></pre>
+				<div><span class="variable">void</span> <span class="function">loop</span><span
+						class="sign">(</span><span class="sign">)</span> <span class="sign">{</span></div>
+				<div>  <span class="function">if</span> <span class="sign">(</span><span
+						class="variable">map</span><span class="sign">(</span><span
+						class="variable">analogRead</span><span class="sign">(</span><span
+						class="text">sensor</span><span class="sign">)</span><span class="sign">,</span> <span
+						class="number">0</span><span class="sign">,</span> <span class="number">1023</span><span
+						class="sign">,</span> <span class="number">0</span><span class="sign">,</span> <span
+						class="number">255</span><span class="sign">)</span> <span class="sign">&gt;</span> <span
+						class="sign">(</span><span class="object">EEPROM</span><span class="sign">.</span><span
+						class="variable">read</span><span class="sign">(</span><span class="number">2</span><span
+						class="sign">)</span> <span class="sign">+</span> <span class="number">20</span><span
+						class="sign">)</span><span class="sign">)</span> <span class="sign">{</span></div>
+				<div>    <span class="text">color</span> <span class="sign">=</span> <span
+						class="variable">&#34;black&#34;</span><span class="text">;</span></div>
+				<div>  <span class="sign">}</span></div>
+				<div></div>
+				<div>  <span class="function">else</span> <span class="function">if</span> <span
+						class="sign">(</span><span class="variable">map</span><span class="sign">(</span><span
+						class="variable">analogRead</span><span class="sign">(</span><span
+						class="text">sensor</span><span class="sign">)</span><span class="sign">,</span> <span
+						class="number">0</span><span class="sign">,</span> <span class="number">1023</span><span
+						class="sign">,</span> <span class="number">0</span><span class="sign">,</span> <span
+						class="number">255</span><span class="sign">)</span> <span class="sign">&lt;</span> <span
+						class="sign">(</span><span class="object">EEPROM</span><span class="sign">.</span><span
+						class="variable">read</span><span class="sign">(</span><span class="number">2</span><span
+						class="sign">)</span> <span class="sign">+</span> <span class="number">20</span><span
+						class="sign">)</span><span class="sign">)</span> <span class="sign">{</span></div>
+				<div>    <span class="text">color</span> <span class="sign">=</span> <span
+						class="variable">&#34;white&#34;</span><span class="text">;</span></div>
+				<div>  <span class="sign">}</span></div>
+				<div></div>
+				<div>  <span class="function">if</span> <span class="sign">(</span><span class="text">color</span> <span
+						class="sign">==</span> <span class="variable">&#34;black&#34;</span><span class="sign">)</span>
+					<span class="sign">{</span></div>
+				<div>    <span class="text">right</span><span class="sign">(</span><span class="sign">)</span><span
+						class="text">;</span></div>
+				<div>  <span class="sign">}</span></div>
+				<div></div>
+				<div>  <span class="function">if</span> <span class="sign">(</span><span class="text">color</span> <span
+						class="sign">==</span> <span class="variable">&#34;white&#34;</span><span class="sign">)</span>
+					<span class="sign">{</span></div>
+				<div>    <span class="text">left</span><span class="sign">(</span><span class="sign">)</span><span
+						class="text">;</span></div>
+				<div>  <span class="sign">}</span></div>
+				<div></div>
+				<div>  <span class="function">if</span> <span class="sign">(</span><span
+						class="variable">digitalRead</span><span class="sign">(</span><span class="text">IR</span><span
+						class="sign">)</span> <span class="sign">==</span> <span class="variable">LOW</span><span
+						class="sign">)</span> <span class="sign">{</span></div>
+				<div>    <span class="text">getAround</span><span class="sign">(</span><span class="sign">)</span><span
+						class="text">;</span></div>
+				<div>  <span class="sign">}</span></div>
+				<div><span class="sign">}</span></div>
 			</div>
 
 			<br>

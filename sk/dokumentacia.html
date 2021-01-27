@@ -288,7 +288,7 @@
 				<p style="color: gray !important;">Klaibračný mód ON/OFF na Digitálny pin 4</p>
 			</div>
 			<p>Kalibračný pin bude pripojený k tlačidlu na nasledujúcom DPS, kde budú pripojené všetky VCC (5V)
-				a GND.	Na to budete potrebovať spajkovačku, 15 pinov a káblov na spojenie všetkého dokopy.</p>
+				a GND. Na to budete potrebovať spajkovačku, 15 pinov a káblov na spojenie všetkého dokopy.</p>
 			<div class="container">
 				<a href="../img/pcb-with-button.jpg" target="_blank">
 					<img src="../img/pcb-with-button.jpg" alt="DPS s tlačidlom">
@@ -333,16 +333,27 @@
 			<p>Najprv musíme importovať knižnice a definovať niektoré premenné, ktoré budeme potrebovať v celom našom
 				programe: </p>
 			<div class="code">
-				<pre><span style="display: inline; color:#98c379;">#include</span> <span style="display: inline; color:#aaaaaa;">&lt;</span><b><span style="display: inline; color:#e06c75;">EEPROM</span></b><span style="display: inline; color:#aaaaaa;">.</span><span style="display: inline; color:#ffffff;">h</span><span style="display: inline; color:#aaaaaa;">&gt;</span></pre>
-				<pre><span style="display: inline; color:#98c379;">#include</span> <span style="display: inline; color:#aaaaaa;">&lt;</span><b><span style="display: inline; color:#e06c75;">Servo</span></b><span style="display: inline; color:#aaaaaa;">.</span><span style="display: inline; color:#ffffff;">h</span><span style="display: inline; color:#aaaaaa;">&gt;</span></pre>
-				<pre><b><span style="display: inline; color:#e06c75;">Servo</span></b> <span style="display: inline; color:#ffffff;">s1</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre><b><span style="display: inline; color:#e06c75;">Servo</span></b> <span style="display: inline; color:#ffffff;">s2</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre></pre>
-				<pre><span style="display: inline; color:#98c379;">#define</span> <span style="display: inline; color:#ffffff;">senzor</span> <span style="display: inline; color:#ffffff;">A0</span></pre>
-				<pre><span style="display: inline; color:#98c379;">#define</span> <span style="display: inline; color:#ffffff;">IR</span> <span style="display: inline; color:#e5c07b;">3</span></pre>
-				<pre></pre>
-				<pre><span style="display: inline; color:#61afef;">int</span> <span style="display: inline; color:#ffffff;">x</span> <span style="display: inline; color:#aaaaaa;">=</span> <span style="display: inline; color:#e5c07b;">100</span><span style="display: inline; color:#ffffff;">;</span> <span style="display: inline; color:#aaaaaa;">&#47;&#47;pocet merani</span></pre>
-				<pre><span style="display: inline; color:#61afef;">String</span> <span style="display: inline; color:#ffffff;">farba</span><span style="display: inline; color:#ffffff;">;</span></pre>
+				<div><span class="definition">#include</span> <span class="sign">&lt;</span><b><span
+							class="object">EEPROM</span></b><span class="sign">.</span><span class="text">h</span><span
+						class="sign">&gt;</span></div>
+				<div><span class="definition">#include</span> <span class="sign">&lt;</span><b><span
+							class="object">Servo</span></b><span class="sign">.</span><span class="text">h</span><span
+						class="sign">&gt;</span></div>
+				<div><b><span class="object">Servo</span></b> <span class="text">s1</span><span class="text">;</span>
+				</div>
+				<div><b><span class="object">Servo</span></b> <span class="text">s2</span><span class="text">;</span>
+				</div>
+				<div></div>
+				<div><span class="definition">#define</span> <span class="text">senzor</span> <span
+						class="text">A0</span></div>
+				<div><span class="definition">#define</span> <span class="text">IR</span> <span class="number">3</span>
+				</div>
+				<div></div>
+				<div><span class="variable">int</span> <span class="text">x</span> <span class="sign">=</span> <span
+						class="number">100</span><span class="text">;</span> <span class="sign">&#47;&#47;pocet
+						merani</span></div>
+				<div><span class="variable">String</span> <span class="text">farba</span><span class="text">;</span>
+				</div>
 			</div>
 
 			<br>
@@ -350,119 +361,268 @@
 				umiestniť na čiaru a nakalibruje sa sám. Ak nie je v kalibračnom režime, bude to preskočené a robot
 				bude pokračovať so svojími hodnotami uloženými v pamäti EEPROM.</p>
 			<div class="code">
-				<pre><span style="display: inline; color:#61afef;">void</span> <span style="display: inline; color:#ffffff;">kalibracia</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#aaaaaa;">)</span> <span style="display: inline; color:#aaaaaa;">{</span></pre>
-				<pre>  <span style="display: inline; color:#61afef;">int</span> <span style="display: inline; color:#ffffff;">ciernaNamerana</span> <span style="display: inline; color:#aaaaaa;">=</span> <span style="display: inline; color:#e5c07b;">0</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color:#61afef;">int</span> <span style="display: inline; color:#ffffff;">bielaNamerana</span> <span style="display: inline; color:#aaaaaa;">=</span> <span style="display: inline; color:#e5c07b;">0</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color:#c678dd;">for</span> <span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#61afef;">int</span> <span style="display: inline; color:#ffffff;">k</span> <span style="display: inline; color:#aaaaaa;">=</span> <span style="display: inline; color:#e5c07b;">0</span><span style="display: inline; color:#ffffff;">;</span> <span style="display: inline; color:#ffffff;">k</span> <span style="display: inline; color:#aaaaaa;">&lt;</span> <span style="display: inline; color:#ffffff;">x</span><span style="display: inline; color:#ffffff;">;</span> <span style="display: inline; color:#ffffff;">k</span><span style="display: inline; color:#aaaaaa;">++</span><span style="display: inline; color:#aaaaaa;">)</span> <span style="display: inline; color:#aaaaaa;">{</span></pre>
-				<pre>    <span style="display: inline; color:#ffffff;">ciernaNamerana</span> <span style="display: inline; color:#aaaaaa;">+=</span> <span style="display: inline; color:#61afef;">analogRead</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#ffffff;">senzor</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre>    <span style="display: inline; color:#61afef;">delay</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">10</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color:#aaaaaa;">}</span></pre>
-				<pre>  <b><span style="display: inline; color:#e06c75;">EEPROM</span></b><span style="display: inline; color:#aaaaaa;">.</span><span style="display: inline; color:#61afef;">write</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">0</span><span style="display: inline; color:#aaaaaa;">,</span> <span style="display: inline; color:#e5c07b;">0</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre>  <b><span style="display: inline; color:#e06c75;">EEPROM</span></b><span style="display: inline; color:#aaaaaa;">.</span><span style="display: inline; color:#61afef;">write</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">0</span><span style="display: inline; color:#aaaaaa;">,</span> <span style="display: inline; color:#61afef;">map</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#ffffff;">ciernaNamerana</span> <span style="display: inline; color:#aaaaaa;">&#47;</span> <span style="display: inline; color:#ffffff;">x</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#aaaaaa;">,</span> <span style="display: inline; color:#e5c07b;">0</span><span style="display: inline; color:#aaaaaa;">,</span> <span style="display: inline; color:#e5c07b;">1023</span><span style="display: inline; color:#aaaaaa;">,</span> <span style="display: inline; color:#e5c07b;">0</span><span style="display: inline; color:#aaaaaa;">,</span> <span style="display: inline; color:#e5c07b;">255</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span> <span style="display: inline; color:#aaaaaa;">&#47;&#47;cierna</span></pre>
-				<pre>  <span style="display: inline; color:#ffffff;">doprava</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color:#61afef;">delay</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">500</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color:#ffffff;">zastav</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color:#c678dd;">for</span> <span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#61afef;">int</span> <span style="display: inline; color:#ffffff;">j</span> <span style="display: inline; color:#aaaaaa;">=</span> <span style="display: inline; color:#e5c07b;">0</span><span style="display: inline; color:#ffffff;">;</span> <span style="display: inline; color:#ffffff;">j</span> <span style="display: inline; color:#aaaaaa;">&lt;</span> <span style="display: inline; color:#ffffff;">x</span><span style="display: inline; color:#ffffff;">;</span> <span style="display: inline; color:#ffffff;">j</span><span style="display: inline; color:#aaaaaa;">++</span><span style="display: inline; color:#aaaaaa;">)</span> <span style="display: inline; color:#aaaaaa;">{</span></pre>
-				<pre>    <span style="display: inline; color:#ffffff;">bielaNamerana</span> <span style="display: inline; color:#aaaaaa;">+=</span> <span style="display: inline; color:#61afef;">analogRead</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#ffffff;">senzor</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre>    <span style="display: inline; color:#61afef;">delay</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">10</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color:#aaaaaa;">}</span></pre>
-				<pre>  <b><span style="display: inline; color:#e06c75;">EEPROM</span></b><span style="display: inline; color:#aaaaaa;">.</span><span style="display: inline; color:#61afef;">write</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">1</span><span style="display: inline; color:#aaaaaa;">,</span> <span style="display: inline; color:#e5c07b;">0</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre>  <b><span style="display: inline; color:#e06c75;">EEPROM</span></b><span style="display: inline; color:#aaaaaa;">.</span><span style="display: inline; color:#61afef;">write</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">1</span><span style="display: inline; color:#aaaaaa;">,</span> <span style="display: inline; color:#61afef;">map</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#ffffff;">bielaNamerana</span> <span style="display: inline; color:#aaaaaa;">&#47;</span> <span style="display: inline; color:#ffffff;">x</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#aaaaaa;">,</span> <span style="display: inline; color:#e5c07b;">0</span><span style="display: inline; color:#aaaaaa;">,</span> <span style="display: inline; color:#e5c07b;">1023</span><span style="display: inline; color:#aaaaaa;">,</span> <span style="display: inline; color:#e5c07b;">0</span><span style="display: inline; color:#aaaaaa;">,</span> <span style="display: inline; color:#e5c07b;">255</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span> <span style="display: inline; color:#aaaaaa;">&#47;&#47;biela</span></pre>
-				<pre>  <b><span style="display: inline; color:#e06c75;">Serial</span></b><span style="display: inline; color:#aaaaaa;">.</span><span style="display: inline; color:#61afef;">println</span><span style="display: inline; color:#aaaaaa;">(</span><b><span style="display: inline; color:#e06c75;">EEPROM</span></b><span style="display: inline; color:#aaaaaa;">.</span><span style="display: inline; color:#61afef;">read</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">1</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre>  <b><span style="display: inline; color:#e06c75;">Serial</span></b><span style="display: inline; color:#aaaaaa;">.</span><span style="display: inline; color:#61afef;">println</span><span style="display: inline; color:#aaaaaa;">(</span><b><span style="display: inline; color:#e06c75;">EEPROM</span></b><span style="display: inline; color:#aaaaaa;">.</span><span style="display: inline; color:#61afef;">read</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">0</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre></pre>
-				<pre>  <b><span style="display: inline; color:#e06c75;">EEPROM</span></b><span style="display: inline; color:#aaaaaa;">.</span><span style="display: inline; color:#61afef;">write</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">2</span><span style="display: inline; color:#aaaaaa;">,</span> <span style="display: inline; color:#aaaaaa;">(</span><b><span style="display: inline; color:#e06c75;">EEPROM</span></b><span style="display: inline; color:#aaaaaa;">.</span><span style="display: inline; color:#61afef;">read</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">1</span><span style="display: inline; color:#aaaaaa;">)</span> <span style="display: inline; color:#aaaaaa;">+</span> <b><span style="display: inline; color:#e06c75;">EEPROM</span></b><span style="display: inline; color:#aaaaaa;">.</span><span style="display: inline; color:#61afef;">read</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">0</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#aaaaaa;">)</span> <span style="display: inline; color:#aaaaaa;">&#47;</span> <span style="display: inline; color:#e5c07b;">2</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre>  <b><span style="display: inline; color:#e06c75;">Serial</span></b><span style="display: inline; color:#aaaaaa;">.</span><span style="display: inline; color:#61afef;">println</span><span style="display: inline; color:#aaaaaa;">(</span><b><span style="display: inline; color:#e06c75;">EEPROM</span></b><span style="display: inline; color:#aaaaaa;">.</span><span style="display: inline; color:#61afef;">read</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">2</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color:#61afef;">delay</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">1000</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre><span style="display: inline; color:#aaaaaa;">}</span></pre>
+				<div><span class="variable">void</span> <span class="text">kalibracia</span><span
+						class="sign">(</span><span class="sign">)</span> <span class="sign">{</span></div>
+				<div>  <span class="variable">int</span> <span class="text">ciernaNamerana</span> <span
+						class="sign">=</span> <span class="number">0</span><span class="text">;</span></div>
+				<div>  <span class="variable">int</span> <span class="text">bielaNamerana</span> <span
+						class="sign">=</span> <span class="number">0</span><span class="text">;</span></div>
+				<div>  <span class="function">for</span> <span class="sign">(</span><span class="variable">int</span>
+					<span class="text">k</span> <span class="sign">=</span> <span class="number">0</span><span
+						class="text">;</span> <span class="text">k</span> <span class="sign">&lt;</span> <span
+						class="text">x</span><span class="text">;</span> <span class="text">k</span><span
+						class="sign">++</span><span class="sign">)</span> <span class="sign">{</span></div>
+				<div>    <span class="text">ciernaNamerana</span> <span class="sign">+=</span> <span
+						class="variable">analogRead</span><span class="sign">(</span><span
+						class="text">senzor</span><span class="sign">)</span><span class="text">;</span></div>
+				<div>    <span class="variable">delay</span><span class="sign">(</span><span
+						class="number">10</span><span class="sign">)</span><span class="text">;</span></div>
+				<div>  <span class="sign">}</span></div>
+				<div>  <b><span class="object">EEPROM</span></b><span class="sign">.</span><span
+						class="variable">write</span><span class="sign">(</span><span class="number">0</span><span
+						class="sign">,</span> <span class="number">0</span><span class="sign">)</span><span
+						class="text">;</span></div>
+				<div>  <b><span class="object">EEPROM</span></b><span class="sign">.</span><span
+						class="variable">write</span><span class="sign">(</span><span class="number">0</span><span
+						class="sign">,</span> <span class="variable">map</span><span class="sign">(</span><span
+						class="sign">(</span><span class="text">ciernaNamerana</span> <span class="sign">&#47;</span>
+					<span class="text">x</span><span class="sign">)</span><span class="sign">,</span> <span
+						class="number">0</span><span class="sign">,</span> <span class="number">1023</span><span
+						class="sign">,</span> <span class="number">0</span><span class="sign">,</span> <span
+						class="number">255</span><span class="sign">)</span><span class="sign">)</span><span
+						class="text">;</span> <span class="sign">&#47;&#47;cierna</span></div>
+				<div>  <span class="text">doprava</span><span class="sign">(</span><span class="sign">)</span><span
+						class="text">;</span></div>
+				<div>  <span class="variable">delay</span><span class="sign">(</span><span
+						class="number">500</span><span class="sign">)</span><span class="text">;</span></div>
+				<div>  <span class="text">zastav</span><span class="sign">(</span><span class="sign">)</span><span
+						class="text">;</span></div>
+				<div>  <span class="function">for</span> <span class="sign">(</span><span class="variable">int</span>
+					<span class="text">j</span> <span class="sign">=</span> <span class="number">0</span><span
+						class="text">;</span> <span class="text">j</span> <span class="sign">&lt;</span> <span
+						class="text">x</span><span class="text">;</span> <span class="text">j</span><span
+						class="sign">++</span><span class="sign">)</span> <span class="sign">{</span></div>
+				<div>    <span class="text">bielaNamerana</span> <span class="sign">+=</span> <span
+						class="variable">analogRead</span><span class="sign">(</span><span
+						class="text">senzor</span><span class="sign">)</span><span class="text">;</span></div>
+				<div>    <span class="variable">delay</span><span class="sign">(</span><span
+						class="number">10</span><span class="sign">)</span><span class="text">;</span></div>
+				<div>  <span class="sign">}</span></div>
+				<div>  <b><span class="object">EEPROM</span></b><span class="sign">.</span><span
+						class="variable">write</span><span class="sign">(</span><span class="number">1</span><span
+						class="sign">,</span> <span class="number">0</span><span class="sign">)</span><span
+						class="text">;</span></div>
+				<div>  <b><span class="object">EEPROM</span></b><span class="sign">.</span><span
+						class="variable">write</span><span class="sign">(</span><span class="number">1</span><span
+						class="sign">,</span> <span class="variable">map</span><span class="sign">(</span><span
+						class="sign">(</span><span class="text">bielaNamerana</span> <span class="sign">&#47;</span>
+					<span class="text">x</span><span class="sign">)</span><span class="sign">,</span> <span
+						class="number">0</span><span class="sign">,</span> <span class="number">1023</span><span
+						class="sign">,</span> <span class="number">0</span><span class="sign">,</span> <span
+						class="number">255</span><span class="sign">)</span><span class="sign">)</span><span
+						class="text">;</span> <span class="sign">&#47;&#47;biela</span></div>
+				<div>  <b><span class="object">Serial</span></b><span class="sign">.</span><span
+						class="variable">println</span><span class="sign">(</span><b><span
+							class="object">EEPROM</span></b><span class="sign">.</span><span
+						class="variable">read</span><span class="sign">(</span><span class="number">1</span><span
+						class="sign">)</span><span class="sign">)</span><span class="text">;</span></div>
+				<div>  <b><span class="object">Serial</span></b><span class="sign">.</span><span
+						class="variable">println</span><span class="sign">(</span><b><span
+							class="object">EEPROM</span></b><span class="sign">.</span><span
+						class="variable">read</span><span class="sign">(</span><span class="number">0</span><span
+						class="sign">)</span><span class="sign">)</span><span class="text">;</span></div>
+				<div></div>
+				<div>  <b><span class="object">EEPROM</span></b><span class="sign">.</span><span
+						class="variable">write</span><span class="sign">(</span><span class="number">2</span><span
+						class="sign">,</span> <span class="sign">(</span><b><span class="object">EEPROM</span></b><span
+						class="sign">.</span><span class="variable">read</span><span class="sign">(</span><span
+						class="number">1</span><span class="sign">)</span> <span class="sign">+</span> <b><span
+							class="object">EEPROM</span></b><span class="sign">.</span><span
+						class="variable">read</span><span class="sign">(</span><span class="number">0</span><span
+						class="sign">)</span><span class="sign">)</span> <span class="sign">&#47;</span> <span
+						class="number">2</span><span class="sign">)</span><span class="text">;</span></div>
+				<div>  <b><span class="object">Serial</span></b><span class="sign">.</span><span
+						class="variable">println</span><span class="sign">(</span><b><span
+							class="object">EEPROM</span></b><span class="sign">.</span><span
+						class="variable">read</span><span class="sign">(</span><span class="number">2</span><span
+						class="sign">)</span><span class="sign">)</span><span class="text">;</span></div>
+				<div>  <span class="variable">delay</span><span class="sign">(</span><span
+						class="number">1000</span><span class="sign">)</span><span class="text">;</span></div>
+				<div><span class="sign">}</span></div>
 			</div>
 
 			<br>
 			<p>Teraz naprogramujeme funkcie pre pohyb nášho robota:</p>
 			<div class="code">
-				<pre><span style="display: inline; color:#61afef;">void</span> <span style="display: inline; color:#ffffff;">dopredu</span> <span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#aaaaaa;">)</span> <span style="display: inline; color:#aaaaaa;">{</span></pre>
-				<pre>  <span style="display: inline; color:#ffffff;">s1</span><span style="display: inline; color:#aaaaaa;">.</span><span style="display: inline; color:#61afef;">write</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">0</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span> <span style="display: inline; color:#aaaaaa;">&#47;&#47; dopredu</span></pre>
-				<pre>  <span style="display: inline; color:#ffffff;">s2</span><span style="display: inline; color:#aaaaaa;">.</span><span style="display: inline; color:#61afef;">write</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">180</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span> <span style="display: inline; color:#aaaaaa;">&#47;&#47; dopredu</span></pre>
-				<pre><span style="display: inline; color:#aaaaaa;">}</span></pre>
-				<pre></pre>
-				<pre><span style="display: inline; color:#61afef;">void</span> <span style="display: inline; color:#ffffff;">doprava</span> <span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#aaaaaa;">)</span> <span style="display: inline; color:#aaaaaa;">{</span></pre>
-				<pre>  <span style="display: inline; color:#ffffff;">s1</span><span style="display: inline; color:#aaaaaa;">.</span><span style="display: inline; color:#61afef;">write</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">90</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span> <span style="display: inline; color:#aaaaaa;">&#47;&#47; dopredu</span></pre>
-				<pre>  <span style="display: inline; color:#ffffff;">s2</span><span style="display: inline; color:#aaaaaa;">.</span><span style="display: inline; color:#61afef;">write</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">180</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span> <span style="display: inline; color:#aaaaaa;">&#47;&#47; stoji</span></pre>
-				<pre><span style="display: inline; color:#aaaaaa;">}</span></pre>
-				<pre></pre>
-				<pre><span style="display: inline; color:#61afef;">void</span> <span style="display: inline; color:#ffffff;">dolava</span> <span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#aaaaaa;">)</span> <span style="display: inline; color:#aaaaaa;">{</span></pre>
-				<pre>  <span style="display: inline; color:#ffffff;">s1</span><span style="display: inline; color:#aaaaaa;">.</span><span style="display: inline; color:#61afef;">write</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">0</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span> <span style="display: inline; color:#aaaaaa;">&#47;&#47; stoji</span></pre>
-				<pre>  <span style="display: inline; color:#ffffff;">s2</span><span style="display: inline; color:#aaaaaa;">.</span><span style="display: inline; color:#61afef;">write</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">90</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span> <span style="display: inline; color:#aaaaaa;">&#47;&#47; dopredu</span></pre>
-				<pre><span style="display: inline; color:#aaaaaa;">}</span></pre>
-				<pre></pre>
-				<pre><span style="display: inline; color:#61afef;">void</span> <span style="display: inline; color:#ffffff;">dozadu</span> <span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#aaaaaa;">)</span> <span style="display: inline; color:#aaaaaa;">{</span></pre>
-				<pre>  <span style="display: inline; color:#ffffff;">s1</span><span style="display: inline; color:#aaaaaa;">.</span><span style="display: inline; color:#61afef;">write</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">180</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span> <span style="display: inline; color:#aaaaaa;">&#47;&#47; dozadu</span></pre>
-				<pre>  <span style="display: inline; color:#ffffff;">s2</span><span style="display: inline; color:#aaaaaa;">.</span><span style="display: inline; color:#61afef;">write</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">0</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span> <span style="display: inline; color:#aaaaaa;">&#47;&#47; dozadu</span></pre>
-				<pre><span style="display: inline; color:#aaaaaa;">}</span></pre>
-				<pre></pre>
-				<pre><span style="display: inline; color:#61afef;">void</span> <span style="display: inline; color:#ffffff;">zastav</span> <span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#aaaaaa;">)</span> <span style="display: inline; color:#aaaaaa;">{</span></pre>
-				<pre>  <span style="display: inline; color:#ffffff;">s1</span><span style="display: inline; color:#aaaaaa;">.</span><span style="display: inline; color:#61afef;">write</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">90</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span> <span style="display: inline; color:#aaaaaa;">&#47;&#47; stoji</span></pre>
-				<pre>  <span style="display: inline; color:#ffffff;">s2</span><span style="display: inline; color:#aaaaaa;">.</span><span style="display: inline; color:#61afef;">write</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">90</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span> <span style="display: inline; color:#aaaaaa;">&#47;&#47; stoji</span></pre>
-				<pre><span style="display: inline; color:#aaaaaa;">}</span></pre>
+				<div><span class="variable">void</span> <span class="text">dopredu</span> <span
+						class="sign">(</span><span class="sign">)</span> <span class="sign">{</span></div>
+				<div>  <span class="text">s1</span><span class="sign">.</span><span class="variable">write</span><span
+						class="sign">(</span><span class="number">0</span><span class="sign">)</span><span
+						class="text">;</span> <span class="sign">&#47;&#47; dopredu</span></div>
+				<div>  <span class="text">s2</span><span class="sign">.</span><span class="variable">write</span><span
+						class="sign">(</span><span class="number">180</span><span class="sign">)</span><span
+						class="text">;</span> <span class="sign">&#47;&#47; dopredu</span></div>
+				<div><span class="sign">}</span></div>
+				<div></div>
+				<div><span class="variable">void</span> <span class="text">doprava</span> <span
+						class="sign">(</span><span class="sign">)</span> <span class="sign">{</span></div>
+				<div>  <span class="text">s1</span><span class="sign">.</span><span class="variable">write</span><span
+						class="sign">(</span><span class="number">90</span><span class="sign">)</span><span
+						class="text">;</span> <span class="sign">&#47;&#47; dopredu</span></div>
+				<div>  <span class="text">s2</span><span class="sign">.</span><span class="variable">write</span><span
+						class="sign">(</span><span class="number">180</span><span class="sign">)</span><span
+						class="text">;</span> <span class="sign">&#47;&#47; stoji</span></div>
+				<div><span class="sign">}</span></div>
+				<div></div>
+				<div><span class="variable">void</span> <span class="text">dolava</span> <span
+						class="sign">(</span><span class="sign">)</span> <span class="sign">{</span></div>
+				<div>  <span class="text">s1</span><span class="sign">.</span><span class="variable">write</span><span
+						class="sign">(</span><span class="number">0</span><span class="sign">)</span><span
+						class="text">;</span> <span class="sign">&#47;&#47; stoji</span></div>
+				<div>  <span class="text">s2</span><span class="sign">.</span><span class="variable">write</span><span
+						class="sign">(</span><span class="number">90</span><span class="sign">)</span><span
+						class="text">;</span> <span class="sign">&#47;&#47; dopredu</span></div>
+				<div><span class="sign">}</span></div>
+				<div></div>
+				<div><span class="variable">void</span> <span class="text">dozadu</span> <span
+						class="sign">(</span><span class="sign">)</span> <span class="sign">{</span></div>
+				<div>  <span class="text">s1</span><span class="sign">.</span><span class="variable">write</span><span
+						class="sign">(</span><span class="number">180</span><span class="sign">)</span><span
+						class="text">;</span> <span class="sign">&#47;&#47; dozadu</span></div>
+				<div>  <span class="text">s2</span><span class="sign">.</span><span class="variable">write</span><span
+						class="sign">(</span><span class="number">0</span><span class="sign">)</span><span
+						class="text">;</span> <span class="sign">&#47;&#47; dozadu</span></div>
+				<div><span class="sign">}</span></div>
+				<div></div>
+				<div><span class="variable">void</span> <span class="text">zastav</span> <span
+						class="sign">(</span><span class="sign">)</span> <span class="sign">{</span></div>
+				<div>  <span class="text">s1</span><span class="sign">.</span><span class="variable">write</span><span
+						class="sign">(</span><span class="number">90</span><span class="sign">)</span><span
+						class="text">;</span> <span class="sign">&#47;&#47; stoji</span></div>
+				<div>  <span class="text">s2</span><span class="sign">.</span><span class="variable">write</span><span
+						class="sign">(</span><span class="number">90</span><span class="sign">)</span><span
+						class="text">;</span> <span class="sign">&#47;&#47; stoji</span></div>
+				<div><span class="sign">}</span></div>
 			</div>
 
 			<br>
 			<p>Teraz sa potrebujeme dostať naokolo predmetu na čiare. Urobíme to nasledujúcou funkciou:</p>
 			<div class="code">
-				<pre><span style="display: inline; color:#61afef;">void</span> <span style="display: inline; color:#ffffff;">naokolo</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#aaaaaa;">)</span> <span style="display: inline; color:#aaaaaa;">{</span></pre>
-				<pre>  <span style="display: inline; color:#ffffff;">dozadu</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color:#61afef;">delay</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">100</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color:#ffffff;">doprava</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color:#61afef;">delay</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">500</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color:#ffffff;">dopredu</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color:#61afef;">delay</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">1000</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color:#ffffff;">dolava</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color:#61afef;">delay</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">1000</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color:#ffffff;">dopredu</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color:#61afef;">delay</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">800</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre><span style="display: inline; color:#aaaaaa;">}</span></pre>
+				<div><span class="variable">void</span> <span class="text">naokolo</span><span
+						class="sign">(</span><span class="sign">)</span> <span class="sign">{</span></div>
+				<div>  <span class="text">dozadu</span><span class="sign">(</span><span class="sign">)</span><span
+						class="text">;</span></div>
+				<div>  <span class="variable">delay</span><span class="sign">(</span><span
+						class="number">100</span><span class="sign">)</span><span class="text">;</span></div>
+				<div>  <span class="text">doprava</span><span class="sign">(</span><span class="sign">)</span><span
+						class="text">;</span></div>
+				<div>  <span class="variable">delay</span><span class="sign">(</span><span
+						class="number">500</span><span class="sign">)</span><span class="text">;</span></div>
+				<div>  <span class="text">dopredu</span><span class="sign">(</span><span class="sign">)</span><span
+						class="text">;</span></div>
+				<div>  <span class="variable">delay</span><span class="sign">(</span><span
+						class="number">1000</span><span class="sign">)</span><span class="text">;</span></div>
+				<div>  <span class="text">dolava</span><span class="sign">(</span><span class="sign">)</span><span
+						class="text">;</span></div>
+				<div>  <span class="variable">delay</span><span class="sign">(</span><span
+						class="number">1000</span><span class="sign">)</span><span class="text">;</span></div>
+				<div>  <span class="text">dopredu</span><span class="sign">(</span><span class="sign">)</span><span
+						class="text">;</span></div>
+				<div>  <span class="variable">delay</span><span class="sign">(</span><span
+						class="number">800</span><span class="sign">)</span><span class="text">;</span></div>
+				<div><span class="sign">}</span></div>
 			</div>
 
 			<br>
-			<p>Už nám zostáva iba naprogramovať void setup() a void loop():</p>
+			<p>Už nám zostáva iba naprogramovať <span class="code-inline"><span class="variable">void</span> <span
+						class="function">setup</span><span class="sign">(</span><span class="sign">)</span></span>
+				a <span class="code-inline"><span class="variable">void</span> <span class="function">loop</span><span
+						class="sign">(</span><span class="sign">)</span></span>:</p>
 			<div class="code">
-				<pre><span style="display: inline; color:#61afef;">void</span> <span style="display: inline; color:#c678dd;">setup</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#aaaaaa;">)</span> <span style="display: inline; color:#aaaaaa;">{</span></pre>
-				<pre>  <span style="display: inline; color:#ffffff;">s1</span><span style="display: inline; color:#aaaaaa;">.</span><span style="display: inline; color:#61afef;">attach</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">9</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color:#ffffff;">s2</span><span style="display: inline; color:#aaaaaa;">.</span><span style="display: inline; color:#61afef;">attach</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">10</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color:#61afef;">pinMode</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#ffffff;">senzor</span><span style="display: inline; color:#aaaaaa;">,</span> <span style="display: inline; color:#61afef;">INPUT</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color:#61afef;">pinMode</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#ffffff;">IR</span><span style="display: inline; color:#aaaaaa;">,</span> <span style="display: inline; color:#61afef;">INPUT</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre></pre>
-				<pre>  <span style="display: inline; color:#61afef;">delay</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">200</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color:#c678dd;">if</span> <span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#61afef;">digitalRead</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">4</span><span style="display: inline; color:#aaaaaa;">)</span> <span style="display: inline; color:#aaaaaa;">==</span> <span style="display: inline; color:#61afef;">HIGH</span><span style="display: inline; color:#aaaaaa;">)</span></pre>
-				<pre>    <span style="display: inline; color:#ffffff;">kalibracia</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre><span style="display: inline; color:#aaaaaa;">}</span></pre>
+				<div><span class="variable">void</span> <span class="function">setup</span><span
+						class="sign">(</span><span class="sign">)</span> <span class="sign">{</span></div>
+				<div>  <span class="text">s1</span><span class="sign">.</span><span class="variable">attach</span><span
+						class="sign">(</span><span class="number">9</span><span class="sign">)</span><span
+						class="text">;</span></div>
+				<div>  <span class="text">s2</span><span class="sign">.</span><span class="variable">attach</span><span
+						class="sign">(</span><span class="number">10</span><span class="sign">)</span><span
+						class="text">;</span></div>
+				<div>  <span class="variable">pinMode</span><span class="sign">(</span><span
+						class="text">senzor</span><span class="sign">,</span> <span class="variable">INPUT</span><span
+						class="sign">)</span><span class="text">;</span></div>
+				<div>  <span class="variable">pinMode</span><span class="sign">(</span><span class="text">IR</span><span
+						class="sign">,</span> <span class="variable">INPUT</span><span class="sign">)</span><span
+						class="text">;</span></div>
+				<div></div>
+				<div>  <span class="variable">delay</span><span class="sign">(</span><span
+						class="number">200</span><span class="sign">)</span><span class="text">;</span></div>
+				<div>  <span class="function">if</span> <span class="sign">(</span><span
+						class="variable">digitalRead</span><span class="sign">(</span><span class="number">4</span><span
+						class="sign">)</span> <span class="sign">==</span> <span class="variable">HIGH</span><span
+						class="sign">)</span></div>
+				<div>    <span class="text">kalibracia</span><span class="sign">(</span><span class="sign">)</span><span
+						class="text">;</span></div>
+				<div><span class="sign">}</span></div>
 			</div>
 
 			<br>
 			<p>A loop, ak sme na bielom, ideme na čiernu, ale ak sme na čiernej, potom ideme na bielu, takže sme na
 				okraji čiary.</p>
 			<div class="code">
-				<pre><span style="display: inline; color:#61afef;">void</span> <span style="display: inline; color:#c678dd;">loop</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#aaaaaa;">)</span> <span style="display: inline; color:#aaaaaa;">{</span></pre>
-				<pre>  <span style="display: inline; color:#c678dd;">if</span> <span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#61afef;">map</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#61afef;">analogRead</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#ffffff;">senzor</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#aaaaaa;">,</span> <span style="display: inline; color:#e5c07b;">0</span><span style="display: inline; color:#aaaaaa;">,</span> <span style="display: inline; color:#e5c07b;">1023</span><span style="display: inline; color:#aaaaaa;">,</span> <span style="display: inline; color:#e5c07b;">0</span><span style="display: inline; color:#aaaaaa;">,</span> <span style="display: inline; color:#e5c07b;">255</span><span style="display: inline; color:#aaaaaa;">)</span> <span style="display: inline; color:#aaaaaa;">&gt;</span> <span style="display: inline; color:#aaaaaa;">(</span><b><span style="display: inline; color:#e06c75;">EEPROM</span></b><span style="display: inline; color:#aaaaaa;">.</span><span style="display: inline; color:#61afef;">read</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">2</span><span style="display: inline; color:#aaaaaa;">)</span> <span style="display: inline; color:#aaaaaa;">+</span> <span style="display: inline; color:#e5c07b;">20</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#aaaaaa;">)</span> <span style="display: inline; color:#aaaaaa;">{</span></pre>
-				<pre>    <span style="display: inline; color:#ffffff;">farba</span> <span style="display: inline; color:#aaaaaa;">=</span> <span style="display: inline; color:#61afef;">&#34;cierna&#34;</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color:#aaaaaa;">}</span></pre>
-				<pre></pre>
-				<pre>  <span style="display: inline; color:#c678dd;">else</span> <span style="display: inline; color:#c678dd;">if</span> <span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#61afef;">map</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#61afef;">analogRead</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#ffffff;">senzor</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#aaaaaa;">,</span> <span style="display: inline; color:#e5c07b;">0</span><span style="display: inline; color:#aaaaaa;">,</span> <span style="display: inline; color:#e5c07b;">1023</span><span style="display: inline; color:#aaaaaa;">,</span> <span style="display: inline; color:#e5c07b;">0</span><span style="display: inline; color:#aaaaaa;">,</span> <span style="display: inline; color:#e5c07b;">255</span><span style="display: inline; color:#aaaaaa;">)</span> <span style="display: inline; color:#aaaaaa;">&lt;</span> <span style="display: inline; color:#aaaaaa;">(</span><b><span style="display: inline; color:#e06c75;">EEPROM</span></b><span style="display: inline; color:#aaaaaa;">.</span><span style="display: inline; color:#61afef;">read</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#e5c07b;">2</span><span style="display: inline; color:#aaaaaa;">)</span> <span style="display: inline; color:#aaaaaa;">+</span> <span style="display: inline; color:#e5c07b;">20</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#aaaaaa;">)</span> <span style="display: inline; color:#aaaaaa;">{</span></pre>
-				<pre>    <span style="display: inline; color:#ffffff;">farba</span> <span style="display: inline; color:#aaaaaa;">=</span> <span style="display: inline; color:#61afef;">&#34;biela&#34;</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color:#aaaaaa;">}</span></pre>
-				<pre></pre>
-				<pre>  <span style="display: inline; color:#c678dd;">if</span> <span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#ffffff;">farba</span> <span style="display: inline; color:#aaaaaa;">==</span> <span style="display: inline; color:#61afef;">&#34;cierna&#34;</span><span style="display: inline; color:#aaaaaa;">)</span> <span style="display: inline; color:#aaaaaa;">{</span></pre>
-				<pre>    <span style="display: inline; color:#ffffff;">doprava</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color:#aaaaaa;">}</span></pre>
-				<pre></pre>
-				<pre>  <span style="display: inline; color:#c678dd;">if</span> <span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#ffffff;">farba</span> <span style="display: inline; color:#aaaaaa;">==</span> <span style="display: inline; color:#61afef;">&#34;biela&#34;</span><span style="display: inline; color:#aaaaaa;">)</span> <span style="display: inline; color:#aaaaaa;">{</span></pre>
-				<pre>    <span style="display: inline; color:#ffffff;">dolava</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color:#aaaaaa;">}</span></pre>
-				<pre></pre>
-				<pre>  <span style="display: inline; color:#c678dd;">if</span> <span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#61afef;">digitalRead</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#ffffff;">IR</span><span style="display: inline; color:#aaaaaa;">)</span> <span style="display: inline; color:#aaaaaa;">==</span> <span style="display: inline; color:#61afef;">LOW</span><span style="display: inline; color:#aaaaaa;">)</span> <span style="display: inline; color:#aaaaaa;">{</span></pre>
-				<pre>    <span style="display: inline; color:#ffffff;">naokolo</span><span style="display: inline; color:#aaaaaa;">(</span><span style="display: inline; color:#aaaaaa;">)</span><span style="display: inline; color:#ffffff;">;</span></pre>
-				<pre>  <span style="display: inline; color:#aaaaaa;">}</span></pre>
-				<pre><span style="display: inline; color:#aaaaaa;">}</span></pre>
+				<div><span class="variable">void</span> <span class="function">loop</span><span
+						class="sign">(</span><span class="sign">)</span> <span class="sign">{</span></div>
+				<div>  <span class="function">if</span> <span class="sign">(</span><span
+						class="variable">map</span><span class="sign">(</span><span
+						class="variable">analogRead</span><span class="sign">(</span><span
+						class="text">senzor</span><span class="sign">)</span><span class="sign">,</span> <span
+						class="number">0</span><span class="sign">,</span> <span class="number">1023</span><span
+						class="sign">,</span> <span class="number">0</span><span class="sign">,</span> <span
+						class="number">255</span><span class="sign">)</span> <span class="sign">&gt;</span> <span
+						class="sign">(</span><b><span class="object">EEPROM</span></b><span class="sign">.</span><span
+						class="variable">read</span><span class="sign">(</span><span class="number">2</span><span
+						class="sign">)</span> <span class="sign">+</span> <span class="number">20</span><span
+						class="sign">)</span><span class="sign">)</span> <span class="sign">{</span></div>
+				<div>    <span class="text">farba</span> <span class="sign">=</span> <span
+						class="variable">&#34;cierna&#34;</span><span class="text">;</span></div>
+				<div>  <span class="sign">}</span></div>
+				<div></div>
+				<div>  <span class="function">else</span> <span class="function">if</span> <span
+						class="sign">(</span><span class="variable">map</span><span class="sign">(</span><span
+						class="variable">analogRead</span><span class="sign">(</span><span
+						class="text">senzor</span><span class="sign">)</span><span class="sign">,</span> <span
+						class="number">0</span><span class="sign">,</span> <span class="number">1023</span><span
+						class="sign">,</span> <span class="number">0</span><span class="sign">,</span> <span
+						class="number">255</span><span class="sign">)</span> <span class="sign">&lt;</span> <span
+						class="sign">(</span><b><span class="object">EEPROM</span></b><span class="sign">.</span><span
+						class="variable">read</span><span class="sign">(</span><span class="number">2</span><span
+						class="sign">)</span> <span class="sign">+</span> <span class="number">20</span><span
+						class="sign">)</span><span class="sign">)</span> <span class="sign">{</span></div>
+				<div>    <span class="text">farba</span> <span class="sign">=</span> <span
+						class="variable">&#34;biela&#34;</span><span class="text">;</span></div>
+				<div>  <span class="sign">}</span></div>
+				<div></div>
+				<div>  <span class="function">if</span> <span class="sign">(</span><span class="text">farba</span> <span
+						class="sign">==</span> <span class="variable">&#34;cierna&#34;</span><span class="sign">)</span>
+					<span class="sign">{</span></div>
+				<div>    <span class="text">doprava</span><span class="sign">(</span><span class="sign">)</span><span
+						class="text">;</span></div>
+				<div>  <span class="sign">}</span></div>
+				<div></div>
+				<div>  <span class="function">if</span> <span class="sign">(</span><span class="text">farba</span> <span
+						class="sign">==</span> <span class="variable">&#34;biela&#34;</span><span class="sign">)</span>
+					<span class="sign">{</span></div>
+				<div>    <span class="text">dolava</span><span class="sign">(</span><span class="sign">)</span><span
+						class="text">;</span></div>
+				<div>  <span class="sign">}</span></div>
+				<div></div>
+				<div>  <span class="function">if</span> <span class="sign">(</span><span
+						class="variable">digitalRead</span><span class="sign">(</span><span class="text">IR</span><span
+						class="sign">)</span> <span class="sign">==</span> <span class="variable">LOW</span><span
+						class="sign">)</span> <span class="sign">{</span></div>
+				<div>    <span class="text">naokolo</span><span class="sign">(</span><span class="sign">)</span><span
+						class="text">;</span></div>
+				<div>  <span class="sign">}</span></div>
+				<div><span class="sign">}</span></div>
 			</div>
 
 			<br>
