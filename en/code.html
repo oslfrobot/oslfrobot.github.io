@@ -21,6 +21,9 @@
 	<meta name="description"
 		content="Website about one sensor line follower robot, that can also avoid objects and have automatic calibration.">
 
+	<!-- Author -->
+	<meta name="author" content="Peter Borták & Eduard Lehocký">
+
 
 	<!-- Icon -->
 	<link rel="icon" type="image/png" sizes="32x32" href="../icon/favicon-32x32.png">
@@ -102,10 +105,10 @@
 <body style="margin: 0% !important;">
 	<div class="code" style="margin: 0em !important">
 		<div><span class="definition">#include</span> <span class="sign">&lt;</span><span
-					class="object">EEPROM</span><span class="sign">.</span><span class="text">h</span><span
+				class="object">EEPROM</span><span class="sign">.</span><span class="text">h</span><span
 				class="sign">&gt;</span></div>
 		<div><span class="definition">#include</span> <span class="sign">&lt;</span><span
-					class="object">Servo</span><span class="sign">.</span><span class="text">h</span><span
+				class="object">Servo</span><span class="sign">.</span><span class="text">h</span><span
 				class="sign">&gt;</span></div>
 		<div><span class="object">Servo</span> <span class="text">s1</span><span class="text">;</span></div>
 		<div><span class="object">Servo</span> <span class="text">s2</span><span class="text">;</span></div>
@@ -264,19 +267,18 @@
 		<div>    <span class="variable">delay</span><span class="sign">(</span><span class="number">10</span><span
 				class="sign">)</span><span class="text">;</span></div>
 		<div>  <span class="sign">}</span></div>
-		<div>  <span class="object">EEPROM</span><span class="sign">.</span><span
-				class="variable">write</span><span class="sign">(</span><span class="number">0</span><span
-				class="sign">,</span> <span class="number">0</span><span class="sign">)</span><span
-				class="text">;</span></div>
-		<div>  <span class="object">EEPROM</span><span class="sign">.</span><span
-				class="variable">write</span><span class="sign">(</span><span class="number">0</span><span
-				class="sign">,</span> <span class="variable">map</span><span class="sign">(</span><span
-				class="sign">(</span><span class="text">blackMeasured</span> <span class="sign">&#47;</span> <span
-				class="text">x</span><span class="sign">)</span><span class="sign">,</span> <span
-				class="number">0</span><span class="sign">,</span> <span class="number">1023</span><span
-				class="sign">,</span> <span class="number">0</span><span class="sign">,</span> <span
-				class="number">255</span><span class="sign">)</span><span class="sign">)</span><span
-				class="text">;</span> <span class="sign">&#47;&#47;black</span></div>
+		<div>  <span class="object">EEPROM</span><span class="sign">.</span><span class="variable">write</span><span
+				class="sign">(</span><span class="number">0</span><span class="sign">,</span> <span
+				class="number">0</span><span class="sign">)</span><span class="text">;</span></div>
+		<div>  <span class="object">EEPROM</span><span class="sign">.</span><span class="variable">write</span><span
+				class="sign">(</span><span class="number">0</span><span class="sign">,</span> <span
+				class="variable">map</span><span class="sign">(</span><span class="sign">(</span><span
+				class="text">blackMeasured</span> <span class="sign">&#47;</span> <span class="text">x</span><span
+				class="sign">)</span><span class="sign">,</span> <span class="number">0</span><span
+				class="sign">,</span> <span class="number">1023</span><span class="sign">,</span> <span
+				class="number">0</span><span class="sign">,</span> <span class="number">255</span><span
+				class="sign">)</span><span class="sign">)</span><span class="text">;</span> <span
+				class="sign">&#47;&#47;black</span></div>
 		<div>  <span class="text">right</span><span class="sign">(</span><span class="sign">)</span><span
 				class="text">;</span></div>
 		<div>  <span class="variable">delay</span><span class="sign">(</span><span class="number">500</span><span
@@ -294,43 +296,42 @@
 		<div>    <span class="variable">delay</span><span class="sign">(</span><span class="number">10</span><span
 				class="sign">)</span><span class="text">;</span></div>
 		<div>  <span class="sign">}</span></div>
-		<div>  <span class="object">EEPROM</span><span class="sign">.</span><span
-				class="variable">write</span><span class="sign">(</span><span class="number">1</span><span
-				class="sign">,</span> <span class="number">0</span><span class="sign">)</span><span
-				class="text">;</span></div>
-		<div>  <span class="object">EEPROM</span><span class="sign">.</span><span
-				class="variable">write</span><span class="sign">(</span><span class="number">1</span><span
-				class="sign">,</span> <span class="variable">map</span><span class="sign">(</span><span
-				class="sign">(</span><span class="text">whiteMeasured</span> <span class="sign">&#47;</span> <span
-				class="text">x</span><span class="sign">)</span><span class="sign">,</span> <span
-				class="number">0</span><span class="sign">,</span> <span class="number">1023</span><span
-				class="sign">,</span> <span class="number">0</span><span class="sign">,</span> <span
-				class="number">255</span><span class="sign">)</span><span class="sign">)</span><span
-				class="text">;</span> <span class="sign">&#47;&#47;white</span></div>
-		<div>  <span class="object">Serial</span><span class="sign">.</span><span
-				class="variable">println</span><span class="sign">(</span><span class="object">EEPROM</span><span
-				class="sign">.</span><span class="variable">read</span><span class="sign">(</span><span
-				class="number">1</span><span class="sign">)</span><span class="sign">)</span><span class="text">;</span>
+		<div>  <span class="object">EEPROM</span><span class="sign">.</span><span class="variable">write</span><span
+				class="sign">(</span><span class="number">1</span><span class="sign">,</span> <span
+				class="number">0</span><span class="sign">)</span><span class="text">;</span></div>
+		<div>  <span class="object">EEPROM</span><span class="sign">.</span><span class="variable">write</span><span
+				class="sign">(</span><span class="number">1</span><span class="sign">,</span> <span
+				class="variable">map</span><span class="sign">(</span><span class="sign">(</span><span
+				class="text">whiteMeasured</span> <span class="sign">&#47;</span> <span class="text">x</span><span
+				class="sign">)</span><span class="sign">,</span> <span class="number">0</span><span
+				class="sign">,</span> <span class="number">1023</span><span class="sign">,</span> <span
+				class="number">0</span><span class="sign">,</span> <span class="number">255</span><span
+				class="sign">)</span><span class="sign">)</span><span class="text">;</span> <span
+				class="sign">&#47;&#47;white</span></div>
+		<div>  <span class="object">Serial</span><span class="sign">.</span><span class="variable">println</span><span
+				class="sign">(</span><span class="object">EEPROM</span><span class="sign">.</span><span
+				class="variable">read</span><span class="sign">(</span><span class="number">1</span><span
+				class="sign">)</span><span class="sign">)</span><span class="text">;</span>
 		</div>
-		<div>  <span class="object">Serial</span><span class="sign">.</span><span
-				class="variable">println</span><span class="sign">(</span><span class="object">EEPROM</span><span
-				class="sign">.</span><span class="variable">read</span><span class="sign">(</span><span
-				class="number">0</span><span class="sign">)</span><span class="sign">)</span><span class="text">;</span>
+		<div>  <span class="object">Serial</span><span class="sign">.</span><span class="variable">println</span><span
+				class="sign">(</span><span class="object">EEPROM</span><span class="sign">.</span><span
+				class="variable">read</span><span class="sign">(</span><span class="number">0</span><span
+				class="sign">)</span><span class="sign">)</span><span class="text">;</span>
 		</div>
 		<div></div>
-		<div>  <span class="object">EEPROM</span><span class="sign">.</span><span
-				class="variable">write</span><span class="sign">(</span><span class="number">2</span><span
-				class="sign">,</span> <span class="sign">(</span><span class="object">EEPROM</span><span
+		<div>  <span class="object">EEPROM</span><span class="sign">.</span><span class="variable">write</span><span
+				class="sign">(</span><span class="number">2</span><span class="sign">,</span> <span
+				class="sign">(</span><span class="object">EEPROM</span><span class="sign">.</span><span
+				class="variable">read</span><span class="sign">(</span><span class="number">1</span><span
+				class="sign">)</span> <span class="sign">+</span> <span class="object">EEPROM</span><span
 				class="sign">.</span><span class="variable">read</span><span class="sign">(</span><span
-				class="number">1</span><span class="sign">)</span> <span class="sign">+</span> <span
-					class="object">EEPROM</span><span class="sign">.</span><span class="variable">read</span><span
-				class="sign">(</span><span class="number">0</span><span class="sign">)</span><span class="sign">)</span>
+				class="number">0</span><span class="sign">)</span><span class="sign">)</span>
 			<span class="sign">&#47;</span> <span class="number">2</span><span class="sign">)</span><span
 				class="text">;</span></div>
-		<div>  <span class="object">Serial</span><span class="sign">.</span><span
-				class="variable">println</span><span class="sign">(</span><span class="object">EEPROM</span><span
-				class="sign">.</span><span class="variable">read</span><span class="sign">(</span><span
-				class="number">2</span><span class="sign">)</span><span class="sign">)</span><span class="text">;</span>
+		<div>  <span class="object">Serial</span><span class="sign">.</span><span class="variable">println</span><span
+				class="sign">(</span><span class="object">EEPROM</span><span class="sign">.</span><span
+				class="variable">read</span><span class="sign">(</span><span class="number">2</span><span
+				class="sign">)</span><span class="sign">)</span><span class="text">;</span>
 		</div>
 		<div>  <span class="variable">delay</span><span class="sign">(</span><span class="number">1000</span><span
 				class="sign">)</span><span class="text">;</span></div>
