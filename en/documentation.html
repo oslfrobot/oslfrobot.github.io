@@ -341,29 +341,27 @@
 			<p>First of all we need to import libraries and define some values, that we will need at all of our
 				program:
 			</p>
-			<code>
-				<div class="code">
-					<div><span class="definition">#include</span> <span class="sign">&lt;</span><span
-							class="object">EEPROM</span><span class="sign">.</span><span class="text">h</span><span
-							class="sign">&gt;</span></div>
-					<div><span class="definition">#include</span> <span class="sign">&lt;</span><span
-							class="object">Servo</span><span class="sign">.</span><span class="text">h</span><span
-							class="sign">&gt;</span></div>
-					<div><span class="object">Servo</span> <span class="text">s1</span><span class="text">;</span></div>
-					<div><span class="object">Servo</span> <span class="text">s2</span><span class="text">;</span></div>
-					<div></div>
-					<div><span class="definition">#define</span> <span class="text">sensor</span> <span
-							class="text">A0</span></div>
-					<div><span class="definition">#define</span> <span class="text">IR</span> <span
-							class="number">3</span></div>
-					<div></div>
-					<div><span class="variable">int</span> <span class="text">x</span> <span class="sign">=</span> <span
-							class="number">100</span><span class="text">;</span> <span class="sign">&#47;&#47;count of
-							measurements</span></div>
-					<div><span class="variable">String</span> <span class="text">color</span><span class="text">;</span>
-					</div>
+			<div class="code">
+				<div><span class="definition">#include</span> <span class="sign">&lt;</span><span
+						class="object">EEPROM</span><span class="sign">.</span><span class="text">h</span><span
+						class="sign">&gt;</span></div>
+				<div><span class="definition">#include</span> <span class="sign">&lt;</span><span
+						class="object">Servo</span><span class="sign">.</span><span class="text">h</span><span
+						class="sign">&gt;</span></div>
+				<div><span class="object">Servo</span> <span class="text">s1</span><span class="text">;</span></div>
+				<div><span class="object">Servo</span> <span class="text">s2</span><span class="text">;</span></div>
+				<div></div>
+				<div><span class="definition">#define</span> <span class="text">sensor</span> <span
+						class="text">A0</span></div>
+				<div><span class="definition">#define</span> <span class="text">IR</span> <span
+						class="number">3</span></div>
+				<div></div>
+				<div><span class="variable">int</span> <span class="text">x</span> <span class="sign">=</span> <span
+						class="number">100</span><span class="text">;</span> <span class="sign">&#47;&#47;count of
+						measurements</span></div>
+				<div><span class="variable">String</span> <span class="text">color</span><span class="text">;</span>
 				</div>
-			</code>
+			</div>
 
 			<br>
 			<p>Now, here is calibration function, that will calibrate your line follower robot. If it is in

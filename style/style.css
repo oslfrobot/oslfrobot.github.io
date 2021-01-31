@@ -95,6 +95,7 @@ p {
 	counter-reset: line;
 	font-family: 'Hack', monospace;
 	overflow: auto;
+	white-space: nowrap;
 }
 
 .code-inline {
