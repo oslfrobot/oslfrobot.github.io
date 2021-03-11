@@ -23,6 +23,25 @@
 	--button-hover: #348c72;
 	--button-text: lightgray;
 	--button-text-hover: white;
+
+	--body-font: 'Exo 2', sans-serif;
+	--code-font: 'JetBrains Mono', monospace;
+}
+
+@font-face {
+	font-family: 'JetBrains Mono';
+	src: url('https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/fonts/webfonts/JetBrainsMono-Regular.woff2') format('woff2'),
+		 url('https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/fonts/ttf/JetBrainsMono-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal
+}
+
+@font-face {
+	font-family: 'JetBrains Mono';
+	src: url('https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/fonts/webfonts/JetBrainsMono-Bold.woff2') format('woff2'),
+		 url('https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/fonts/ttf/JetBrainsMono-Bold.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal
 }
 
 body {
@@ -36,21 +55,21 @@ h1 {
 	text-align: center;
 	color: var(--heading);
 	font-size: 3.5em;
-	font-family: 'Exo 2', sans-serif;
+	font-family: var(--body-font);
 }
 
 h2 {
 	text-align: center;
 	color: var(--heading);
 	font-size: 2.5em;
-	font-family: 'Exo 2', sans-serif;
+	font-family: var(--body-font);
 }
 
 p {
 	color: var(--text);
 	font-size: 1.3em;
 	line-height: 1.7em;
-	font-family: 'Exo 2', sans-serif;
+	font-family: var(--body-font);
 }
 
 .code .object,
@@ -93,7 +112,7 @@ p {
 	padding: 0.5em;
 	background-color: var(--background);
 	counter-reset: line;
-	font-family: 'Hack', monospace;
+	font-family: var(--code-font);
 	overflow: auto;
 	white-space: nowrap;
 }
@@ -101,7 +120,7 @@ p {
 .code-inline {
 	background-color: var(--background);
 	counter-reset: line;
-	font-family: 'Hack', monospace;
+	font-family: var(--code-font);
 	font-size: 0.8em;
 	padding: 0.15em;
 }
@@ -132,7 +151,7 @@ p {
 	color: var(--nav-text);
 	padding: 10px 0px;
 	font-size: 1.3em;
-	font-family: 'Exo 2', sans-serif;
+	font-family: var(--body-font);
 	width: 20%;
 	text-decoration: none;
 	transition: .3s ease;
@@ -167,7 +186,7 @@ p {
 	color: var(--nav-text);
 	padding: 10px 0px;
 	font-size: 1.3em;
-	font-family: 'Exo 2', sans-serif;
+	font-family: var(--body-font);
 	width: calc(100%/3);
 	text-decoration: none;
 	transition: .3s ease;
@@ -234,7 +253,7 @@ a {
 	color: var(--text);
 	line-height: 1.7em;
 	font-size: 1.3em;
-	font-family: 'Exo 2', sans-serif;
+	font-family: var(--body-font);
 	transition: .3s ease;
 }
 
@@ -242,7 +261,7 @@ body p a {
 	color: var(--text);
 	line-height: 1.7em;
 	font-size: 1em !important;
-	font-family: 'Exo 2', sans-serif;
+	font-family: var(--body-font);
 }
 
 body a:link {
