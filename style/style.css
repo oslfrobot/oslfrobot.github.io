@@ -206,7 +206,7 @@ p {
 	margin: 1% auto;
 }
 
-img {
+.container img {
 	opacity: 1;
 	display: block;
 	width: 96%;
