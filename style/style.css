@@ -129,7 +129,7 @@ p {
 	counter-increment: line;
 	content: counter(line);
 	display: inline-block;
-	padding: 0em 0.5em 0em 0em;
+	padding-right: 0.5em;
 	width: 2em;
 	color: var(--code-number);
 	text-align: right;
@@ -138,8 +138,8 @@ p {
 .navbar {
 	background-color: var(--nav);
 	position: fixed;
-	top: 0px;
-	right: 0px;
+	top: 0;
+	right: 0;
 	width: 100%;
 	text-align: center;
 	z-index: 300;
@@ -149,7 +149,7 @@ p {
 .navbar a {
 	float: left;
 	color: var(--nav-text);
-	padding: 10px 0px;
+	padding: 10px 0;
 	font-size: 1.3em;
 	font-family: var(--body-font);
 	width: 20%;
@@ -173,8 +173,8 @@ p {
 .footer {
 	background-color: var(--nav);
 	position: fixed;
-	bottom: 0px;
-	right: 0px;
+	bottom: 0;
+	right: 0;
 	width: 100%;
 	text-align: center;
 	z-index: 300;
@@ -184,7 +184,7 @@ p {
 .footer a {
 	float: left;
 	color: var(--nav-text);
-	padding: 10px 0px;
+	padding: 10px 0;
 	font-size: 1.3em;
 	font-family: var(--body-font);
 	width: calc(100%/3);
@@ -321,7 +321,6 @@ a.button:hover {
 
 @media screen and (max-width: 1200px) {
 	.footer a {
-		padding: 10px 0px;
 		width: 100%;
 		display: none;
 	}
