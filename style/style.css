@@ -7,8 +7,8 @@
 	--img: #21252b;
 	--img-text: #444444;
 
-	--link: gray;
-	--link-hover: darkgray;
+	--link: dimgray;
+	--link-hover: gray;
 
 	--nav: #1d2026;
 	--nav-responsive: #171a1e;
@@ -31,7 +31,7 @@
 @font-face {
 	font-family: 'JetBrains Mono';
 	src: url('https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/fonts/webfonts/JetBrainsMono-Regular.woff2') format('woff2'),
-		 url('https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/fonts/ttf/JetBrainsMono-Regular.ttf') format('truetype');
+		url('https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/fonts/ttf/JetBrainsMono-Regular.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal
 }
@@ -39,7 +39,7 @@
 @font-face {
 	font-family: 'JetBrains Mono';
 	src: url('https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/fonts/webfonts/JetBrainsMono-Bold.woff2') format('woff2'),
-		 url('https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/fonts/ttf/JetBrainsMono-Bold.ttf') format('truetype');
+		url('https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/fonts/ttf/JetBrainsMono-Bold.ttf') format('truetype');
 	font-weight: bold;
 	font-style: normal
 }
@@ -135,31 +135,48 @@ p {
 	text-align: right;
 }
 
-.navbar {
+.navbar,
+.footer {
 	background-color: var(--nav);
 	position: fixed;
-	top: 0;
 	right: 0;
 	width: 100%;
 	text-align: center;
 	z-index: 300;
+}
+
+.navbar {
+	top: 0;
 	box-shadow: 0 1px 5px 0 var(--nav-shadow);
 }
 
-.navbar a {
+.footer {
+	bottom: 0;
+	box-shadow: 0 -1px 5px 0 var(--nav-shadow);
+}
+
+.navbar a,
+.footer a {
+	color: var(--nav-text) !important;
 	float: left;
-	color: var(--nav-text);
 	padding: 10px 0;
 	font-size: 1.3em;
 	font-family: var(--body-font);
-	width: 20%;
-	text-decoration: none;
 	transition: .3s ease;
 }
 
-.navbar a:hover {
+.navbar a {
+	width: 20%;
+}
+
+.footer a {
+	width: calc(100%/3);
+}
+
+.navbar a:hover,
+.footer a:hover {
+	color: var(--nav-text-hover) !important;
 	background-color: var(--nav-hover);
-	color: var(--nav-text-hover);
 }
 
 .navbar-button {
@@ -168,33 +185,6 @@ p {
 
 .navbar-text {
 	display: none;
-}
-
-.footer {
-	background-color: var(--nav);
-	position: fixed;
-	bottom: 0;
-	right: 0;
-	width: 100%;
-	text-align: center;
-	z-index: 300;
-	box-shadow: 0 -1px 5px 0 var(--nav-shadow);
-}
-
-.footer a {
-	float: left;
-	color: var(--nav-text);
-	padding: 10px 0;
-	font-size: 1.3em;
-	font-family: var(--body-font);
-	width: calc(100%/3);
-	text-decoration: none;
-	transition: .3s ease;
-}
-
-.footer a:hover {
-	background: var(--nav-hover);
-	color: var(--nav-text-hover);
 }
 
 .container a {
@@ -264,11 +254,7 @@ body p a {
 	font-family: var(--body-font);
 }
 
-body a:link {
-	text-decoration: none;
-	color: var(--link);
-}
-
+body a:link,
 body a:visited {
 	text-decoration: none;
 	color: var(--link);
@@ -277,7 +263,6 @@ body a:visited {
 body a:hover {
 	text-decoration: none;
 	color: var(--link-hover);
-	text-align: center;
 }
 
 body a span.count {
