@@ -8,19 +8,6 @@ function navbar() {
 }
 
 $(function () {
-	$('a[href*="#"]:not([href="#"])').click(function () {
-		if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-			var target = $(this.hash);
-			target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-			if (target.length) {
-				$('html, body').animate({
-					scrollTop: (target.offset().top)
-				}, 800, "easeInOutExpo");
-				return false;
-			}
-		}
-	});
-
 	var url = window.location.pathname;
 	var urlRegExp = new RegExp(url.replace(/\/$/, '') + "$");
 
@@ -42,4 +29,19 @@ $(function () {
 	// 		this.src += "?v=" + hash;
 	// 	});
 	// });
+
+	var height = document.getElementsByClassName("navbar")[0].clientHeight;
+
+	var scroll = new SmoothScroll('a[href*="#"]:not([href="#"])', {
+		// easeInOutExpo
+		speed: 800,
+		speedAsDuration: true,
+		offset: height < 60 ? height * -1 : (height - 60) * -1,
+		customEasing: function (time) {
+			if (time == 0) return 0;
+			if (time == 1) return 1;
+			if ((time /= 1 / 2) < 1) return 1 / 2 * Math.pow(2, 10 * (time - 1)) + 0;
+			return 1 / 2 * (-Math.pow(2, -10 * --time) + 2) + 0;
+		}
+	});
 });
