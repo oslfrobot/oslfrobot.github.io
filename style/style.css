@@ -181,6 +181,13 @@ p {
 	background-color: var(--nav-hover);
 }
 
+.navbar a.active,
+.navbar a.active:hover {
+	box-shadow: inset 0 -5px var(--nav-hover);
+	color: var(--nav-text) !important;
+	background-color: var(--nav) !important;
+}
+
 .navbar-button {
 	display: none;
 }
@@ -340,6 +347,10 @@ a.button:hover {
 }
 
 @media screen and (max-width: 719px) {
+	.navbar a.active {
+		box-shadow: inset 5px 0 var(--nav-hover);
+	}
+
 	.navbar a {
 		font-size: 1.1em;
 	}

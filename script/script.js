@@ -20,4 +20,14 @@ $(function () {
             }
         }
     });
+
+    var url = window.location.pathname;
+    var urlRegExp = new RegExp(url.replace(/\/$/, '') + "$");
+
+    $('.navbar a').each(function () {
+        if (urlRegExp.test(this.href.replace(/\/$/, ''))) {
+            $(this).addClass('active');
+            $(this).removeAttr("href");
+        }
+    });
 });
