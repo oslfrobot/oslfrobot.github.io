@@ -30,18 +30,20 @@
 
 @font-face {
 	font-family: 'JetBrains Mono';
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
 	src: url('https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/fonts/webfonts/JetBrainsMono-Regular.woff2') format('woff2'),
 		url('https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/fonts/ttf/JetBrainsMono-Regular.ttf') format('truetype');
-	font-weight: normal;
-	font-style: normal
 }
 
 @font-face {
 	font-family: 'JetBrains Mono';
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
 	src: url('https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/fonts/webfonts/JetBrainsMono-Bold.woff2') format('woff2'),
 		url('https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/fonts/ttf/JetBrainsMono-Bold.ttf') format('truetype');
-	font-weight: bold;
-	font-style: normal
 }
 
 body {
