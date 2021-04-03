@@ -7,22 +7,10 @@ function navbar() {
 	}
 }
 
-$(function () {
-	// $.getJSON('https://api.github.com/repos/oslfrobot/oslfrobot.github.io/commits', function (data) {
-	// 	const hash = data[0].sha.slice(0, 8);
+document.addEventListener("DOMContentLoaded", function () {
+	const height = document.getElementsByClassName("navbar")[0].clientHeight;
 
-	// 	$('head link').each(function () {
-	// 		this.href += "?v=" + hash;
-	// 	});
-
-	// 	$('head script').each(function () {
-	// 		this.src += "?v=" + hash;
-	// 	});
-	// });
-
-	var height = document.getElementsByClassName("navbar")[0].clientHeight;
-
-	var scroll = new SmoothScroll('a[href*="#"]:not([href="#"])', {
+	new SmoothScroll('a[href*="#"]:not([href="#"])', {
 		// easeInOutExpo
 		speed: 800,
 		speedAsDuration: true,
