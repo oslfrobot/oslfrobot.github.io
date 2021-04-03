@@ -8,16 +8,6 @@ function navbar() {
 }
 
 $(function () {
-	var url = window.location.pathname;
-	var urlRegExp = new RegExp(url.replace(/\/$/, '') + "$");
-
-	$('.navbar a').each(function () {
-		if (urlRegExp.test(this.href.replace(/\/$/, ''))) {
-			$(this).addClass('active');
-			$(this).removeAttr("href");
-		}
-	});
-
 	// $.getJSON('https://api.github.com/repos/oslfrobot/oslfrobot.github.io/commits', function (data) {
 	// 	const hash = data[0].sha.slice(0, 8);
 

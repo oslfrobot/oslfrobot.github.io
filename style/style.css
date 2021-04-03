@@ -175,14 +175,13 @@ p {
 	width: calc(100%/3);
 }
 
-.navbar a:hover,
+.navbar a:not(.active):hover,
 .footer a:hover {
 	color: var(--nav-text-hover) !important;
 	background-color: var(--nav-hover);
 }
 
-.navbar a.active,
-.navbar a.active:hover {
+.navbar a.active {
 	box-shadow: inset 0 -5px var(--nav-hover);
 	color: var(--nav-text) !important;
 	background-color: var(--nav) !important;
