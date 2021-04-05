@@ -312,6 +312,10 @@ a.button:hover {
 	width: 100%;
 }
 
+.center {
+	text-align: center;
+}
+
 @media screen and (max-width: 1200px) {
 	.footer a {
 		width: 100%;
