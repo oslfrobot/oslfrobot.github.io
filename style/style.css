@@ -262,7 +262,7 @@ body p a {
 	font-family: var(--body-font);
 }
 
-body a:link,
+body a,
 body a:visited {
 	text-decoration: none;
 	color: var(--link);
