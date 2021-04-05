@@ -316,6 +316,10 @@ a.button:hover {
 	text-align: center;
 }
 
+.connection p {
+	color: var(--link);
+}
+
 @media screen and (max-width: 1200px) {
 	.footer a {
 		width: 100%;
