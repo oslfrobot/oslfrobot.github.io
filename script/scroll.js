@@ -3,11 +3,8 @@ document.addEventListener("DOMContentLoaded", function () {
 		// easeInOutExpo
 		speed: 800,
 		speedAsDuration: true,
-		customEasing: function (time) {
-			if (time == 0) return 0;
-			if (time == 1) return 1;
-			if ((time /= 1 / 2) < 1) return 1 / 2 * Math.pow(2, 10 * (time - 1)) + 0;
-			return 1 / 2 * (-Math.pow(2, -10 * --time) + 2) + 0;
+		customEasing: function (x) {
+			return x == 0 ? 0 : x == 1 ? 1 : x < 0.5 ? Math.pow(2, 20 * x - 10) / 2 : (2 - Math.pow(2, -20 * x + 10)) / 2
 		}
 	});
 });
