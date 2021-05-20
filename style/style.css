@@ -237,17 +237,11 @@ a {
 	transition: .3s ease;
 }
 
-body p a {
-	color: var(--text);
-	line-height: 1.7em;
-	font-size: 1em !important;
-	font-family: var(--body-font);
-}
-
 body a,
 body a:visited {
 	text-decoration: none;
 	color: var(--link);
+	font-size: 1em !important;
 }
 
 body a:hover {
